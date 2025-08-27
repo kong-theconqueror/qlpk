@@ -1,0 +1,5 @@
+Flask==2.3.2
+Flask-RestX==1.3.0
+Flask_Marshmallow==1.2.1
+Marshmallow==3.26.1
+PyMySQL==1.1.1
