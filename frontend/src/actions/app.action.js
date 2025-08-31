@@ -1,0 +1,8 @@
+const PREFIX = 'APP/'
+
+const appAction = {
+    UPDATE_CONTENT_WIDTH: PREFIX + 'UPDATE_CONTENT_WIDTH',
+    UPDATE_CONTENT_HEIGHT: PREFIX + 'UPDATE_CONTENT_HEIGHT',
+}
+
+export default appAction;

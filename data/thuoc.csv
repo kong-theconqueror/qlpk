@@ -1,0 +1,51 @@
+id,name,description,unit_price,unit
+TH001,Paracetamol 500mg,"Giảm đau, hạ sốt",15000,viên
+TH002,Ibuprofen 400mg,Chống viêm giảm đau không steroid (NSAID),22000,viên
+TH003,Metformin 500mg,Hạ đường huyết trong đái tháo đường type 2,30000,viên
+TH004,Omeprazole 20mg,"Giảm tiết acid dạ dày, điều trị viêm loét",32000,viên
+TH005,Aspirin 81mg,Kháng kết tập tiểu cầu liều thấp,18000,viên
+TH006,Simvastatin 20mg,Giảm cholesterol máu (statin),28000,viên
+TH007,Losartan 50mg,Điều trị tăng huyết áp (ức chế thụ thể AT1),26000,viên
+TH008,Prednisolone 5mg,"Corticosteroid chống viêm, ức chế miễn dịch",17000,viên
+TH009,Vitamin B Complex,"Bổ sung vitamin nhóm B, hỗ trợ thần kinh",25000,viên
+TH010,Pantoprazole 40mg,"Giảm tiết acid, điều trị GERD/loét",35000,viên
+TH011,Amoxicillin 500mg,Kháng sinh beta-lactam phổ rộng,25000,viên
+TH012,Cefuroxime 250mg,Kháng sinh cephalosporin thế hệ 2,38000,viên
+TH013,Clarithromycin 500mg,"Kháng sinh macrolid, diệt H. pylori",42000,viên
+TH014,Ciprofloxacin 500mg,"Kháng sinh quinolon, nhiễm khuẩn nặng",36000,viên
+TH015,Metronidazole 250mg,Kháng khuẩn/ký sinh trùng kỵ khí,24000,viên
+TH016,Ceftriaxone 1g,Kháng sinh cephalosporin thế hệ 3 (tiêm),85000,lọ
+TH017,Gentamicin 80mg/2ml,Kháng sinh aminoglycosid (tiêm),52000,ống
+TH018,Diclofenac 75mg,Giảm đau chống viêm NSAID (tiêm/uống),33000,viên
+TH019,Ketorolac 30mg/ml,Giảm đau sau mổ (tiêm),65000,ống
+TH020,Tranexamic acid 500mg,"Cầm máu, ức chế tiêu fibrin",40000,viên
+TH021,ORS gói 27.9g,Bù nước điện giải trong tiêu chảy,7000,gói
+TH022,Zinc sulfate 20mg,"Bổ sung kẽm, rút ngắn đợt tiêu chảy",9000,viên
+TH023,Paracetamol siro 120mg/5ml,"Hạ sốt, giảm đau cho trẻ em",38000,chai
+TH024,Amoxicillin siro 250mg/5ml,Kháng sinh điều trị nhiễm khuẩn hô hấp,52000,chai
+TH025,Cefixime 100mg,Kháng sinh cephalosporin thế hệ 3,34000,viên
+TH026,Montelukast 4mg,Kiểm soát hen/viêm mũi dị ứng trẻ em,30000,viên
+TH027,Salbutamol siro,Giãn phế quản giảm khò khè,42000,chai
+TH028,Loratadine 5mg/5ml,Kháng histamin giảm dị ứng,28000,chai
+TH029,Multivitamin siro,Bổ sung vitamin tổng hợp cho trẻ,45000,chai
+TH030,Albendazole 400mg,Tẩy giun phổ rộng,12000,viên
+TH031,Sắt fumarat + Acid folic,Bổ sung sắt và folate cho thai kỳ,18000,viên
+TH032,Calcium Carbonate 500mg,"Bổ sung canxi, phòng loãng xương",16000,viên
+TH033,Magnesium B6,"Giảm chuột rút, an thần nhẹ",22000,viên
+TH034,Vitamin D3 giọt,"Hỗ trợ hấp thu canxi, phát triển xương",60000,chai
+TH035,Progesterone 200mg,"Hỗ trợ hoàng thể, dọa sảy thai",48000,viên
+TH036,Ethinylestradiol + Levonorgestrel,Thuốc tránh thai phối hợp,38000,vỉ
+TH037,Clotrimazole đặt 100mg,Điều trị nấm âm đạo,21000,đặt
+TH038,Metronidazole đặt 500mg,Điều trị viêm âm đạo do vi khuẩn,24000,đặt
+TH039,Oxytocin 10IU,"Gây/co cơn chuyển dạ, cầm máu sau sinh",52000,ống
+TH040,Methyldopa 250mg,Điều trị tăng huyết áp thai kỳ,30000,viên
+TH041,Natri clorid 0.9% nhỏ mũi,"Làm sạch mũi, giảm nghẹt",12000,lọ
+TH042,Xylometazoline 0.05%,Co mạch giảm nghẹt mũi,26000,lọ
+TH043,Chlorpheniramine 4mg,Kháng histamin giảm dị ứng,8000,viên
+TH044,Cetirizine 10mg,Kháng histamin thế hệ 2,25000,viên
+TH045,Fexofenadine 120mg,Kháng histamin ít gây buồn ngủ,36000,viên
+TH046,Fluticasone xịt mũi,Corticoid xịt mũi giảm viêm dị ứng,95000,lọ
+TH047,Ofloxacin nhỏ tai 0.3%,Kháng sinh điều trị viêm tai ngoài,52000,lọ
+TH048,Acetylcysteine 200mg,"Long đờm, tiêu nhầy đường hô hấp",18000,gói
+TH049,Guaifenesin 100mg/5ml,Ho long đờm,32000,chai
+TH050,Dexamethasone 4mg,"Corticosteroid chống viêm, dị ứng",14000,viên

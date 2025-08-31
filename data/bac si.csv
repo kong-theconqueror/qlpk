@@ -1,0 +1,101 @@
+id,full_name,gender,room,years_of_experience,title,Salary coefficient,specialty
+BS0001,Trần Ngọc Linh,Nữ,103,12,Bác sĩ,3.66,KH-SN
+BS0002,Trần Thành Phúc,Nam,401,38,Bác sĩ chính,6.78,KH-NHI
+BS0003,Đỗ Gia My,Nữ,406,25,Bác sĩ chính,6.78,KH-NHI
+BS0004,Võ Văn Trang,Nữ,507,2,Bác sĩ,2.34,KH-NI
+BS0005,Hoàng Hữu Tuấn,Nam,203,17,Bác sĩ,3.99,KH-NHI
+BS0006,Vũ Thảo Linh,Nữ,203,9,Bác sĩ,3.33,KH-SN
+BS0007,Lý Thành Ngân,Nữ,301,26,Bác sĩ cao cấp,8.0,KH-NHI
+BS0008,Bùi Thị Loan,Nữ,404,21,Bác sĩ chính,6.78,KH-NG
+BS0009,Ngô Minh Hùng,Nam,201,19,Bác sĩ,4.32,KH-NG
+BS0010,Phạm Gia Hùng,Nam,403,6,Bác sĩ,3.0,KH-NG
+BS0011,Bùi Anh Hoa,Nữ,501,24,Bác sĩ chính,6.78,KH-SN
+BS0012,Võ Đức Thảo,Nữ,509,39,Bác sĩ cao cấp,8.0,KH-NG
+BS0013,Lê Ngọc Linh,Nữ,104,39,Bác sĩ chính,6.78,KH-NHI
+BS0014,Ngô Minh Sơn,Nam,308,27,Bác sĩ cao cấp,8.0,KH-NG
+BS0015,Vũ Thảo Long,Nam,503,10,Bác sĩ,3.33,KH-SN
+BS0016,Vũ Quang Hải,Nam,507,28,Bác sĩ chính,6.78,KH-NHI
+BS0017,Hồ Hữu Trang,Nữ,203,5,Bác sĩ,2.67,KH-NHI
+BS0018,Đỗ Lan Nam,Nam,402,9,Bác sĩ,3.33,KH-NI
+BS0019,Trần Anh Ngọc,Nữ,302,17,Bác sĩ chính,6.1,KH-NI
+BS0020,Hoàng Gia Ngân,Nữ,107,15,Bác sĩ chính,6.1,KH-SN
+BS0021,Võ Thảo Ngọc,Nữ,510,25,Bác sĩ chính,6.78,KH-MAT
+BS0022,Hoàng Đức Ngân,Nữ,406,14,Bác sĩ,3.66,KH-NG
+BS0023,Đỗ Khánh Linh,Nữ,507,11,Bác sĩ,3.33,KH-SN
+BS0024,Đỗ Quang Hải,Nam,401,2,Bác sĩ,2.34,KH-NHI
+BS0025,Lê Đức Dũng,Nam,203,10,Bác sĩ,3.33,KH-NI
+BS0026,Ngô Thảo Phúc,Nam,309,37,Bác sĩ cao cấp,8.0,KH-NI
+BS0027,Ngô Khánh Linh,Nữ,101,6,Bác sĩ,3.0,KH-NHI
+BS0028,Trần Quang Hùng,Nam,107,36,Bác sĩ cao cấp,8.0,KH-NHI
+BS0029,Đỗ Anh Đức,Nam,403,39,Bác sĩ cao cấp,8.0,KH-SN
+BS0030,Nguyễn Minh Hải,Nam,108,12,Bác sĩ chính,5.76,KH-NI
+BS0031,Vũ Mai Ngọc,Nữ,509,23,Bác sĩ chính,6.78,KH-SN
+BS0032,Vũ Minh Sơn,Nam,110,28,Bác sĩ cao cấp,8.0,KH-NHI
+BS0033,Trần Hữu My,Nữ,107,21,Bác sĩ,4.65,KH-SN
+BS0034,Vũ Thị Hải,Nam,110,40,Bác sĩ chính,6.78,KH-MAT
+BS0035,Lý Ngọc Long,Nam,404,24,Bác sĩ chính,6.78,KH-NHI
+BS0036,Phan Anh Đức,Nam,409,25,Bác sĩ chính,6.78,KH-NG
+BS0037,Phạm Quang Ngân,Nữ,404,3,Bác sĩ,2.67,KH-NI
+BS0038,Bùi Văn Loan,Nữ,405,19,Bác sĩ,4.32,KH-MAT
+BS0039,Trần Lan Yến,Nữ,302,32,Bác sĩ chính,6.78,KH-SN
+BS0040,Ngô Khánh Thảo,Nữ,308,1,Bác sĩ,2.34,KH-SN
+BS0041,Trần Mai My,Nữ,109,7,Bác sĩ,3.0,KH-NI
+BS0042,Bùi Phúc Vy,Nữ,301,30,Bác sĩ chính,6.78,KH-NHI
+BS0043,Dương Gia Loan,Nữ,303,26,Bác sĩ chính,6.78,KH-MAT
+BS0044,Dương Thành Loan,Nữ,210,25,Bác sĩ chính,6.78,KH-NHI
+BS0045,Nguyễn Anh Thắng,Nam,502,24,Bác sĩ chính,6.78,KH-SN
+BS0046,Lê Mai Nam,Nam,504,17,Bác sĩ chính,6.1,KH-NG
+BS0047,Hoàng Mai Thắng,Nam,407,16,Bác sĩ,3.99,KH-NHI
+BS0048,Lý Đức Linh,Nữ,301,6,Bác sĩ,3.0,KH-MAT
+BS0049,Trần Đức Vy,Nữ,406,37,Bác sĩ cao cấp,8.0,KH-MAT
+BS0050,Vũ Quang Ngọc,Nữ,109,38,Bác sĩ cao cấp,8.0,KH-NI
+BS0051,Phan Phúc Hoa,Nữ,310,40,Bác sĩ cao cấp,8.0,KH-NG
+BS0052,Lê Thảo Hải,Nam,501,15,Bác sĩ,3.99,KH-SN
+BS0053,Trần Hữu Nam,Nam,408,7,Bác sĩ,3.0,KH-NHI
+BS0054,Võ Thanh Nam,Nam,108,39,Bác sĩ chính,6.78,KH-NI
+BS0055,Dương Quang Dũng,Nam,406,18,Bác sĩ chính,6.44,KH-NI
+BS0056,Đỗ Thành Dũng,Nam,207,28,Bác sĩ chính,6.78,KH-MAT
+BS0057,Hoàng Hữu Sơn,Nam,401,29,Bác sĩ chính,6.78,KH-NG
+BS0058,Phạm Khánh Thắng,Nam,207,25,Bác sĩ chính,6.78,KH-NHI
+BS0059,Hoàng Minh Yến,Nữ,205,26,Bác sĩ chính,6.78,KH-NI
+BS0060,Bùi Thảo My,Nữ,409,2,Bác sĩ,2.34,KH-NHI
+BS0061,Lê Đức Long,Nam,301,32,Bác sĩ chính,6.78,KH-NG
+BS0062,Nguyễn Lan Sơn,Nam,107,40,Bác sĩ cao cấp,8.0,KH-NI
+BS0063,Hoàng Thảo Tuấn,Nam,406,22,Bác sĩ chính,6.78,KH-SN
+BS0064,Phạm Mai My,Nữ,401,10,Bác sĩ,3.33,KH-MAT
+BS0065,Phan Mai Long,Nam,307,32,Bác sĩ cao cấp,8.0,KH-NHI
+BS0066,Lý Hữu Đức,Nam,108,5,Bác sĩ,2.67,KH-NHI
+BS0067,Lê Mai Tuấn,Nam,107,16,Bác sĩ chính,6.1,KH-MAT
+BS0068,Trần Thành Tuấn,Nam,408,40,Bác sĩ chính,6.78,KH-NHI
+BS0069,Lê Anh Phúc,Nam,209,13,Bác sĩ chính,5.76,KH-SN
+BS0070,Nguyễn Văn Ngọc,Nữ,502,22,Bác sĩ chính,6.78,KH-NI
+BS0071,Ngô Khánh Sơn,Nam,106,18,Bác sĩ chính,6.44,KH-MAT
+BS0072,Nguyễn Đức Loan,Nữ,106,15,Bác sĩ,3.99,KH-NHI
+BS0073,Lê Thành Đức,Nam,309,14,Bác sĩ,3.66,KH-NHI
+BS0074,Phạm Quang Hải,Nam,105,31,Bác sĩ chính,6.78,KH-NI
+BS0075,Hoàng Mai Hoa,Nữ,501,12,Bác sĩ chính,5.76,KH-SN
+BS0076,Phạm Thanh Vy,Nữ,208,5,Bác sĩ,2.67,KH-SN
+BS0077,Hoàng Quang Đức,Nam,405,29,Bác sĩ chính,6.78,KH-NG
+BS0078,Vũ Phúc Phúc,Nam,402,35,Bác sĩ chính,6.78,KH-NHI
+BS0079,Trần Văn Long,Nam,401,24,Bác sĩ chính,6.78,KH-NI
+BS0080,Hồ Thảo Đức,Nam,105,30,Bác sĩ chính,6.78,KH-NG
+BS0081,Nguyễn Đức Đức,Nam,308,8,Bác sĩ,3.0,KH-NI
+BS0082,Dương Thị Ngân,Nữ,301,39,Bác sĩ cao cấp,8.0,KH-NHI
+BS0083,Lê Gia Thảo,Nữ,107,19,Bác sĩ chính,6.44,KH-NI
+BS0084,Hoàng Phúc Sơn,Nam,402,34,Bác sĩ cao cấp,8.0,KH-MAT
+BS0085,Dương Đức Dũng,Nam,102,9,Bác sĩ,3.33,KH-NHI
+BS0086,Đỗ Minh Sơn,Nam,109,26,Bác sĩ chính,6.78,KH-MAT
+BS0087,Bùi Lan Hùng,Nam,404,11,Bác sĩ,3.33,KH-MAT
+BS0088,Phan Hữu Thảo,Nữ,109,11,Bác sĩ,3.33,KH-NG
+BS0089,Vũ Ngọc Vy,Nữ,301,13,Bác sĩ,3.66,KH-NI
+BS0090,Vũ Khánh Linh,Nữ,508,39,Bác sĩ cao cấp,8.0,KH-SN
+BS0091,Ngô Gia Yến,Nữ,107,19,Bác sĩ chính,6.44,KH-NG
+BS0092,Lý Gia Hùng,Nam,305,4,Bác sĩ,2.67,KH-NHI
+BS0093,Phan Gia My,Nữ,506,29,Bác sĩ chính,6.78,KH-SN
+BS0094,Bùi Văn Trang,Nữ,109,2,Bác sĩ,2.34,KH-SN
+BS0095,Dương Thảo Vy,Nữ,401,34,Bác sĩ cao cấp,8.0,KH-MAT
+BS0096,Hồ Hữu Thắng,Nam,509,7,Bác sĩ,3.0,KH-MAT
+BS0097,Phạm Thảo Trang,Nữ,302,36,Bác sĩ chính,6.78,KH-NG
+BS0098,Lý Quang Sơn,Nam,206,2,Bác sĩ,2.34,KH-MAT
+BS0099,Lý Minh Ngọc,Nữ,210,38,Bác sĩ cao cấp,8.0,KH-MAT
+BS0100,Lý Đức Hải,Nam,206,21,Bác sĩ chính,6.78,KH-NG
