@@ -1,4 +1,4 @@
-id,full_name,gender,room,years_of_experience,title,Salary coefficient,specialty
+id,full_name,gender,room,years_of_experience,title,salary_coefficient,specialty
 BS0001,Trần Ngọc Linh,Nữ,103,12,Bác sĩ,3.66,KH-SN
 BS0002,Trần Thành Phúc,Nam,401,38,Bác sĩ chính,6.78,KH-NHI
 BS0003,Đỗ Gia My,Nữ,406,25,Bác sĩ chính,6.78,KH-NHI

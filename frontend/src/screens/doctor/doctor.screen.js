@@ -17,7 +17,7 @@ const DoctorsScreen = () => {
 
     useEffect(() => {
         dispatch({
-            type: doctorAction.GET_DOCTORS_BY_PAGING,
+            type: doctorAction.GET_DOCTORS,
         });
     }, [dispatch]);
 
@@ -61,36 +61,29 @@ const DoctorsScreen = () => {
                                         <thead>
                                             <tr>
                                                 <th className="center middle">#</th>
-                                                <th className="center middle">{t('doctor.name')}</th>
-                                                <th className="center middle">{t('doctor.image')}</th>
-                                                <th className="center middle">{t('doctor.price')}</th>
-                                                <th className="center middle">{t('doctor.discount')}</th>
-                                                <th className="center middle">{t('doctor.status')}</th>
-                                                <th className="center middle">{t('doctor.action')}</th>
+                                                <th className="center middle">{t('doctor.full_name')}</th>
+                                                <th className="center middle">{t('doctor.gender')}</th>
+                                                <th className="center middle">{t('doctor.room')}</th>
+                                                <th className="center middle">{t('doctor.years_of_experience')}</th>
+                                                <th className="center middle">{t('doctor.title')}</th>
+                                                <th className="center middle">{t('doctor.salary_coefficient')}</th>
+                                                <th className="center middle">{t('doctor.specialty')}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {doctors.map((doctor) => {
                                                 return <tr key={doctor.id}>
                                                     <td className="center middle">{doctor.id}</td>
-                                                    <td className="center middle">{doctor.name}</td>
-                                                    <td className="center middle">
-                                                        <Image className="doctor-photo"
-                                                            src={doctor.photo ? doctor.photo : '/images/no_photo.jpg'} />
-                                                    </td>
-                                                    <td className="center middle">{doctor.price} {doctor.currency_unit}</td>
-                                                    <td className="center middle">{doctor.discount} %</td>
-                                                    <td className="center middle">
-                                                        {doctor.is_hot ? <Badge variant="danger" className="status">Hot</Badge> : null}
-                                                        {doctor.is_new ? <Badge variant="primary" className="status">New</Badge> : null}
-
-                                                    </td>
+                                                    <td className="center middle">{doctor.full_name}</td>
+                                                    <td className="center middle">{doctor.gender}</td>
+                                                    <td className="center middle">{doctor.room}</td>
+                                                    <td className="center middle">{doctor.years_of_experience}</td>
+                                                    <td className="center middle">{doctor.title}</td>
+                                                    <td className="center middle">{doctor.salary_coefficient}</td>
+                                                    <td className="center middle">{doctor.specialty}</td>
                                                     <td className="center middle">
                                                         <Button variant="success" title={t('doctor.info')}>
                                                             <i className="fa fa-info" aria-hidden="true"></i>
-                                                        </Button>
-                                                        <Button variant="primary" title={t('doctor.statistic')}>
-                                                            <i className="fa fa-area-chart" aria-hidden="true"></i>
                                                         </Button>
                                                         <Button variant="primary" title={t('doctor.update')}>
                                                             <i className="fa fa-pencil" aria-hidden="true"></i>
@@ -112,16 +105,17 @@ const DoctorsScreen = () => {
                             <Row>
                                 <Col md={6}>
                                     <div className="paging-text">
-                                        {t('app.showing')} 1 {t('app.to')} 10 {t('app.of')} 57 {t('doctor.doctor')}
+                                        {/* {t('app.showing')} 1 {t('app.to')} 10 {t('app.of')} 57 {t('doctor.doctor')} */}
+                                        {t('app.showing')} {doctors.length} {t('doctor.doctor')}
                                     </div>
                                 </Col>
                                 <Col md={6}>
                                     {/* paging */}
-                                    <Pagging 
+                                    {/* <Pagging 
                                         page={page}
                                         totalPage={totalPage}
                                         onBtnPageClick={onBtnPageClick}
-                                    />
+                                    /> */}
                                 </Col>
                             </Row>
                         </Card.Body>

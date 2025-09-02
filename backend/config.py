@@ -6,5 +6,5 @@ DB_USER = os.getenv("DB_USER", "root")
 DB_PASSWORD = os.getenv("DB_PASSWORD", "")
 DB_NAME = os.getenv("DB_NAME", "clinic_db")
 
-PORT = int(os.getenv("PORT", "5000"))
+PORT = int(os.getenv("PORT", "8000"))
 DEBUG = True

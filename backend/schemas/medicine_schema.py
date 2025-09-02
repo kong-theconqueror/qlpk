@@ -1,8 +1,8 @@
 from extensions import ma
 
-class ThuocSchema(ma.Schema):
+class MedicineSchema(ma.Schema):
     class Meta:
         fields = ("id", "name", "description", "unit_price", "unit", "created_at")
 
-thuoc_schema = ThuocSchema()
-thuocs_schema = ThuocSchema(many=True)
+medicine_schema = MedicineSchema()
+medicines_schema = MedicineSchema(many=True)

@@ -10,6 +10,16 @@ const initState = {
 
 const doctorReducer = (state = initState, action) => {
     switch (action.type) {
+        case doctorAction.GET_DOCTORS_SUCCESS:
+            return {
+                ...state,
+                doctors: action.value,
+            }
+        case doctorAction.GET_DOCTORS_FAIL:
+            return {
+                ...state,
+                doctors: [],
+            }
         case doctorAction.GET_DOCTORS_BY_PAGING_SUCCESS:
             return {
                 ...state,
