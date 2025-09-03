@@ -15,6 +15,7 @@ def get_conn():
 def init_db():
     conn = get_conn()
     with conn.cursor() as cur:
+        # Doctor
         cur.execute("""
             CREATE TABLE IF NOT EXISTS Doctor (
                 id VARCHAR(10) PRIMARY KEY,              -- VD: BS0001
@@ -28,18 +29,35 @@ def init_db():
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         """)
-        # cur.execute("""
-        #     CREATE TABLE IF NOT EXISTS BenhNhan (
-        #         id INT AUTO_INCREMENT PRIMARY KEY,
-        #         full_name VARCHAR(255) NOT NULL,
-        #         dob DATE, gender ENUM('male','female','other'),
-        #         phone VARCHAR(50), email VARCHAR(255), address VARCHAR(500),
-        #         primary_doctor_id INT,
-        #         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        #         FOREIGN KEY (primary_doctor_id) REFERENCES BacSy(id)
-        #         ON UPDATE CASCADE ON DELETE SET NULL
-        #     )
-        # """)
+        
+        # Nurse
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS Nurse (
+                id VARCHAR(20) PRIMARY KEY,                   -- Mã y tá
+                full_name VARCHAR(255) NOT NULL,              -- Họ tên
+                gender ENUM('Nam','Nữ') NOT NULL,             -- Giới tính
+                years_of_experience INT NOT NULL,             -- Số năm kinh nghiệm
+                title VARCHAR(100) NOT NULL,                  -- Chức danh (Y tá, Y tá chính,...)
+                salary_coefficient DECIMAL(5,2) NOT NULL,     -- Hệ số lương
+                specialty VARCHAR(50) NOT NULL,               -- Mã khoa chuyên môn (FK -> khoa.ma_khoa)
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                FOREIGN KEY (specialty) REFERENCES khoa(ma_khoa)
+            )
+        """)
+
+        # Patient
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS medicines (
+                id VARCHAR(10) PRIMARY KEY,
+                name VARCHAR(255) NOT NULL,
+                description VARCHAR(500),
+                unit_price DECIMAL(12,2) DEFAULT 0,
+                unit VARCHAR(50),
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
+        """)
+
+        # Medicine
         cur.execute("""
             CREATE TABLE IF NOT EXISTS Medicine (
                 id VARCHAR(10) PRIMARY KEY,           -- VD: TH001
@@ -47,6 +65,38 @@ def init_db():
                 description VARCHAR(500),             -- Công dụng
                 unit_price DECIMAL(12,2) DEFAULT 0,   -- Giá theo đơn vị
                 unit VARCHAR(50),                     -- Đơn vị (viên, ống, ml...)
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
+        """)
+
+        # Disease
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS Disease (
+                id_benh INT PRIMARY KEY,                   -- Mã bệnh (số nguyên)
+                ten_benh VARCHAR(255) NOT NULL,            -- Tên bệnh
+                mo_ta VARCHAR(500),                        -- Mô tả
+                ma_khoa VARCHAR(50) NOT NULL,              -- Mã khoa (liên kết với bảng khoa nếu có)
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            ) 
+        """)
+
+        # Department
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS Department (
+                ma_khoa VARCHAR(20) PRIMARY KEY,               -- Mã khoa (VD: KH-NI)
+                ten_khoa VARCHAR(255) NOT NULL,                -- Tên khoa
+                mo_ta VARCHAR(500),                            -- Mô tả
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
+        """)
+
+        # Equipment 
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS Equipment (
+                id_thiet_bi INT PRIMARY KEY,                        -- Mã thiết bị
+                ten_thiet_bi VARCHAR(255) NOT NULL,                 -- Tên thiết bị
+                chi_phi_su_dung DECIMAL(15,2) NOT NULL,             -- Chi phí sử dụng (VNĐ)
+                trang_thai ENUM('Sẵn sàng','Đang sử dụng','Bảo trì') NOT NULL,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         """)
