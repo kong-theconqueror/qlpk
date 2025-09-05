@@ -24,6 +24,9 @@ const vn = {
             patient: "Bệnh nhân",
             disease: "Bệnh",
             medicine: "Thuốc",
+            department: "Khoa",
+            equiqment: "Thiết bị",
+            service: "Dịch vụ",
 
             statistic: "Thống kê",
             weekly_statictic: "Thống kê hàng tuần",

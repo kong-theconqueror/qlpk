@@ -100,6 +100,24 @@ const initState = {
                     "link": "/danh-muc/benh",
                     "title": "menu.disease",
                     "icon": "fa fa-book"
+                },
+                {
+                    "name": "dichvu",
+                    "link": "/danh-muc/dich-vu",
+                    "title": "menu.service",
+                    "icon": "fa fa-ambulance"
+                },
+                {
+                    "name": "khoa",
+                    "link": "/danh-muc/khoa",
+                    "title": "menu.department",
+                    "icon": "fa fa-h-square"
+                },
+                {
+                    "name": "thietbi",
+                    "link": "/danh-muc/thiet-bi",
+                    "title": "menu.equiqment",
+                    "icon": "fa fa-heartbeat"
                 }
             ]
         },

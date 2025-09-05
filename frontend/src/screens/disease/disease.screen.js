@@ -4,31 +4,31 @@ import { useTranslation } from 'react-i18next';
 import { Container, Row, Col, Breadcrumb } from "react-bootstrap";
 import { Card, Table, Image, Badge, Button } from "react-bootstrap";
 // import Pagging from "../../components/table/pagging.component";
-import { doctorAction } from '../../actions';
+import { diseaseAction } from '../../actions';
 
 import Urls from '../../constants/urls.constant';
-import { DoctorWrapper } from './doctor.style';
+import { DiseaseWrapper } from './disease.style';
 
-const DoctorsScreen = () => {
+const DiseasesScreen = () => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
 
-    let { doctors, page, totalPage } = useSelector(state => state.doctor);
+    let { diseases, page, totalPage } = useSelector(state => state.disease);
 
     useEffect(() => {
         dispatch({
-            type: doctorAction.GET_DOCTORS,
+            type: diseaseAction.GET_DISEASES,
         });
     }, [dispatch]);
 
     const onBtnPageClick = (page) => {
         dispatch({
-            type: doctorAction.PAGE_CHANGE,
+            type: diseaseAction.PAGE_CHANGE,
             value: page
         });
     }
      
-    return <DoctorWrapper >
+    return <DiseaseWrapper >
         <Container fluid>
             {/* nav */}
             <Row>
@@ -41,7 +41,7 @@ const DoctorsScreen = () => {
                             {t('menu.category')}
                         </Breadcrumb.Item>
                         <Breadcrumb.Item active>
-                            {t('menu.doctor')}
+                            {t('menu.disease')}
                         </Breadcrumb.Item>
                     </Breadcrumb>
                 </Col>
@@ -52,7 +52,7 @@ const DoctorsScreen = () => {
                 <Col lg={12}>
                     <Card >
                         <Card.Header>
-                            <Card.Title>{t('doctor.doctor_list')}</Card.Title>
+                            <Card.Title>{t('disease.disease_list')}</Card.Title>
                         </Card.Header>
                         <Card.Body>
                             <Row>
@@ -61,34 +61,34 @@ const DoctorsScreen = () => {
                                         <thead>
                                             <tr>
                                                 <th className="center middle">#</th>
-                                                <th className="center middle">{t('doctor.full_name')}</th>
-                                                <th className="center middle">{t('doctor.gender')}</th>
-                                                <th className="center middle">{t('doctor.room')}</th>
-                                                <th className="center middle">{t('doctor.years_of_experience')}</th>
-                                                <th className="center middle">{t('doctor.title')}</th>
-                                                <th className="center middle">{t('doctor.salary_coefficient')}</th>
-                                                <th className="center middle">{t('doctor.specialty')}</th>
+                                                <th className="center middle">{t('disease.full_name')}</th>
+                                                <th className="center middle">{t('disease.gender')}</th>
+                                                <th className="center middle">{t('disease.room')}</th>
+                                                <th className="center middle">{t('disease.years_of_experience')}</th>
+                                                <th className="center middle">{t('disease.title')}</th>
+                                                <th className="center middle">{t('disease.salary_coefficient')}</th>
+                                                <th className="center middle">{t('disease.specialty')}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {doctors.map((doctor) => {
-                                                return <tr key={doctor.id}>
-                                                    <td className="center middle">{doctor.id}</td>
-                                                    <td className="center middle">{doctor.full_name}</td>
-                                                    <td className="center middle">{doctor.gender}</td>
-                                                    <td className="center middle">{doctor.room}</td>
-                                                    <td className="center middle">{doctor.years_of_experience}</td>
-                                                    <td className="center middle">{doctor.title}</td>
-                                                    <td className="center middle">{doctor.salary_coefficient}</td>
-                                                    <td className="center middle">{doctor.specialty}</td>
+                                            {diseases.map((disease) => {
+                                                return <tr key={disease.id}>
+                                                    <td className="center middle">{disease.id}</td>
+                                                    <td className="center middle">{disease.full_name}</td>
+                                                    <td className="center middle">{disease.gender}</td>
+                                                    <td className="center middle">{disease.room}</td>
+                                                    <td className="center middle">{disease.years_of_experience}</td>
+                                                    <td className="center middle">{disease.title}</td>
+                                                    <td className="center middle">{disease.salary_coefficient}</td>
+                                                    <td className="center middle">{disease.specialty}</td>
                                                     <td className="center middle">
-                                                        <Button variant="success" title={t('doctor.info')}>
+                                                        <Button variant="success" title={t('disease.info')}>
                                                             <i className="fa fa-info" aria-hidden="true"></i>
                                                         </Button>
-                                                        <Button variant="primary" title={t('doctor.update')}>
+                                                        <Button variant="primary" title={t('disease.update')}>
                                                             <i className="fa fa-pencil" aria-hidden="true"></i>
                                                         </Button>
-                                                        <Button variant="danger" title={t('doctor.delete')}>
+                                                        <Button variant="danger" title={t('disease.delete')}>
                                                             <i className="fa fa-trash" aria-hidden="true"></i>
                                                         </Button>
                                                     </td>
@@ -105,8 +105,8 @@ const DoctorsScreen = () => {
                             <Row>
                                 <Col md={6}>
                                     <div className="paging-text">
-                                        {/* {t('app.showing')} 1 {t('app.to')} 10 {t('app.of')} 57 {t('doctor.doctor')} */}
-                                        {t('app.showing')} {doctors.length} {t('doctor.doctor')}
+                                        {/* {t('app.showing')} 1 {t('app.to')} 10 {t('app.of')} 57 {t('disease.disease')} */}
+                                        {t('app.showing')} {diseases.length} {t('disease.disease')}
                                     </div>
                                 </Col>
                                 <Col md={6}>
@@ -123,7 +123,7 @@ const DoctorsScreen = () => {
                 </Col>
             </Row>
         </Container>
-    </DoctorWrapper>;
+    </DiseaseWrapper>;
 }
 
-export default DoctorsScreen;
+export default DiseasesScreen;

@@ -18,6 +18,9 @@ const Urls = {
     MEDICINE: '/danh-muc/thuoc',
     PATIENT: '/danh-muc/benh-nhan',
     DISEASE: '/danh-muc/benh',
+    SERVICE: '/danh-muc/dich-vu',
+    EQUIQMENT: '/danh-muc/thiet-bi',
+    DEPARTMENT: '/danh-muc/khoa',
     
     SYSTEM: '/system',
     FUNCTION: 'system/function',
