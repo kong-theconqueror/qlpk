@@ -1,5 +1,6 @@
 import os
 import csv
+from datetime import datetime
 import pymysql
 from pymysql.cursors import DictCursor
 from config import DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME
@@ -40,19 +41,19 @@ def init_db():
                 title VARCHAR(100) NOT NULL,                  -- Chức danh (Y tá, Y tá chính,...)
                 salary_coefficient DECIMAL(5,2) NOT NULL,     -- Hệ số lương
                 specialty VARCHAR(50) NOT NULL,               -- Mã khoa chuyên môn (FK -> khoa.ma_khoa)
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                FOREIGN KEY (specialty) REFERENCES khoa(ma_khoa)
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         """)
 
         # Patient
         cur.execute("""
-            CREATE TABLE IF NOT EXISTS medicines (
-                id VARCHAR(10) PRIMARY KEY,
-                name VARCHAR(255) NOT NULL,
-                description VARCHAR(500),
-                unit_price DECIMAL(12,2) DEFAULT 0,
-                unit VARCHAR(50),
+            CREATE TABLE IF NOT EXISTS Patient (
+                id VARCHAR(20) PRIMARY KEY,               -- Mã bệnh nhân
+                full_name VARCHAR(255) NOT NULL,          -- Họ và tên
+                birth DATE NOT NULL,                      -- Ngày sinh
+                gender ENUM('Nam','Nữ') NOT NULL,         -- Giới tính
+                phone_num VARCHAR(20),                    -- Số điện thoại
+                address VARCHAR(255),                     -- Địa chỉ
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         """)
@@ -100,17 +101,35 @@ def init_db():
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         """)
+
+        # Service 
+        cur.execute("""
+            CREATE TABLE IF NOT EXISTS Service (
+                id_dich_vu INT PRIMARY KEY AUTO_INCREMENT,    -- Mã dịch vụ
+                ten_dich_vu VARCHAR(255) NOT NULL,            -- Tên dịch vụ
+                don_gia DECIMAL(15,2) NOT NULL,               -- Đơn giá
+                mo_ta TEXT,                                   -- Mô tả dịch vụ
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
+        """)
+
     conn.close()
 
 
 def import_data():
     current_directory = os.getcwd()
     print(current_directory)
-    import_doctor(os.path.join(current_directory, 'data','bac si.csv'))
+    import_doctors(os.path.join(current_directory, 'data','bac si.csv'))
+    import_nurses(os.path.join(current_directory, 'data','y ta.csv'))
     import_medicines(os.path.join(current_directory, 'data','thuoc.csv'))
+    import_equipments(os.path.join(current_directory, 'data','thiet_bi.csv'))
+    import_diseases(os.path.join(current_directory, 'data','benh.csv'))
+    import_departments(os.path.join(current_directory, 'data','khoa_chua_benh.csv'))
+    import_services(os.path.join(current_directory, 'data','dich_vu.csv'))
+    import_patients(os.path.join(current_directory, 'data','benh_nhan.csv'))
 
 # Import doctor to DB
-def import_doctor(csv_file):
+def import_doctors(csv_file):
     conn = get_conn()
     with conn.cursor() as cur, open(csv_file, encoding="utf-8") as f:
         reader = csv.DictReader(f)
@@ -143,6 +162,38 @@ def import_doctor(csv_file):
             print(f"Imported doctor {row['id']} - {row['full_name']}")
     conn.close()
 
+# Import nurse to DB
+def import_nurses(csv_file):
+    conn = get_conn()
+    with conn.cursor() as cur, open(csv_file, encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            # Chuẩn bị dữ liệu
+            data = (
+                row['id'],
+                row['full_name'],
+                row['gender'],
+                row['years_of_experience'],
+                row['title'],
+                row['Salary coefficient'],
+                row['specialty']
+            )
+            # Insert, tránh trùng khóa chính
+            sql = """
+                INSERT INTO nurse (id, full_name, gender, years_of_experience, title, salary_coefficient, specialty)
+                VALUES (%s, %s, %s, %s, %s, %s, %s)
+                ON DUPLICATE KEY UPDATE
+                    full_name = VALUES(full_name),
+                    gender = VALUES(gender),
+                    years_of_experience = VALUES(years_of_experience),
+                    title = VALUES(title),
+                    salary_coefficient = VALUES(salary_coefficient),
+                    specialty = VALUES(specialty)
+            """
+            cur.execute(sql, data)
+            print(f"Imported nurse {row['id']} - {row['full_name']}")
+    conn.close()
+
 # Import medicine to DB
 def import_medicines(csv_file):
     conn = get_conn()
@@ -168,3 +219,127 @@ def import_medicines(csv_file):
             cur.execute(sql, data)
             print(f"Imported medicine {row['id']} - {row['name']}")
     conn.close()
+
+# Import equipment to DB
+def import_equipments(csv_file):
+    conn = get_conn()
+    with conn.cursor() as cur, open(csv_file, encoding="utf-8-sig") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            data = (
+                row['id_thiet_bi'],
+                row['ten_thiet_bi'],
+                row['chi_phi_su_dung'],
+                row['trang_thai']
+            )
+            sql = """
+                INSERT INTO equipment (id_thiet_bi, ten_thiet_bi, chi_phi_su_dung, trang_thai)
+                VALUES (%s, %s, %s, %s)
+                ON DUPLICATE KEY UPDATE
+                    ten_thiet_bi = VALUES(ten_thiet_bi),
+                    chi_phi_su_dung = VALUES(chi_phi_su_dung),
+                    trang_thai = VALUES(trang_thai)
+            """
+            cur.execute(sql, data)
+            print(f"Imported equipment {row['id_thiet_bi']} - {row['ten_thiet_bi']}")
+    conn.close()
+
+# Import disease to DB
+def import_diseases(csv_file):
+    conn = get_conn()
+    with conn.cursor() as cur, open(csv_file, encoding="utf-8-sig") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            data = (
+                row['id_benh'],
+                row['ten_benh'],
+                row['mo_ta'],
+                row['ma_khoa']
+            )
+            sql = """
+                INSERT INTO disease (id_benh, ten_benh, mo_ta, ma_khoa)
+                VALUES (%s, %s, %s, %s)
+                ON DUPLICATE KEY UPDATE
+                    ten_benh = VALUES(ten_benh),
+                    mo_ta = VALUES(mo_ta),
+                    ma_khoa = VALUES(ma_khoa)
+            """
+            cur.execute(sql, data)
+            print(f"Imported disease {row['id_benh']} - {row['ten_benh']}")
+    conn.close()
+
+# Import department to DB
+def import_departments(csv_file):
+    conn = get_conn()
+    with conn.cursor() as cur, open(csv_file, encoding="utf-8-sig") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            data = (
+                row['ma_khoa'],
+                row['ten_khoa'],
+                row['mo_ta']
+            )
+            sql = """
+                INSERT INTO department (ma_khoa, ten_khoa, mo_ta)
+                VALUES (%s, %s, %s)
+                ON DUPLICATE KEY UPDATE
+                    ten_khoa = VALUES(ten_khoa),
+                    mo_ta = VALUES(mo_ta)
+            """
+            cur.execute(sql, data)
+            print(f"Imported department {row['ma_khoa']} - {row['ten_khoa']}")
+    conn.close()
+
+# Import service to DB
+def import_services(csv_file):
+    conn = get_conn()
+    with conn.cursor() as cur, open(csv_file, encoding="utf-8-sig") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            data = (
+                row['id_dich_vu'],
+                row['ten_dich_vu'],
+                row['don_gia'],
+                row['mo_ta']
+            )
+            sql = """
+                INSERT INTO service (id_dich_vu, ten_dich_vu, don_gia, mo_ta)
+                VALUES (%s, %s, %s, %s)
+                ON DUPLICATE KEY UPDATE
+                    ten_dich_vu = VALUES(ten_dich_vu),
+                    don_gia = VALUES(don_gia),
+                    mo_ta = VALUES(mo_ta)
+            """
+            cur.execute(sql, data)
+            print(f"Imported service {row['id_dich_vu']} - {row['ten_dich_vu']}")
+    conn.close()
+
+# Import patient to DB
+def import_patients(csv_file):
+    conn = get_conn()
+    with conn.cursor() as cur, open(csv_file, encoding="utf-8-sig") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            birth_date = datetime.strptime(row['birth'], "%d/%m/%Y").date()
+            data = (
+                row['id'],
+                row['full_name'],
+                birth_date,
+                row['gender'],
+                row['phone_num'],
+                row['address']
+            )
+            sql = """
+                INSERT INTO patient (id, full_name, birth, gender, phone_num, address)
+                VALUES (%s, %s, %s, %s, %s, %s)
+                ON DUPLICATE KEY UPDATE
+                    full_name = VALUES(full_name),
+                    birth = VALUES(birth),
+                    gender = VALUES(gender),
+                    phone_num = VALUES(phone_num),
+                    address = VALUES(address)
+            """
+            cur.execute(sql, data)
+            print(f"Imported patient {row['id']} - {row['full_name']}")
+    conn.close()
+

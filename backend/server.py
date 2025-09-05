@@ -3,7 +3,7 @@ from db import init_db, import_data
 import config
 
 if __name__ == '__main__':
-    init_db()
+    # init_db()
     # import_data()
 
     app = create_app()
