@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const EquiqmentWrapper = styled.div`
+export const EquipmentWrapper = styled.div`
     .box{
         background-color: #087BC5;
         color: #fff;

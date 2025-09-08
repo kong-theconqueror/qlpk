@@ -8,7 +8,7 @@ import nurseAction from "./nurse.action";
 import patientAction from "./patient.action";
 import medicineAction from "./medicine.action";
 import serviceAction from "./service.action";
-import equiqmentAction from "./equiqment.action";
+import equipmentAction from "./equipment.action";
 import departmentAction from "./department.action";
 import diseaseAction from "./disease.action";
 
@@ -23,7 +23,7 @@ export{
     patientAction,
     medicineAction,
     serviceAction,
-    equiqmentAction,
+    equipmentAction,
     departmentAction,
     diseaseAction,
 }

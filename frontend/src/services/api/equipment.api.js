@@ -1,10 +1,10 @@
 import axiosSerivce from './axios.services';
 // import { getLocalData } from '../localStorage';
 
-class EquiqmentApi {
-    getEquiqments(data) {
+class EquipmentApi {
+    getEquipments(data) {
         return axiosSerivce.get(
-            'equiqment',
+            'equipment',
             data,
             true,
             {
@@ -15,6 +15,6 @@ class EquiqmentApi {
     }
 }
 
-const equiqmentApi = new EquiqmentApi()
+const equipmentApi = new EquipmentApi()
 
-export default equiqmentApi;
+export default equipmentApi;

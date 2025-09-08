@@ -61,26 +61,19 @@ const ServicesScreen = () => {
                                         <thead>
                                             <tr>
                                                 <th className="center middle">#</th>
-                                                <th className="center middle">{t('service.full_name')}</th>
-                                                <th className="center middle">{t('service.gender')}</th>
-                                                <th className="center middle">{t('service.room')}</th>
-                                                <th className="center middle">{t('service.years_of_experience')}</th>
-                                                <th className="center middle">{t('service.title')}</th>
-                                                <th className="center middle">{t('service.salary_coefficient')}</th>
-                                                <th className="center middle">{t('service.specialty')}</th>
+                                                <th className="center middle">{t('service.name')}</th>
+                                                <th className="center middle">{t('service.description')}</th>
+                                                <th className="center middle">{t('service.unit')}</th>
+                                                <th className="center middle">{t('service.action')}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {services.map((service) => {
                                                 return <tr key={service.id}>
-                                                    <td className="center middle">{service.id}</td>
-                                                    <td className="center middle">{service.full_name}</td>
-                                                    <td className="center middle">{service.gender}</td>
-                                                    <td className="center middle">{service.room}</td>
-                                                    <td className="center middle">{service.years_of_experience}</td>
-                                                    <td className="center middle">{service.title}</td>
-                                                    <td className="center middle">{service.salary_coefficient}</td>
-                                                    <td className="center middle">{service.specialty}</td>
+                                                    <td className="center middle">{service.id_dich_vu}</td>
+                                                    <td className="center middle">{service.ten_dich_vu}</td>
+                                                    <td className="center middle">{service.mo_ta}</td>
+                                                    <td className="center middle">{service.don_gia}</td>
                                                     <td className="center middle">
                                                         <Button variant="success" title={t('service.info')}>
                                                             <i className="fa fa-info" aria-hidden="true"></i>

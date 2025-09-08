@@ -1,24 +1,24 @@
 import { all, takeEvery, put, call } from 'redux-saga/effects';
-import equiqmentAction from '../actions/equiqment.action';
+import equipmentAction from '../actions/equipment.action';
 import notificationActions from '../actions/notification.action';
 
-import equiqmentApi from '../services/api/equiqment.api';
+import equipmentApi from '../services/api/equipment.api';
 
-function* getEquiqmentsSaga({ value }) {
+function* getEquipmentsSaga({ value }) {
   try {
-    const response = yield call(equiqmentApi.getEquiqments);
+    const response = yield call(equipmentApi.getEquipments);
     if (response.status === 200) {
       let _data = response.data;
       console.log(_data)
       yield put({
-          type: equiqmentAction.GET_EQUIQMENTS_SUCCESS,
+          type: equipmentAction.GET_EQUIPMENTS_SUCCESS,
           value: _data
         });
      
     } else {
       yield put({
         type: notificationActions.ERROR,
-        value: 'equiqment.cant_get_equiqments'
+        value: 'equipment.cant_get_equipments'
       });
     }
   } catch (error) {
@@ -32,6 +32,6 @@ function* getEquiqmentsSaga({ value }) {
 
 export default function* rootSaga() {
   yield all([
-    takeEvery(equiqmentAction.GET_EQUIQMENTS, getEquiqmentsSaga),
+    takeEvery(equipmentAction.GET_EQUIPMENTS, getEquipmentsSaga),
   ]);
 }

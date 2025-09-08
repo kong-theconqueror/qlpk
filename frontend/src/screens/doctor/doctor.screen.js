@@ -68,6 +68,7 @@ const DoctorsScreen = () => {
                                                 <th className="center middle">{t('doctor.title')}</th>
                                                 <th className="center middle">{t('doctor.salary_coefficient')}</th>
                                                 <th className="center middle">{t('doctor.specialty')}</th>
+                                                <th className="center middle">{t('doctor.action')}</th>
                                             </tr>
                                         </thead>
                                         <tbody>

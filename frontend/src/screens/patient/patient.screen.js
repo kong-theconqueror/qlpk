@@ -63,11 +63,10 @@ const PatientsScreen = () => {
                                                 <th className="center middle">#</th>
                                                 <th className="center middle">{t('patient.full_name')}</th>
                                                 <th className="center middle">{t('patient.gender')}</th>
-                                                <th className="center middle">{t('patient.room')}</th>
-                                                <th className="center middle">{t('patient.years_of_experience')}</th>
-                                                <th className="center middle">{t('patient.title')}</th>
-                                                <th className="center middle">{t('patient.salary_coefficient')}</th>
-                                                <th className="center middle">{t('patient.specialty')}</th>
+                                                <th className="center middle">{t('patient.birth')}</th>
+                                                <th className="center middle">{t('patient.phone_num')}</th>
+                                                <th className="center middle">{t('patient.address')}</th>
+                                                <th className="center middle">{t('patient.action')}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -76,11 +75,9 @@ const PatientsScreen = () => {
                                                     <td className="center middle">{patient.id}</td>
                                                     <td className="center middle">{patient.full_name}</td>
                                                     <td className="center middle">{patient.gender}</td>
-                                                    <td className="center middle">{patient.room}</td>
-                                                    <td className="center middle">{patient.years_of_experience}</td>
-                                                    <td className="center middle">{patient.title}</td>
-                                                    <td className="center middle">{patient.salary_coefficient}</td>
-                                                    <td className="center middle">{patient.specialty}</td>
+                                                    <td className="center middle">{patient.birth}</td>
+                                                    <td className="center middle">{patient.phone_num}</td>
+                                                    <td className="center middle">{patient.address}</td>
                                                     <td className="center middle">
                                                         <Button variant="success" title={t('patient.info')}>
                                                             <i className="fa fa-info" aria-hidden="true"></i>

@@ -63,11 +63,11 @@ const NursesScreen = () => {
                                                 <th className="center middle">#</th>
                                                 <th className="center middle">{t('nurse.full_name')}</th>
                                                 <th className="center middle">{t('nurse.gender')}</th>
-                                                <th className="center middle">{t('nurse.room')}</th>
                                                 <th className="center middle">{t('nurse.years_of_experience')}</th>
                                                 <th className="center middle">{t('nurse.title')}</th>
                                                 <th className="center middle">{t('nurse.salary_coefficient')}</th>
                                                 <th className="center middle">{t('nurse.specialty')}</th>
+                                                <th className="center middle">{t('nurse.action')}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -76,7 +76,6 @@ const NursesScreen = () => {
                                                     <td className="center middle">{nurse.id}</td>
                                                     <td className="center middle">{nurse.full_name}</td>
                                                     <td className="center middle">{nurse.gender}</td>
-                                                    <td className="center middle">{nurse.room}</td>
                                                     <td className="center middle">{nurse.years_of_experience}</td>
                                                     <td className="center middle">{nurse.title}</td>
                                                     <td className="center middle">{nurse.salary_coefficient}</td>

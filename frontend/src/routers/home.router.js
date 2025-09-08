@@ -8,7 +8,7 @@ import PatientScreen from "../screens/patient/patient.screen";
 import DiseaseScreen from "../screens/disease/disease.screen";
 import DepartmentScreen from "../screens/department/department.screen";
 import MedicineScreen from "../screens/medicine/medicine.screen";
-import EquiqmentScreen from "../screens/equiqment/equiqment.screen";
+import EquipmentScreen from "../screens/equipment/equipment.screen";
 import ServiceScreen from "../screens/service/service.screen";
 
 const HomeRoutes = () => {
@@ -21,7 +21,7 @@ const HomeRoutes = () => {
             <Route path={Urls.DISEASE} component={DiseaseScreen} />
             <Route path={Urls.DEPARTMENT} component={DepartmentScreen} />
             <Route path={Urls.MEDICINE} component={MedicineScreen} />
-            <Route path={Urls.EQUIQMENT} component={EquiqmentScreen} />
+            <Route path={Urls.EQUIQMENT} component={EquipmentScreen} />
             <Route path={Urls.SERVICE} component={ServiceScreen} />
         </Switch>
     );

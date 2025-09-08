@@ -61,26 +61,21 @@ const MedicinesScreen = () => {
                                         <thead>
                                             <tr>
                                                 <th className="center middle">#</th>
-                                                <th className="center middle">{t('medicine.full_name')}</th>
-                                                <th className="center middle">{t('medicine.gender')}</th>
-                                                <th className="center middle">{t('medicine.room')}</th>
-                                                <th className="center middle">{t('medicine.years_of_experience')}</th>
-                                                <th className="center middle">{t('medicine.title')}</th>
-                                                <th className="center middle">{t('medicine.salary_coefficient')}</th>
-                                                <th className="center middle">{t('medicine.specialty')}</th>
+                                                <th className="center middle">{t('medicine.name')}</th>
+                                                <th className="center middle">{t('medicine.description')}</th>
+                                                <th className="center middle">{t('medicine.unit')}</th>
+                                                <th className="center middle">{t('medicine.unit_price')}</th>
+                                                <th className="center middle">{t('medicine.action')}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {medicines.map((medicine) => {
                                                 return <tr key={medicine.id}>
                                                     <td className="center middle">{medicine.id}</td>
-                                                    <td className="center middle">{medicine.full_name}</td>
-                                                    <td className="center middle">{medicine.gender}</td>
-                                                    <td className="center middle">{medicine.room}</td>
-                                                    <td className="center middle">{medicine.years_of_experience}</td>
-                                                    <td className="center middle">{medicine.title}</td>
-                                                    <td className="center middle">{medicine.salary_coefficient}</td>
-                                                    <td className="center middle">{medicine.specialty}</td>
+                                                    <td className="center middle">{medicine.name}</td>
+                                                    <td className="center middle">{medicine.description}</td>
+                                                    <td className="center middle">{medicine.unit}</td>
+                                                    <td className="center middle">{medicine.unit_price}</td>
                                                     <td className="center middle">
                                                         <Button variant="success" title={t('medicine.info')}>
                                                             <i className="fa fa-info" aria-hidden="true"></i>

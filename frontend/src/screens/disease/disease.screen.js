@@ -61,26 +61,19 @@ const DiseasesScreen = () => {
                                         <thead>
                                             <tr>
                                                 <th className="center middle">#</th>
-                                                <th className="center middle">{t('disease.full_name')}</th>
-                                                <th className="center middle">{t('disease.gender')}</th>
-                                                <th className="center middle">{t('disease.room')}</th>
-                                                <th className="center middle">{t('disease.years_of_experience')}</th>
-                                                <th className="center middle">{t('disease.title')}</th>
-                                                <th className="center middle">{t('disease.salary_coefficient')}</th>
+                                                <th className="center middle">{t('disease.name')}</th>
+                                                <th className="center middle">{t('disease.description')}</th>
                                                 <th className="center middle">{t('disease.specialty')}</th>
+                                                <th className="center middle">{t('disease.action')}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {diseases.map((disease) => {
                                                 return <tr key={disease.id}>
-                                                    <td className="center middle">{disease.id}</td>
-                                                    <td className="center middle">{disease.full_name}</td>
-                                                    <td className="center middle">{disease.gender}</td>
-                                                    <td className="center middle">{disease.room}</td>
-                                                    <td className="center middle">{disease.years_of_experience}</td>
-                                                    <td className="center middle">{disease.title}</td>
-                                                    <td className="center middle">{disease.salary_coefficient}</td>
-                                                    <td className="center middle">{disease.specialty}</td>
+                                                    <td className="center middle">{disease.id_benh}</td>
+                                                    <td className="center middle">{disease.ten_benh}</td>
+                                                    <td className="center middle">{disease.mo_ta}</td>
+                                                    <td className="center middle">{disease.ma_khoa}</td>
                                                     <td className="center middle">
                                                         <Button variant="success" title={t('disease.info')}>
                                                             <i className="fa fa-info" aria-hidden="true"></i>

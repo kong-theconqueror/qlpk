@@ -10,7 +10,7 @@ import patientSaga from './patient.saga';
 import diseaseSaga from './disease.saga';
 import departmentSaga from './department.saga';
 import medicineSaga from './medicine.saga';
-import equiqmentSaga from './equiqment.saga';
+import equipmentSaga from './equipment.saga';
 import serviceSaga from './service.saga';
 
 export default function* rootSaga(getState) {
@@ -25,7 +25,7 @@ export default function* rootSaga(getState) {
     diseaseSaga(),
     departmentSaga(),
     medicineSaga(),
-    equiqmentSaga(),
+    equipmentSaga(),
     serviceSaga(),
   ]);
 }

@@ -6,7 +6,7 @@ import doctorReducer from "./doctor.reducer";
 import nurseReducer from "./nurse.reducer";
 import medicineReducer from "./medicine.reducer";
 import departmentReducer from "./department.reducer";
-import equiqmentReducer from "./equiqment.reducer";
+import equipmentReducer from "./equipment.reducer";
 import serviceReducer from "./service.reducer";
 import patientReducer from "./patient.reducer";
 import diseaseReducer from "./disease.reducer";
@@ -20,7 +20,7 @@ const reducers = {
     nurse: nurseReducer,
     medicine: medicineReducer,
     department: departmentReducer,
-    equiqment: equiqmentReducer,
+    equipment: equipmentReducer,
     service: serviceReducer,
     patient: patientReducer,
     disease: diseaseReducer,

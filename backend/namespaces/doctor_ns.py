@@ -30,23 +30,23 @@ def run_query(sql, params=None, fetch="all"):
 class DoctorList(Resource):
     def get(self):
         rows = run_query("SELECT * FROM Doctor ORDER BY id DESC")
-        print(rows)
         doctors_schema.dump(rows)
         return doctors_schema.dump(rows)
 
     @ns.expect(DoctorModel)
     def post(self):
         data = request.json
-        res = run_query("""
+        sql = """
                 INSERT INTO doctors(id, full_name, gender, room,
                                     years_of_experience, title,
                                     salary_coefficient, specialty)
                 VALUES(%s,%s,%s,%s,%s,%s,%s,%s)
-            """,
-            (data["id"], data["full_name"], data["gender"], data["room"],
+            """
+        params = (data["id"], data["full_name"], data["gender"], data["room"],
             data["years_of_experience"], data["title"],
             data["salary_coefficient"], data["specialty"])
-        )
+        res = run_query(sql, params)
+        print(sql)
         row = run_query("SELECT * FROM Doctor WHERE id=%s", (res["last_id"],), fetch="one")
         return doctor_schema.dump(row), 201
 
@@ -54,16 +54,16 @@ class DoctorList(Resource):
     def put(self, doctor_id):
         """Cập nhật thông tin bác sỹ"""
         data = request.json
-        res = run_query("""
-                UPDATE doctors SET full_name=%s, gender=%s, room=%s,
-                    years_of_experience=%s, title=%s,
-                    salary_coefficient=%s, specialty=%s
-                WHERE id=%s
-            """,
-            (data["full_name"], data["gender"], data["room"],
+        sql = """
+            UPDATE doctors SET full_name=%s, gender=%s, room=%s,
+                years_of_experience=%s, title=%s,
+                salary_coefficient=%s, specialty=%s
+            WHERE id=%s
+        """
+        params = (data["full_name"], data["gender"], data["room"],
             data["years_of_experience"], data["title"],
             data["salary_coefficient"], data["specialty"], doctor_id)
-        )
+        res = run_query( sql, params )
         row = run_query("SELECT * FROM Doctor WHERE id=%s", (doctor_id,), fetch="one")
         return doctor_schema.dump(row), 201
 

@@ -1,8 +1,11 @@
-from extensions import ma
+from marshmallow import Schema, fields
 
-class MedicineSchema(ma.Schema):
-    class Meta:
-        fields = ("id", "name", "description", "unit_price", "unit", "created_at")
-
+class MedicineSchema(Schema):
+    id = fields.String()
+    name = fields.String()
+    description = fields.String()
+    unit_price = fields.Integer()
+    unit = fields.String()
+    
 medicine_schema = MedicineSchema()
 medicines_schema = MedicineSchema(many=True)

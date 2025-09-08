@@ -97,7 +97,7 @@ def init_db():
                 id_thiet_bi INT PRIMARY KEY,                        -- Mã thiết bị
                 ten_thiet_bi VARCHAR(255) NOT NULL,                 -- Tên thiết bị
                 chi_phi_su_dung DECIMAL(15,2) NOT NULL,             -- Chi phí sử dụng (VNĐ)
-                trang_thai ENUM('Sẵn sàng','Đang sử dụng','Bảo trì') NOT NULL,
+                trang_thai ENUM('Sẵn sàng','Đang sử dụng','Bảo trì','Hỏng') NOT NULL,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             )
         """)

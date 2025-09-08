@@ -61,26 +61,17 @@ const DepartmentsScreen = () => {
                                         <thead>
                                             <tr>
                                                 <th className="center middle">#</th>
-                                                <th className="center middle">{t('department.full_name')}</th>
-                                                <th className="center middle">{t('department.gender')}</th>
-                                                <th className="center middle">{t('department.room')}</th>
-                                                <th className="center middle">{t('department.years_of_experience')}</th>
-                                                <th className="center middle">{t('department.title')}</th>
-                                                <th className="center middle">{t('department.salary_coefficient')}</th>
-                                                <th className="center middle">{t('department.specialty')}</th>
+                                                <th className="center middle">{t('department.name')}</th>
+                                                <th className="center middle">{t('department.description')}</th>
+                                                <th className="center middle">{t('department.action')}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {departments.map((department) => {
                                                 return <tr key={department.id}>
-                                                    <td className="center middle">{department.id}</td>
-                                                    <td className="center middle">{department.full_name}</td>
-                                                    <td className="center middle">{department.gender}</td>
-                                                    <td className="center middle">{department.room}</td>
-                                                    <td className="center middle">{department.years_of_experience}</td>
-                                                    <td className="center middle">{department.title}</td>
-                                                    <td className="center middle">{department.salary_coefficient}</td>
-                                                    <td className="center middle">{department.specialty}</td>
+                                                    <td className="center middle">{department.ma_khoa}</td>
+                                                    <td className="center middle">{department.ten_khoa}</td>
+                                                    <td className="center middle">{department.mo_ta}</td>
                                                     <td className="center middle">
                                                         <Button variant="success" title={t('department.info')}>
                                                             <i className="fa fa-info" aria-hidden="true"></i>
