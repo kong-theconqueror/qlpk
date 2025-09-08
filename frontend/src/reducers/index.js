@@ -11,6 +11,8 @@ import serviceReducer from "./service.reducer";
 import patientReducer from "./patient.reducer";
 import diseaseReducer from "./disease.reducer";
 
+import salaryReducer from "./salary.reducer";
+
 const reducers = {
     app: appReducer,
     user: userReducer,
@@ -24,6 +26,8 @@ const reducers = {
     service: serviceReducer,
     patient: patientReducer,
     disease: diseaseReducer,
+
+    salary: salaryReducer,
 };
 
 export default reducers;

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Container, Row, Col, Breadcrumb } from "react-bootstrap";
-import { Card, Table, Image, Badge, Button } from "react-bootstrap";
+import { Card, Table, Button } from "react-bootstrap";
 // import Pagging from "../../components/table/pagging.component";
 import { serviceAction } from '../../actions';
 
@@ -13,7 +13,7 @@ const ServicesScreen = () => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
 
-    let { services, page, totalPage } = useSelector(state => state.service);
+    let { services } = useSelector(state => state.service);
 
     useEffect(() => {
         dispatch({

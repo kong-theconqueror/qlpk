@@ -12,6 +12,8 @@ import equipmentAction from "./equipment.action";
 import departmentAction from "./department.action";
 import diseaseAction from "./disease.action";
 
+import salaryAction from "./salary.action";
+
 export{
     notificationAction,
     userAction,
@@ -26,4 +28,6 @@ export{
     equipmentAction,
     departmentAction,
     diseaseAction,
+
+    salaryAction,
 }

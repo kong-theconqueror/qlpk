@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Container, Row, Col, Breadcrumb } from "react-bootstrap";
-import { Card, Table, Image, Badge, Button } from "react-bootstrap";
+import { Card, Table, Button } from "react-bootstrap";
 // import Pagging from "../../components/table/pagging.component";
 import { equipmentAction } from '../../actions';
 
@@ -13,20 +13,13 @@ const EquipmentsScreen = () => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
 
-    let { equipments, page, totalPage } = useSelector(state => state.equipment);
+    let { equipments } = useSelector(state => state.equipment);
 
     useEffect(() => {
         dispatch({
             type: equipmentAction.GET_EQUIPMENTS,
         });
     }, [dispatch]);
-
-    const onBtnPageClick = (page) => {
-        dispatch({
-            type: equipmentAction.PAGE_CHANGE,
-            value: page
-        });
-    }
      
     return <EquipmentWrapper >
         <Container fluid>

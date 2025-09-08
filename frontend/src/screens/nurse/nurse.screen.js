@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Container, Row, Col, Breadcrumb } from "react-bootstrap";
-import { Card, Table, Image, Badge, Button } from "react-bootstrap";
+import { Card, Table, Button } from "react-bootstrap";
 // import Pagging from "../../components/table/pagging.component";
 import { nurseAction } from '../../actions';
 
@@ -13,20 +13,13 @@ const NursesScreen = () => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
 
-    let { nurses, page, totalPage } = useSelector(state => state.nurse);
+    let { nurses } = useSelector(state => state.nurse);
 
     useEffect(() => {
         dispatch({
             type: nurseAction.GET_NURSES,
         });
     }, [dispatch]);
-
-    const onBtnPageClick = (page) => {
-        dispatch({
-            type: nurseAction.PAGE_CHANGE,
-            value: page
-        });
-    }
      
     return <NurseWrapper >
         <Container fluid>

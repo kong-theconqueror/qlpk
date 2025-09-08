@@ -4,24 +4,31 @@ import { useTranslation } from 'react-i18next';
 import { Container, Row, Col, Breadcrumb } from "react-bootstrap";
 import { Card, Table, Button } from "react-bootstrap";
 // import Pagging from "../../components/table/pagging.component";
-import { diseaseAction } from '../../actions';
+import { salaryAction } from '../../actions';
 
 import Urls from '../../constants/urls.constant';
-import { DiseaseWrapper } from './disease.style';
+import { SalaryWrapper } from './salary.style';
 
-const DiseasesScreen = () => {
+const SalarysScreen = () => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
 
-    let { diseases } = useSelector(state => state.disease);
+    let { salaries, month, year } = useSelector(state => state.salary);
 
     useEffect(() => {
         dispatch({
-            type: diseaseAction.GET_DISEASES,
+            type: salaryAction.GET_SALARIES,
         });
     }, [dispatch]);
+
+    const onBtnSearchClick = (month, year) => {
+        dispatch({
+            type: salaryAction.GET_SALARIES,
+            value: month
+        });
+    }
      
-    return <DiseaseWrapper >
+    return <SalaryWrapper >
         <Container fluid>
             {/* nav */}
             <Row>
@@ -34,7 +41,7 @@ const DiseasesScreen = () => {
                             {t('menu.category')}
                         </Breadcrumb.Item>
                         <Breadcrumb.Item active>
-                            {t('menu.disease')}
+                            {t('menu.salary')}
                         </Breadcrumb.Item>
                     </Breadcrumb>
                 </Col>
@@ -45,7 +52,7 @@ const DiseasesScreen = () => {
                 <Col lg={12}>
                     <Card >
                         <Card.Header>
-                            <Card.Title>{t('disease.disease_list')}</Card.Title>
+                            <Card.Title>{t('salary.salary_list')}</Card.Title>
                         </Card.Header>
                         <Card.Body>
                             <Row>
@@ -54,27 +61,33 @@ const DiseasesScreen = () => {
                                         <thead>
                                             <tr>
                                                 <th className="center middle">#</th>
-                                                <th className="center middle">{t('disease.name')}</th>
-                                                <th className="center middle">{t('disease.description')}</th>
-                                                <th className="center middle">{t('disease.specialty')}</th>
-                                                <th className="center middle">{t('disease.action')}</th>
+                                                <th className="center middle">{t('salary.full_name')}</th>
+                                                <th className="center middle">{t('salary.gender')}</th>
+                                                <th className="center middle">{t('salary.years_of_experience')}</th>
+                                                <th className="center middle">{t('salary.title')}</th>
+                                                <th className="center middle">{t('salary.salary_coefficient')}</th>
+                                                <th className="center middle">{t('salary.specialty')}</th>
+                                                <th className="center middle">{t('salary.action')}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {diseases.map((disease) => {
-                                                return <tr key={disease.id}>
-                                                    <td className="center middle">{disease.id_benh}</td>
-                                                    <td className="center middle">{disease.ten_benh}</td>
-                                                    <td className="center middle">{disease.mo_ta}</td>
-                                                    <td className="center middle">{disease.ma_khoa}</td>
+                                            {salaries.map((salary) => {
+                                                return <tr key={salary.id}>
+                                                    <td className="center middle">{salary.id}</td>
+                                                    <td className="center middle">{salary.full_name}</td>
+                                                    <td className="center middle">{salary.gender}</td>
+                                                    <td className="center middle">{salary.years_of_experience}</td>
+                                                    <td className="center middle">{salary.title}</td>
+                                                    <td className="center middle">{salary.salary_coefficient}</td>
+                                                    <td className="center middle">{salary.specialty}</td>
                                                     <td className="center middle">
-                                                        <Button variant="success" title={t('disease.info')}>
+                                                        <Button variant="success" title={t('salary.info')}>
                                                             <i className="fa fa-info" aria-hidden="true"></i>
                                                         </Button>
-                                                        <Button variant="primary" title={t('disease.update')}>
+                                                        <Button variant="primary" title={t('salary.update')}>
                                                             <i className="fa fa-pencil" aria-hidden="true"></i>
                                                         </Button>
-                                                        <Button variant="danger" title={t('disease.delete')}>
+                                                        <Button variant="danger" title={t('salary.delete')}>
                                                             <i className="fa fa-trash" aria-hidden="true"></i>
                                                         </Button>
                                                     </td>
@@ -91,8 +104,8 @@ const DiseasesScreen = () => {
                             <Row>
                                 <Col md={6}>
                                     <div className="paging-text">
-                                        {/* {t('app.showing')} 1 {t('app.to')} 10 {t('app.of')} 57 {t('disease.disease')} */}
-                                        {t('app.showing')} {diseases.length} {t('disease.disease')}
+                                        {/* {t('app.showing')} 1 {t('app.to')} 10 {t('app.of')} 57 {t('salary.salary')} */}
+                                        {t('app.showing')} {salaries.length} {t('salary.salary')}
                                     </div>
                                 </Col>
                                 <Col md={6}>
@@ -109,7 +122,7 @@ const DiseasesScreen = () => {
                 </Col>
             </Row>
         </Container>
-    </DiseaseWrapper>;
+    </SalaryWrapper>;
 }
 
-export default DiseasesScreen;
+export default SalarysScreen;

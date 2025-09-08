@@ -13,6 +13,8 @@ const Urls = {
     CHANGE_USERNAME: '/user/change-user-name',
     SETTING: '/setting',
 
+    SALARY: '/phong-kham/luong',
+
     DOCTOR: '/danh-muc/bac-sy',
     NURSE: '/danh-muc/y-ta',
     MEDICINE: '/danh-muc/thuoc',

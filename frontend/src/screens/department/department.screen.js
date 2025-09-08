@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Container, Row, Col, Breadcrumb } from "react-bootstrap";
-import { Card, Table, Image, Badge, Button } from "react-bootstrap";
+import { Card, Table, Button } from "react-bootstrap";
 // import Pagging from "../../components/table/pagging.component";
 import { departmentAction } from '../../actions';
 
@@ -13,20 +13,13 @@ const DepartmentsScreen = () => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
 
-    let { departments, page, totalPage } = useSelector(state => state.department);
+    let { departments } = useSelector(state => state.department);
 
     useEffect(() => {
         dispatch({
             type: departmentAction.GET_DEPARTMENTS,
         });
     }, [dispatch]);
-
-    const onBtnPageClick = (page) => {
-        dispatch({
-            type: departmentAction.PAGE_CHANGE,
-            value: page
-        });
-    }
      
     return <DepartmentWrapper >
         <Container fluid>

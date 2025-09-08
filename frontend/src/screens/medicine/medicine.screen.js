@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Container, Row, Col, Breadcrumb } from "react-bootstrap";
-import { Card, Table, Image, Badge, Button } from "react-bootstrap";
+import { Card, Table, Button } from "react-bootstrap";
 // import Pagging from "../../components/table/pagging.component";
 import { medicineAction } from '../../actions';
 
@@ -13,20 +13,13 @@ const MedicinesScreen = () => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
 
-    let { medicines, page, totalPage } = useSelector(state => state.medicine);
+    let { medicines } = useSelector(state => state.medicine);
 
     useEffect(() => {
         dispatch({
             type: medicineAction.GET_MEDICINES,
         });
     }, [dispatch]);
-
-    const onBtnPageClick = (page) => {
-        dispatch({
-            type: medicineAction.PAGE_CHANGE,
-            value: page
-        });
-    }
      
     return <MedicineWrapper >
         <Container fluid>
