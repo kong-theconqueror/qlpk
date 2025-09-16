@@ -1,4 +1,4 @@
-import { salaryAction } from '../actions';
+import { doctorSalaryAction } from '../actions';
 
 const initState = {
     salaries: [],
@@ -10,27 +10,27 @@ const initState = {
 
 const salaryReducer = (state = initState, action) => {
     switch (action.type) {
-        case salaryAction.GET_SALARIES_SUCCESS:
+        case doctorSalaryAction.GET_SALARIES_SUCCESS:
             return {
                 ...state,
                 salaries: action.value,
             }
-        case salaryAction.GET_SALARIES_FAIL:
+        case doctorSalaryAction.GET_SALARIES_FAIL:
             return {
                 ...state,
                 salaries: [],
             }
-        case salaryAction.GET_SALARIES_BY_PAGING_SUCCESS:
+        case doctorSalaryAction.GET_SALARIES_BY_PAGING_SUCCESS:
             return {
                 ...state,
                 salaries: action.value,
             }
-        case salaryAction.GET_SALARIES_BY_PAGING_FAIL:
+        case doctorSalaryAction.GET_SALARIES_BY_PAGING_FAIL:
             return {
                 ...state,
                 salaries: [],
             }
-        case salaryAction.PAGE_CHANGE:
+        case doctorSalaryAction.PAGE_CHANGE:
             return {
                 ...state,
                 page: action.value,

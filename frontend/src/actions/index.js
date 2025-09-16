@@ -12,7 +12,8 @@ import equipmentAction from "./equipment.action";
 import departmentAction from "./department.action";
 import diseaseAction from "./disease.action";
 
-import salaryAction from "./salary.action";
+import doctorSalaryAction from "./doctorSalary.action";
+import nurseSalaryAction from "./nurseSalary.action";
 
 export{
     notificationAction,
@@ -29,5 +30,6 @@ export{
     departmentAction,
     diseaseAction,
 
-    salaryAction,
+    doctorSalaryAction,
+    nurseSalaryAction,
 }

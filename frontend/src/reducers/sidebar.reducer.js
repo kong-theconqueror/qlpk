@@ -49,9 +49,15 @@ const initState = {
             "isGroup": true,
             "groupItems": [
                 {
-                    "name": "luong",
-                    "link": "/phong-kham/luong",
-                    "title": "menu.salary",
+                    "name": "luong-bac-sy",
+                    "link": "/phong-kham/luong-bac-sy",
+                    "title": "menu.doctor_salary",
+                    "icon": "fa fa-table"
+                },
+                {
+                    "name": "luong-y-ta",
+                    "link": "/phong-kham/luong-y-ta",
+                    "title": "menu.nurse_salary",
                     "icon": "fa fa-table"
                 },
                 {

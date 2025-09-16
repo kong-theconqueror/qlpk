@@ -4,26 +4,26 @@ import { useTranslation } from 'react-i18next';
 import { Container, Row, Col, Breadcrumb } from "react-bootstrap";
 import { Card, Table, Button } from "react-bootstrap";
 // import Pagging from "../../components/table/pagging.component";
-import { salaryAction } from '../../actions';
+import { doctorSalaryAction } from '../../actions';
 
 import Urls from '../../constants/urls.constant';
-import { SalaryWrapper } from './salary.style';
+import { SalaryWrapper } from './doctorSalary.style';
 
 const SalarysScreen = () => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
 
-    let { salaries, month, year } = useSelector(state => state.salary);
+    let { salaries, month, year } = useSelector(state => state.doctorSalary);
 
     useEffect(() => {
         dispatch({
-            type: salaryAction.GET_SALARIES,
+            type: doctorSalaryAction.GET_SALARIES,
         });
     }, [dispatch]);
 
     const onBtnSearchClick = (month, year) => {
         dispatch({
-            type: salaryAction.GET_SALARIES,
+            type: doctorSalaryAction.GET_SALARIES,
             value: month
         });
     }
@@ -41,7 +41,7 @@ const SalarysScreen = () => {
                             {t('menu.category')}
                         </Breadcrumb.Item>
                         <Breadcrumb.Item active>
-                            {t('menu.salary')}
+                            {t('menu.doctor_salary')}
                         </Breadcrumb.Item>
                     </Breadcrumb>
                 </Col>

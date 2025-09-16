@@ -1,6 +1,6 @@
-const PREFIX = 'SALARY/'
+const PREFIX = 'DOCTOR_SALARY/'
 
-const salaryAction = {
+const doctorSalaryAction = {
     GET_SALARIES : PREFIX + 'GET_SALARIES',
     GET_SALARIES_SUCCESS : PREFIX + 'GET_SALARIES_SUCCESS',
     GET_SALARIES_FAIL : PREFIX + 'GET_DOCGET_SALARIES_FAILTORS',
@@ -12,4 +12,4 @@ const salaryAction = {
     PAGE_CHANGE : PREFIX + 'PAGE_CHANGE',
 }
 
-export default salaryAction;
+export default doctorSalaryAction;

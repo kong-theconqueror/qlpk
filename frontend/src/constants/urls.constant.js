@@ -13,7 +13,13 @@ const Urls = {
     CHANGE_USERNAME: '/user/change-user-name',
     SETTING: '/setting',
 
-    SALARY: '/phong-kham/luong',
+    EXAMINATION: '/kham-chua-benh/kham-benh',
+    TREATMENT: '/kham-chua-benh/chua-benh',
+    MEDICAL_RECORD: '/kham-chua-benh/ho-so-benh-an',
+    DOCTOR_SALARY: '/phong-kham/luong-bac-sy',
+    NURSE_SALARY: '/phong-kham/luong-y-ta',
+    REVENUE: '/phong-kham/doanh-thu',
+    DISEASE_STATISTIC: '/phong-kham/thong-ke-benh',
 
     DOCTOR: '/danh-muc/bac-sy',
     NURSE: '/danh-muc/y-ta',

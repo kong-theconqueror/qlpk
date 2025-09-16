@@ -18,6 +18,8 @@ const vn = {
             medical_record: "Hồ sơ bệnh án",
             clinic: "Phòng khám",
             salary: "Lương",
+            doctor_salary: "Lương bác sỹ",
+            nurse_salary: "Lương y tá",
             revenue: "Doanh thu",
             doctor: "Bác sỹ",
             nurse: "Y tá",
@@ -163,6 +165,22 @@ const vn = {
             delete: "Xóa"
         },
 
+        salary:{
+            salary: "Lương",
+            dortor_salary: "Lương bác sỹ",
+            nurse_salary: "Lương y tá",
+            salary_list: "Danh sách lương",
+            name: "Tên",
+            description: "Mô tả",
+            unit: "Đơn vị tính",
+            unit_price: "Đơn giá",
+            status: "Trạng thái",
+            action: "Hoạt động",
+            info: "Thông tin",
+            statistic: "Thống kê",
+            update: "Cập nhật",
+            delete: "Xóa"
+        },
 
         notification: {
             api_error: "Lỗi API!",
