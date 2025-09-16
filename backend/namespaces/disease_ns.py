@@ -25,7 +25,11 @@ def run_query(sql, params=None, fetch="all"):
 @ns.route("")
 class DiseaseList(Resource):
     def get(self):
-        rows = run_query("SELECT * FROM disease ORDER BY id_benh DESC")
+        rows = run_query("""
+            SELECT id_benh, ten_benh, disease.mo_ta, ten_khoa FROM `disease`, `department` 
+            WHERE disease.ma_khoa = department.ma_khoa
+            ORDER BY id_benh DESC
+        """)
         return diseases_schema.dump(rows)
 
     @ns.expect(DiseaseModel)

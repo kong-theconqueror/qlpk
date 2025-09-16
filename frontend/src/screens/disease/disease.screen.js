@@ -66,7 +66,7 @@ const DiseasesScreen = () => {
                                                     <td className="center middle">{disease.id_benh}</td>
                                                     <td className="center middle">{disease.ten_benh}</td>
                                                     <td className="center middle">{disease.mo_ta}</td>
-                                                    <td className="center middle">{disease.ma_khoa}</td>
+                                                    <td className="center middle">{disease.ten_khoa}</td>
                                                     <td className="center middle">
                                                         <Button variant="success" title={t('disease.info')}>
                                                             <i className="fa fa-info" aria-hidden="true"></i>

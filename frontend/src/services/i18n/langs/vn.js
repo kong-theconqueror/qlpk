@@ -15,6 +15,7 @@ const vn = {
             examination_treatment: "Khám-chữa bệnh",
             examination: "Khám bệnh",
             treatment: "Chữa bệnh",
+            disaese_statistic: "Thống kê bệnh",
             medical_record: "Hồ sơ bệnh án",
             clinic: "Phòng khám",
             salary: "Lương",
@@ -68,7 +69,7 @@ const vn = {
         },
         nurse:{
             nurse: "Y tá",
-            doctor_list: "Danh sách y tá",
+            nurse_list: "Danh sách y tá",
             name: "Tên",
             full_name: "Họ tên",
             gender: "Giới tính",

@@ -38,6 +38,13 @@ const initState = {
                     "title": "menu.medical_record",
                     "icon": "fa fa-address-book-o"
                 },
+                
+                {
+                    "name": "benhnhan",
+                    "link": "/kham-chua-benh/benh-nhan",
+                    "title": "menu.patient",
+                    "icon": "fa fa-wheelchair"
+                },
             ],
             "isCollapsed": false
         },
@@ -48,6 +55,12 @@ const initState = {
             "icon": "fa fa-h-square ",
             "isGroup": true,
             "groupItems": [
+                {
+                    "name": "thong-ke-benh",
+                    "link": "/phong-kham/thong-ke-benh",
+                    "title": "menu.disease-statistic",
+                    "icon": "fa fa-tasks"
+                },
                 {
                     "name": "luong-bac-sy",
                     "link": "/phong-kham/luong-bac-sy",
@@ -88,12 +101,6 @@ const initState = {
                     "link": "/danh-muc/y-ta",
                     "title": "menu.nurse",
                     "icon": "fa fa-user"
-                },
-                {
-                    "name": "benhnhan",
-                    "link": "/danh-muc/benh-nhan",
-                    "title": "menu.patient",
-                    "icon": "fa fa-wheelchair"
                 },
                 {
                     "name": "thuoc",
