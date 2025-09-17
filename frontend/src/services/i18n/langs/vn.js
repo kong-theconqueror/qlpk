@@ -32,8 +32,9 @@ const vn = {
             service: "Dịch vụ",
 
             statistic: "Thống kê",
-            weekly_statictic: "Thống kê hàng tuần",
-            monthly_statictic: "Thống kê hàng tháng",
+            disease_statistic: "Thống kê bệnh",
+            weekly_statistic: "Thống kê hàng tuần",
+            monthly_statistic: "Thống kê hàng tháng",
 
             base: "Quản lý cơ sở",
             store: "Cửa hàng",
@@ -48,6 +49,7 @@ const vn = {
 
         },
         doctor:{
+            id: "Mã số",
             doctor: "Bác sỹ",
             doctor_list: "Danh sách bác sỹ",
             name: "Tên",
@@ -65,7 +67,17 @@ const vn = {
             info: "Thông tin",
             statistic: "Thống kê",
             update: "Cập nhật",
-            delete: "Xóa"
+            delete: "Xóa",
+            add: "Thêm",
+            add_doctor: "Thêm bác sỹ",
+            cancel: "Hủy",
+            save: "Lưu",
+            confirm: "Xác nhận",
+            delete_doctor:"Xóa bác sỹ",
+            delete_question: "Bạn có muốn xóa bản ghi?",
+            update_doctor: "Cập nhật thông tin bác sỹ",
+            create_doctor_success: "Thêm bác sỹ thành công",
+            update_doctor_success: "cấp nhật bác sỹ thành công"
         },
         nurse:{
             nurse: "Y tá",

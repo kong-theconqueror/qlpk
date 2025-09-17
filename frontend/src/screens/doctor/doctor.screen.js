@@ -5,6 +5,9 @@ import { Container, Row, Col, Breadcrumb } from "react-bootstrap";
 import { Card, Table, Button } from "react-bootstrap";
 // import Pagging from "../../components/table/pagging.component";
 import { doctorAction } from '../../actions';
+import CreateDoctorModal from './createDoctor.modal';
+import DeleteDoctorModal from "./deleteDoctor.modal";
+import UpdateDoctorModal from "./updateDoctor.modal";
 
 import Urls from '../../constants/urls.constant';
 import { DoctorWrapper } from './doctor.style';
@@ -13,14 +16,47 @@ const DoctorsScreen = () => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
 
-    let { doctors } = useSelector(state => state.doctor);
+    let { 
+        doctors, 
+        isShowCreateDoctorModal,
+        isShowUpdateDoctorModal,
+        isShowDeleteDoctorModal,
+    } = useSelector(state => state.doctor);
 
     useEffect(() => {
         dispatch({
             type: doctorAction.GET_DOCTORS,
         });
     }, [dispatch]);
-     
+    
+    const onCreateDoctorBtnClicked = () => {
+        dispatch({
+            type: doctorAction.SHOW_CREATE_DOCTOR_MODAL,
+        });
+    }
+
+    const onUpdateDoctorBtnClicked = (doctor) => {
+        dispatch({
+            type: doctorAction.SELECT_DOCTOR,
+            value: doctor
+        });
+
+        dispatch({
+            type: doctorAction.SHOW_UPDATE_DOCTOR_MODAL,
+        });
+    }
+
+    const onDeleteDoctorBtnClicked = (doctor) => {
+        dispatch({
+            type: doctorAction.SELECT_DOCTOR,
+            value: doctor
+        });
+
+        dispatch({
+            type: doctorAction.SHOW_DELETE_DOCTOR_MODAL,
+        });
+    }
+
     return <DoctorWrapper >
         <Container fluid>
             {/* nav */}
@@ -45,7 +81,18 @@ const DoctorsScreen = () => {
                 <Col lg={12}>
                     <Card >
                         <Card.Header>
-                            <Card.Title>{t('doctor.doctor_list')}</Card.Title>
+                            <Row>
+                                <Col>
+                                    <Card.Title>{t('doctor.doctor_list')}</Card.Title>
+                                </Col>
+                                <Col>
+                                    <Button variant="primary" type="submit" style={{ float: "right", minWidth: 50 }}
+                                        onClick={onCreateDoctorBtnClicked}
+                                    >
+                                        {t('doctor.add')}
+                                    </Button>
+                                </Col>
+                            </Row>
                         </Card.Header>
                         <Card.Body>
                             <Row>
@@ -65,24 +112,25 @@ const DoctorsScreen = () => {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {doctors.map((doctor) => {
-                                                return <tr key={doctor.id}>
-                                                    <td className="center middle">{doctor.id}</td>
-                                                    <td className="center middle">{doctor.full_name}</td>
-                                                    <td className="center middle">{doctor.gender}</td>
-                                                    <td className="center middle">{doctor.room}</td>
-                                                    <td className="center middle">{doctor.years_of_experience}</td>
-                                                    <td className="center middle">{doctor.title}</td>
-                                                    <td className="center middle">{doctor.salary_coefficient}</td>
-                                                    <td className="center middle">{doctor.specialty}</td>
+                                            {doctors.map((item) => {
+                                                return <tr key={item.id}>
+                                                    <td className="center middle">{item.id}</td>
+                                                    <td className="center middle">{item.full_name}</td>
+                                                    <td className="center middle">{item.gender}</td>
+                                                    <td className="center middle">{item.room}</td>
+                                                    <td className="center middle">{item.years_of_experience}</td>
+                                                    <td className="center middle">{item.title}</td>
+                                                    <td className="center middle">{item.salary_coefficient}</td>
+                                                    <td className="center middle">{item.ten_khoa}</td>
                                                     <td className="center middle">
-                                                        <Button variant="success" title={t('doctor.info')}>
-                                                            <i className="fa fa-info" aria-hidden="true"></i>
-                                                        </Button>
-                                                        <Button variant="primary" title={t('doctor.update')}>
+                                                        <Button variant="primary" 
+                                                            onClick={() => onUpdateDoctorBtnClicked(item)}
+                                                            title={t('doctor.update')}>
                                                             <i className="fa fa-pencil" aria-hidden="true"></i>
                                                         </Button>
-                                                        <Button variant="danger" title={t('doctor.delete')}>
+                                                        <Button variant="danger" 
+                                                            onClick={() => onDeleteDoctorBtnClicked(item)}
+                                                            title={t('doctor.delete')}>
                                                             <i className="fa fa-trash" aria-hidden="true"></i>
                                                         </Button>
                                                     </td>
@@ -116,6 +164,17 @@ const DoctorsScreen = () => {
                     </Card>
                 </Col>
             </Row>
+            <CreateDoctorModal
+                isShow={isShowCreateDoctorModal}
+            />
+
+            <UpdateDoctorModal
+                isShow={isShowUpdateDoctorModal}
+            />
+
+            <DeleteDoctorModal
+                isShow={isShowDeleteDoctorModal}
+            />
         </Container>
     </DoctorWrapper>;
 }

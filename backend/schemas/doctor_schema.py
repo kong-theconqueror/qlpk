@@ -9,13 +9,13 @@ class DoctorSchema(Schema):
     years_of_experience = fields.Int()
     title = fields.Str()
     salary_coefficient = fields.Float()   # ép sang float
-    specialty = fields.Str()
+    ten_khoa = fields.Str()
 
     class Meta:
         fields = (
             "id", "full_name", "gender", "room",
             "years_of_experience", "title",
-            "salary_coefficient", "specialty", "created_at"
+            "salary_coefficient", "ten_khoa", "created_at"
         )
         
 doctor_schema = DoctorSchema()

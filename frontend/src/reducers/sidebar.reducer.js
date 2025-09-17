@@ -58,7 +58,7 @@ const initState = {
                 {
                     "name": "thong-ke-benh",
                     "link": "/phong-kham/thong-ke-benh",
-                    "title": "menu.disease-statistic",
+                    "title": "menu.disease_statistic",
                     "icon": "fa fa-tasks"
                 },
                 {

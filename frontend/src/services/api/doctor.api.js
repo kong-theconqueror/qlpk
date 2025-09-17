@@ -13,6 +13,44 @@ class DoctorApi {
             }
         );
     }
+
+    createDoctor(doctor) {
+        return axiosSerivce.post(
+            'doctor',
+            doctor,
+            true,
+            {
+                'Content-Type': 'application/json',
+                // 'Content-Type': 'multipart/form-data',
+                // 'Authorization': `Bearer ${getLocalData('token')}`,
+            }
+        );
+    }
+
+     updateDoctor(data) {
+        return axiosSerivce.put(
+            'doctor',
+            data,
+            true,
+            {
+                'Content-Type': 'application/json',
+                // 'Authorization': `Bearer ${getLocalData('token')}`,
+            }
+        );
+    }
+
+
+    deleteDoctor(id) {
+        return axiosSerivce.delete(
+            'doctor/'+ id,
+            null,
+            true,
+            {
+                'Content-Type': 'application/json',
+                // 'Authorization': `Bearer ${getLocalData('token')}`,
+            }
+        );
+    }
 }
 
 const doctorApi = new DoctorApi()

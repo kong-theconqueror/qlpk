@@ -29,7 +29,11 @@ def run_query(sql, params=None, fetch="all"):
 @ns.route("")
 class DoctorList(Resource):
     def get(self):
-        rows = run_query("SELECT * FROM Doctor ORDER BY id DESC")
+        rows = run_query("""
+            SELECT id, full_name, gender, room, years_of_experience, title, salary_coefficient, ten_khoa FROM `doctor`, `department` 
+            WHERE doctor.specialty = department.ma_khoa
+            ORDER BY id DESC
+        """)
         doctors_schema.dump(rows)
         return doctors_schema.dump(rows)
 
@@ -37,7 +41,7 @@ class DoctorList(Resource):
     def post(self):
         data = request.json
         sql = """
-                INSERT INTO doctors(id, full_name, gender, room,
+                INSERT INTO Doctor(id, full_name, gender, room,
                                     years_of_experience, title,
                                     salary_coefficient, specialty)
                 VALUES(%s,%s,%s,%s,%s,%s,%s,%s)
@@ -51,30 +55,29 @@ class DoctorList(Resource):
         return doctor_schema.dump(row), 201
 
     @api.expect(DoctorModel)
-    def put(self, doctor_id):
+    def put(self):
         """Cập nhật thông tin bác sỹ"""
         data = request.json
         sql = """
-            UPDATE doctors SET full_name=%s, gender=%s, room=%s,
+            UPDATE Doctor SET full_name=%s, gender=%s, room=%s,
                 years_of_experience=%s, title=%s,
                 salary_coefficient=%s, specialty=%s
             WHERE id=%s
         """
         params = (data["full_name"], data["gender"], data["room"],
             data["years_of_experience"], data["title"],
-            data["salary_coefficient"], data["specialty"], doctor_id)
+            data["salary_coefficient"], data["specialty"], data["id"])
         res = run_query( sql, params )
-        row = run_query("SELECT * FROM Doctor WHERE id=%s", (doctor_id,), fetch="one")
+        row = run_query("SELECT * FROM Doctor WHERE id=%s", (data["id"],), fetch="one")
         return doctor_schema.dump(row), 201
-
-    def delete(self, doctor_id):
-        """Xoá bác sỹ"""
-        res = run_query("DELETE FROM doctors WHERE id=%s", (doctor_id,))
-        return {"message": f"Doctor {doctor_id} deleted successfully"}, 201
-
 @ns.route("/<string:doctor_id>")
 class DoctorDetail(Resource):
     def get(self, doctor_id):
         row = run_query("SELECT * FROM Doctor WHERE id=%s", (doctor_id,), fetch="one")
         if not row: return {"error": "not found"}, 404
         return doctor_schema.dump(row)
+    
+    def delete(self, doctor_id):
+        """Xoá bác sỹ"""
+        res = run_query("DELETE FROM doctor WHERE id=%s", (doctor_id,))
+        return {"message": f"Doctor {doctor_id} deleted successfully"}, 201

@@ -50,3 +50,40 @@ export const DoctorWrapper = styled.div`
         float: right !important;
     }
 `
+
+export const CreateDoctorModalWrapper = styled.div`
+    .center{
+        text-align: center;
+    }
+
+    .middle{
+        vertical-align: middle;
+    }
+
+    input[type="file"] {
+        border: none;
+        padding: 10px;
+        background-color: transparent;
+        color: #333;
+    }
+`
+
+export const UpdateDoctorModalWrapper = styled.div`
+    .center{
+        text-align: center;
+    }
+
+    .middle{
+        vertical-align: middle;
+    }
+`
+
+export const DeleteDoctorModalWrapper = styled.div`
+    .center{
+        text-align: center;
+    }
+
+    .middle{
+        vertical-align: middle;
+    }
+`
