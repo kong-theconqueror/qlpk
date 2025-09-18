@@ -31,7 +31,16 @@ class DepartmentList(Resource):
     def post(self):
         data = request.json
         sql = """INSERT INTO department(ma_khoa, ten_khoa, mo_ta) VALUES(%s,%s,%s)"""
-        params = (data["ma_khoa"], data["ten_khoa"], data.get("mo_ta"))
+        params = (data["ma_khoa"], data["ten_khoa"], data["mo_ta"])
+        run_query(sql, params)
+        row = run_query("SELECT * FROM department WHERE ma_khoa=%s", (data["ma_khoa"],), fetch="one")
+        return department_schema.dump(row), 201
+    
+    @ns.expect(DepartmentModel)
+    def put(self):
+        data = request.json
+        sql = """UPDATE department SET ten_khoa=%s, mo_ta=%s WHERE ma_khoa=%s"""
+        params = (data["ten_khoa"], data["mo_ta"], data["ma_khoa"])
         run_query(sql, params)
         row = run_query("SELECT * FROM department WHERE ma_khoa=%s", (data["ma_khoa"],), fetch="one")
         return department_schema.dump(row), 201
@@ -43,15 +52,6 @@ class DepartmentDetail(Resource):
         if not row: return {"error": "not found"}, 404
         return department_schema.dump(row)
 
-    @ns.expect(DepartmentModel)
-    def put(self, ma_khoa):
-        data = request.json
-        sql = """UPDATE department SET ten_khoa=%s, mo_ta=%s WHERE ma_khoa=%s"""
-        params = (data["ten_khoa"], data.get("mo_ta"), ma_khoa)
-        run_query(sql, params)
-        row = run_query("SELECT * FROM department WHERE ma_khoa=%s", (ma_khoa,), fetch="one")
-        return department_schema.dump(row), 200
-
     def delete(self, ma_khoa):
         run_query("DELETE FROM department WHERE ma_khoa=%s", (ma_khoa,))
-        return {"message": f"Department {ma_khoa} deleted"}, 200
+        return {"message": f"Department {ma_khoa} deleted"}, 201

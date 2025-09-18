@@ -42,6 +42,17 @@ class NurseList(Resource):
         row = run_query("SELECT * FROM nurse WHERE id=%s", (data["id"],), fetch="one")
         return nurse_schema.dump(row), 201
 
+    @ns.expect(NurseModel)
+    def put(self):
+        data = request.json
+        sql = """UPDATE nurse SET full_name=%s, gender=%s, years_of_experience=%s,
+                 title=%s, salary_coefficient=%s, specialty=%s WHERE id=%s"""
+        params = (data["full_name"], data["gender"], data["years_of_experience"],
+                  data["title"], data["salary_coefficient"], data["specialty"], data["id"])
+        run_query(sql, params)
+        row = run_query("SELECT * FROM nurse WHERE id=%s", (data["id"],), fetch="one")
+        return nurse_schema.dump(row), 201
+
 @ns.route("/<string:nurse_id>")
 class NurseDetail(Resource):
     def get(self, nurse_id):
@@ -49,17 +60,6 @@ class NurseDetail(Resource):
         if not row: return {"error": "not found"}, 404
         return nurse_schema.dump(row)
 
-    @ns.expect(NurseModel)
-    def put(self, nurse_id):
-        data = request.json
-        sql = """UPDATE nurse SET full_name=%s, gender=%s, years_of_experience=%s,
-                 title=%s, salary_coefficient=%s, specialty=%s WHERE id=%s"""
-        params = (data["full_name"], data["gender"], data["years_of_experience"],
-                  data["title"], data["salary_coefficient"], data["specialty"], nurse_id)
-        run_query(sql, params)
-        row = run_query("SELECT * FROM nurse WHERE id=%s", (nurse_id,), fetch="one")
-        return nurse_schema.dump(row), 200
-
     def delete(self, nurse_id):
         run_query("DELETE FROM nurse WHERE id=%s", (nurse_id,))
-        return {"message": f"Nurse {nurse_id} deleted"}, 200
+        return {"message": f"Nurse {nurse_id} deleted"}, 201

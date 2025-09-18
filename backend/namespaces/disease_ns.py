@@ -41,6 +41,16 @@ class DiseaseList(Resource):
         run_query(sql, params)
         row = run_query("SELECT * FROM disease WHERE id_benh=%s", (data["id_benh"],), fetch="one")
         return disease_schema.dump(row), 201
+    
+    @ns.expect(DiseaseModel)
+    def put(self):
+        data = request.json
+        sql = """UPDATE disease SET ten_benh=%s, mo_ta=%s, ma_khoa=%s WHERE id_benh=%s"""
+        params = (data["ten_benh"], data.get("mo_ta"), data["ma_khoa"], data["id"])
+        run_query(sql, params)
+        row = run_query("SELECT * FROM disease WHERE id_benh=%s", (data["id"],), fetch="one")
+        return disease_schema.dump(row), 201
+
 
 @ns.route("/<int:disease_id>")
 class DiseaseDetail(Resource):
@@ -49,15 +59,6 @@ class DiseaseDetail(Resource):
         if not row: return {"error": "not found"}, 404
         return disease_schema.dump(row)
 
-    @ns.expect(DiseaseModel)
-    def put(self, disease_id):
-        data = request.json
-        sql = """UPDATE disease SET ten_benh=%s, mo_ta=%s, ma_khoa=%s WHERE id_benh=%s"""
-        params = (data["ten_benh"], data.get("mo_ta"), data["ma_khoa"], disease_id)
-        run_query(sql, params)
-        row = run_query("SELECT * FROM disease WHERE id_benh=%s", (disease_id,), fetch="one")
-        return disease_schema.dump(row), 200
-
     def delete(self, disease_id):
         run_query("DELETE FROM disease WHERE id_benh=%s", (disease_id,))
-        return {"message": f"Disease {disease_id} deleted"}, 200
+        return {"message": f"Disease {disease_id} deleted"}, 201

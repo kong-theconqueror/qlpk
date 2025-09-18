@@ -38,6 +38,16 @@ class EquipmentList(Resource):
         run_query(sql, params)
         row = run_query("SELECT * FROM equipment WHERE id_thiet_bi=%s", (data["id_thiet_bi"],), fetch="one")
         return equipment_schema.dump(row), 201
+    
+    @ns.expect(EquipmentModel)
+    def put(self):
+        data = request.json
+        sql = """UPDATE equipment SET ten_thiet_bi=%s, chi_phi_su_dung=%s, trang_thai=%s
+                 WHERE id_thiet_bi=%s"""
+        params = (data["ten_thiet_bi"], data["chi_phi_su_dung"], data["trang_thai"], data["id"])
+        run_query(sql, params)
+        row = run_query("SELECT * FROM equipment WHERE id_thiet_bi=%s", (data["id"],), fetch="one")
+        return equipment_schema.dump(row), 201
 
 @ns.route("/<int:equipment_id>")
 class EquipmentDetail(Resource):
@@ -46,16 +56,6 @@ class EquipmentDetail(Resource):
         if not row: return {"error": "not found"}, 404
         return equipment_schema.dump(row)
 
-    @ns.expect(EquipmentModel)
-    def put(self, equipment_id):
-        data = request.json
-        sql = """UPDATE equipment SET ten_thiet_bi=%s, chi_phi_su_dung=%s, trang_thai=%s
-                 WHERE id_thiet_bi=%s"""
-        params = (data["ten_thiet_bi"], data["chi_phi_su_dung"], data["trang_thai"], equipment_id)
-        run_query(sql, params)
-        row = run_query("SELECT * FROM equipment WHERE id_thiet_bi=%s", (equipment_id,), fetch="one")
-        return equipment_schema.dump(row), 200
-
     def delete(self, equipment_id):
         run_query("DELETE FROM equipment WHERE id_thiet_bi=%s", (equipment_id,))
-        return {"message": f"Equipment {equipment_id} deleted"}, 200
+        return {"message": f"Equipment {equipment_id} deleted"}, 201

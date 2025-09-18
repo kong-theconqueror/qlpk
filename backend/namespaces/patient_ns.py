@@ -45,15 +45,8 @@ class PatientList(Resource):
         row = run_query("SELECT * FROM patient WHERE id=%s", (data["id"],), fetch="one")
         return patient_schema.dump(row), 201
 
-@ns.route("/<string:patient_id>")
-class PatientDetail(Resource):
-    def get(self, patient_id):
-        row = run_query("SELECT * FROM patient WHERE id=%s", (patient_id,), fetch="one")
-        if not row: return {"error": "not found"}, 404
-        return patient_schema.dump(row)
-
     @ns.expect(PatientModel)
-    def put(self, patient_id):
+    def put(self):
         data = request.json
         sql = """
             UPDATE patient 
@@ -62,12 +55,20 @@ class PatientDetail(Resource):
         """
         params = (
             data["full_name"], data["birth"], data["gender"],
-            data["phone_num"], data["address"], patient_id
+            data["phone_num"], data["address"], data["id"]
         )
         run_query(sql, params)
-        row = run_query("SELECT * FROM patient WHERE id=%s", (patient_id,), fetch="one")
+        row = run_query("SELECT * FROM patient WHERE id=%s", (data["id"],), fetch="one")
         return patient_schema.dump(row), 201
+
+
+@ns.route("/<string:patient_id>")
+class PatientDetail(Resource):
+    def get(self, patient_id):
+        row = run_query("SELECT * FROM patient WHERE id=%s", (patient_id,), fetch="one")
+        if not row: return {"error": "not found"}, 404
+        return patient_schema.dump(row)
 
     def delete(self, patient_id):
         run_query("DELETE FROM patient WHERE id=%s", (patient_id,))
-        return {"message": f"Patient {patient_id} deleted successfully"}, 200
+        return {"message": f"Patient {patient_id} deleted successfully"}, 201

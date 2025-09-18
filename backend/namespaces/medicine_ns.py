@@ -34,7 +34,16 @@ class MedicineList(Resource):
         data = request.json
         sql = """INSERT INTO medicine(id, name, description, unit_price, unit)
                  VALUES(%s,%s,%s,%s,%s)"""
-        params = (data["id"], data["name"], data.get("description"), data["unit_price"], data["unit"])
+        params = (data["id"], data["name"], data["description"], data["unit_price"], data["unit"])
+        run_query(sql, params)
+        row = run_query("SELECT * FROM medicine WHERE id=%s", (data["id"],), fetch="one")
+        return medicine_schema.dump(row), 201
+    
+    @ns.expect(MedicineModel)
+    def put(self):
+        data = request.json
+        sql = """UPDATE medicine SET name=%s, description=%s, unit_price=%s, unit=%s WHERE id=%s"""
+        params = (data["name"], data["description"], data["unit_price"], data["unit"], data["id"])
         run_query(sql, params)
         row = run_query("SELECT * FROM medicine WHERE id=%s", (data["id"],), fetch="one")
         return medicine_schema.dump(row), 201
@@ -46,15 +55,6 @@ class MedicineDetail(Resource):
         if not row: return {"error": "not found"}, 404
         return medicine_schema.dump(row)
 
-    @ns.expect(MedicineModel)
-    def put(self, medicine_id):
-        data = request.json
-        sql = """UPDATE medicine SET name=%s, description=%s, unit_price=%s, unit=%s WHERE id=%s"""
-        params = (data["name"], data.get("description"), data["unit_price"], data["unit"], medicine_id)
-        run_query(sql, params)
-        row = run_query("SELECT * FROM medicine WHERE id=%s", (medicine_id,), fetch="one")
-        return medicine_schema.dump(row), 200
-
     def delete(self, medicine_id):
         run_query("DELETE FROM medicine WHERE id=%s", (medicine_id,))
-        return {"message": f"Medicine {medicine_id} deleted"}, 200
+        return {"message": f"Medicine {medicine_id} deleted"}, 201

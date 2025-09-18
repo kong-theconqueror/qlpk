@@ -37,6 +37,15 @@ class ServiceList(Resource):
         run_query(sql, params)
         row = run_query("SELECT * FROM service WHERE id_dich_vu=%s", (data["id_dich_vu"],), fetch="one")
         return service_schema.dump(row), 201
+    
+    @ns.expect(ServiceModel)
+    def put(self):
+        data = request.json
+        sql = """UPDATE service SET ten_dich_vu=%s, don_gia=%s, mo_ta=%s WHERE id_dich_vu=%s"""
+        params = (data["ten_dich_vu"], data["don_gia"], data.get("mo_ta"), data["id"])
+        run_query(sql, params)
+        row = run_query("SELECT * FROM service WHERE id_dich_vu=%s", (data["id"],), fetch="one")
+        return service_schema.dump(row), 201
 
 @ns.route("/<int:service_id>")
 class ServiceDetail(Resource):
@@ -45,15 +54,6 @@ class ServiceDetail(Resource):
         if not row: return {"error": "not found"}, 404
         return service_schema.dump(row)
 
-    @ns.expect(ServiceModel)
-    def put(self, service_id):
-        data = request.json
-        sql = """UPDATE service SET ten_dich_vu=%s, don_gia=%s, mo_ta=%s WHERE id_dich_vu=%s"""
-        params = (data["ten_dich_vu"], data["don_gia"], data.get("mo_ta"), service_id)
-        run_query(sql, params)
-        row = run_query("SELECT * FROM service WHERE id_dich_vu=%s", (service_id,), fetch="one")
-        return service_schema.dump(row), 200
-
     def delete(self, service_id):
         run_query("DELETE FROM service WHERE id_dich_vu=%s", (service_id,))
-        return {"message": f"Service {service_id} deleted"}, 200
+        return {"message": f"Service {service_id} deleted"}, 201

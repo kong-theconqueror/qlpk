@@ -70,12 +70,13 @@ class DoctorList(Resource):
         res = run_query( sql, params )
         row = run_query("SELECT * FROM Doctor WHERE id=%s", (data["id"],), fetch="one")
         return doctor_schema.dump(row), 201
+    
 @ns.route("/<string:doctor_id>")
 class DoctorDetail(Resource):
     def get(self, doctor_id):
         row = run_query("SELECT * FROM Doctor WHERE id=%s", (doctor_id,), fetch="one")
         if not row: return {"error": "not found"}, 404
-        return doctor_schema.dump(row)
+        return doctor_schema.dump(row), 201
     
     def delete(self, doctor_id):
         """Xoá bác sỹ"""
