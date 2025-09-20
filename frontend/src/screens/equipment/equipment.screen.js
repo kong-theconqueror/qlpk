@@ -55,7 +55,8 @@ const EquipmentsScreen = () => {
                                             <tr>
                                                 <th className="center middle">#</th>
                                                 <th className="center middle">{t('equipment.name')}</th>
-                                                <th className="center middle">{t('equipment.status')}</th>
+                                                <th className="center middle">{t('equipment.unit')}</th>
+                                                <th className="center middle">{t('equipment.unit_price')}</th>
                                                 <th className="center middle">{t('equipment.action')}</th>
                                             </tr>
                                         </thead>
@@ -64,7 +65,8 @@ const EquipmentsScreen = () => {
                                                 return <tr key={equipment.MaThietBi}>
                                                     <td className="center middle">{equipment.MaThietBi}</td>
                                                     <td className="center middle">{equipment.TenThietBi}</td>
-                                                    <td className="center middle">{equipment.TrangThai}</td>
+                                                    <td className="center middle">{equipment.DonViTinh}</td>
+                                                    <td className="center middle">{equipment.DonGia}</td>
                                                     <td className="center middle">
                                                         <Button variant="primary" title={t('equipment.update')}>
                                                             <i className="fa fa-pencil" aria-hidden="true"></i>

@@ -1,0 +1,31 @@
+﻿MaDichVu,TenDichVu,MoTa,DonGia
+DV001,Đo thị lực,"Kiểm tra thị lực, phát hiện tật khúc xạ",100000
+DV002,Soi đáy mắt,"Quan sát võng mạc, phát hiện bệnh lý võng mạc",150000
+DV003,Khám giác mạc,"Đánh giá tình trạng giác mạc, loét, sẹo",120000
+DV004,Đo nhãn áp,Đo áp lực nội nhãn để phát hiện glôcôm,130000
+DV005,Phẫu thuật đục thủy tinh thể,Thay thủy tinh thể nhân tạo,5000000
+DV006,Laser võng mạc,Điều trị bệnh lý võng mạc bằng laser,3000000
+DV007,Test dị ứng mắt,Kiểm tra phản ứng dị ứng ở mắt,350000
+DV008,Tiêm nội nhãn,Tiêm thuốc trực tiếp vào mắt,2500000
+DV009,Ghép giác mạc,Thay giác mạc bằng giác mạc nhân tạo/hiến tặng,10000000
+DV010,Điều trị glôcôm,Can thiệp hạ nhãn áp,4000000
+DV011,Điều trị viêm kết mạc,Thuốc và thủ thuật chữa viêm kết mạc,500000
+DV012,Điều trị thoái hóa điểm vàng,Tiêm thuốc chống tăng sinh mạch (anti-VEGF),7000000
+DV013,Khám ngoại tổng quát,Đánh giá toàn diện các bệnh lý ngoại khoa,200000
+DV014,Khám chấn thương,"Kiểm tra gãy xương, trật khớp, vết thương",180000
+DV015,Nắn chỉnh xương,Điều trị gãy/trật khớp bằng thủ thuật nắn chỉnh,700000
+DV016,Bó bột chỉnh hình,Cố định xương gãy bằng bột thạch cao hoặc nhựa,600000
+DV017,Khâu vết thương phần mềm,"Khâu, cắt lọc vết thương phần mềm",500000
+DV018,Phẫu thuật chỉnh hình,"Phẫu thuật xương khớp, dây chằng",8000000
+DV019,Phẫu thuật cột sống,"Điều trị bệnh lý thoát vị đĩa đệm, vẹo cột sống",12000000
+DV020,Phẫu thuật ổ bụng,Can thiệp ngoại khoa ổ bụng,10000000
+DV021,Ghép xương,Ghép xương điều trị khuyết hổng,9000000
+DV022,Nội soi khớp,Quan sát và điều trị tổn thương trong khớp,4000000
+DV023,Nội soi ổ bụng,Quan sát và điều trị bệnh lý ổ bụng,5000000
+DV024,Dẫn lưu ổ áp xe,Phẫu thuật dẫn lưu mủ,2000000
+DV025,Cắt lọc hoại tử,Loại bỏ mô hoại tử để ngăn nhiễm trùng,2500000
+DV026,Cắt ruột thừa,Phẫu thuật điều trị viêm ruột thừa cấp,7000000
+DV027,Mở khí quản,Thủ thuật mở đường thở tạm thời,3000000
+DV028,Cắt bỏ khối u phần mềm,Phẫu thuật loại bỏ khối u lành hoặc ác tính,8500000
+DV029,Cố định ngoài xương,Dùng dụng cụ ngoài để cố định gãy xương phức tạp,6000000
+DV030,Vật lý trị liệu phục hồi,Phục hồi chức năng sau phẫu thuật hoặc chấn thương,800000

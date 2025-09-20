@@ -1,18 +1,18 @@
-id,name,description,unit_price,unit
-TH001,Paracetamol 500mg,"Giảm đau, hạ sốt",15000,viên
-TH002,Ibuprofen 400mg,Chống viêm giảm đau không steroid (NSAID),22000,viên
-TH003,Metformin 500mg,Hạ đường huyết trong đái tháo đường type 2,30000,viên
-TH004,Omeprazole 20mg,"Giảm tiết acid dạ dày, điều trị viêm loét",32000,viên
-TH005,Aspirin 81mg,Kháng kết tập tiểu cầu liều thấp,18000,viên
-TH006,Simvastatin 20mg,Giảm cholesterol máu (statin),28000,viên
-TH007,Losartan 50mg,Điều trị tăng huyết áp (ức chế thụ thể AT1),26000,viên
-TH008,Prednisolone 5mg,"Corticosteroid chống viêm, ức chế miễn dịch",17000,viên
-TH009,Vitamin B Complex,"Bổ sung vitamin nhóm B, hỗ trợ thần kinh",25000,viên
-TH010,Pantoprazole 40mg,"Giảm tiết acid, điều trị GERD/loét",35000,viên
-TH011,Amoxicillin 500mg,Kháng sinh beta-lactam phổ rộng,25000,viên
-TH012,Cefuroxime 250mg,Kháng sinh cephalosporin thế hệ 2,38000,viên
-TH013,Clarithromycin 500mg,"Kháng sinh macrolid, diệt H. pylori",42000,viên
-TH014,Ciprofloxacin 500mg,"Kháng sinh quinolon, nhiễm khuẩn nặng",36000,viên
+MaThuoc,TenThuoc,MoTa,DonGia,DonViTinh
+TH001,Tobramycin nhỏ mắt,"Kháng sinh điều trị viêm kết mạc, viêm giác mạc",25000,lọ
+TH002,Prednisolone nhỏ mắt,"Chống viêm, giảm đỏ và sưng mắt",30000,lọ
+TH003,Acetazolamide 250mg,Hạ nhãn áp trong điều trị Glôcôm,5000,viên
+TH004,Artificial Tears,Dung dịch nhỏ mắt bổ sung nước mắt nhân tạo,20000,lọ
+TH005,Tropicamide 1%,Thuốc nhỏ mắt giãn đồng tử khi khám mắt,28000,lọ
+TH006,Timolol 0.5%,Thuốc nhỏ mắt hạ nhãn áp trong Glôcôm,26000,lọ
+TH007,Ketotifen nhỏ mắt,"Chống dị ứng mắt, giảm ngứa, đỏ",22000,lọ
+TH008,Paracetamol 500mg,"Giảm đau, hạ sốt sau phẫu thuật hoặc chấn thương",1500,viên
+TH009,Ibuprofen 400mg,Chống viêm giảm đau không steroid,2200,viên
+TH010,Ceftriaxone 1g,Kháng sinh tiêm điều trị nhiễm khuẩn hậu phẫu,45000,lọ
+TH011,Metronidazole 250mg,Kháng sinh chống viêm nhiễm đường tiêu hóa,1200,viên
+TH012,Heparin tiêm,Thuốc chống đông sau phẫu thuật,70000,lọ
+TH013,Omeprazole 20mg,Bảo vệ dạ dày khi dùng thuốc giảm đau NSAID,3200,viên
+TH014,Tramadol 50mg,Giảm đau trung bình đến nặng,5000,viên
 TH015,Metronidazole 250mg,Kháng khuẩn/ký sinh trùng kỵ khí,24000,viên
 TH016,Ceftriaxone 1g,Kháng sinh cephalosporin thế hệ 3 (tiêm),85000,lọ
 TH017,Gentamicin 80mg/2ml,Kháng sinh aminoglycosid (tiêm),52000,ống

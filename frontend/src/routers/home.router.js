@@ -2,6 +2,8 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Urls from '../constants/urls.constant';
 
+import ExaminationScreen from "../screens/examination/examination.screen";
+
 import DoctorScreen from "../screens/doctor/doctor.screen";
 import NurseScreen from "../screens/nurse/nurse.screen";
 import PatientScreen from "../screens/patient/patient.screen";
@@ -19,6 +21,7 @@ const HomeRoutes = () => {
         <Switch>
             <Route exact path="/" component={DoctorScreen} />
 
+            <Route path={Urls.EXAMINATION} component={ExaminationScreen} />
             <Route path={Urls.PATIENT} component={PatientScreen} />
 
             <Route path={Urls.DOCTOR} component={DoctorScreen} />

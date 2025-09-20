@@ -3,6 +3,8 @@ import userAction from "./user.action";
 import appAction from "./app.action";
 import sidebarAction from "./sidebar.action";
 
+import examinationAction from "./examination.action";
+
 import doctorAction from "./doctor.action";
 import nurseAction from "./nurse.action";
 import patientAction from "./patient.action";
@@ -20,6 +22,8 @@ export{
     userAction,
     appAction,
     sidebarAction,
+
+    examinationAction,
 
     doctorAction,
     nurseAction,

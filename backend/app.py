@@ -8,7 +8,7 @@ from namespaces.yta_ns import ns as yta_ns
 from namespaces.khoa_ns import ns as khoa_ns
 from namespaces.dichvu_ns import ns as dichvu_ns
 from namespaces.benh_ns import ns as benh_ns
-from namespaces.cosovatchat_ns import ns as cosovatchat_ns
+from namespaces.thietbiyte_ns import ns as cosovatchat_ns
 from namespaces.luong_ns import ns as luong_ns
 
 def create_app():

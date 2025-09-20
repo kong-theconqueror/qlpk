@@ -4,7 +4,7 @@ import axiosSerivce from './axios.services';
 class EquipmentApi {
     getEquipments(data) {
         return axiosSerivce.get(
-            'co_so_vat_chat',
+            'thiet_bi_y_te',
             data,
             true,
             {

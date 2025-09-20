@@ -156,6 +156,8 @@ const vn = {
             name: "Tên",
             description: "Mô tả",
             price: "Chi phí",
+            unit: "Đơn vị tính",
+            unit_price: "Đơn giá",
             status: "Trạng thái",
             action: "Hoạt động",
             info: "Thông tin",

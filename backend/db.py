@@ -1,6 +1,7 @@
 import os
 import csv
-from datetime import datetime
+import random
+from datetime import datetime, time
 import pymysql
 from pymysql.cursors import DictCursor
 from config import DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME
@@ -126,16 +127,31 @@ def init_db_from_file(sql_file):
 def import_data():
     current_directory = os.getcwd()
     print(current_directory)
-    import_khoa(os.path.join(current_directory, 'data','khoa.csv'))
-    import_bacsy(os.path.join(current_directory, 'data','bac si.csv'))
-    import_yta(os.path.join(current_directory, 'data','y ta.csv'))
-    import_thuoc(os.path.join(current_directory, 'data','thuoc.csv'))
-    # import_thietbiyte(os.path.join(current_directory, 'data','thiet_bi.csv'))
-    import_benh(os.path.join(current_directory, 'data','benh.csv'))
-    # import_dich_vu(os.path.join(current_directory, 'data','dich_vu.csv'))
-    import_benhnhan(os.path.join(current_directory, 'data','benh_nhan.csv'))
-    import_khambenh(os.path.join(current_directory, 'data','kham_benh.csv'))
-    # import_chandoan(os.path.join(current_directory, 'data','chan_doan.csv'))
+    import_khoa(os.path.join(current_directory, 'data','Khoa.csv'))
+    import_bacsy(os.path.join(current_directory, 'data','BacSi.csv'))
+    import_benh(os.path.join(current_directory, 'data','Benh.csv'))
+    import_yta(os.path.join(current_directory, 'data','YTa.csv'))
+    import_thuoc(os.path.join(current_directory, 'data','Thuoc.csv'))
+    import_thietbiyte(os.path.join(current_directory, 'data','ThietBiYTe.csv'))
+    import_benhnhan(os.path.join(current_directory, 'data','BenhNhan.csv'))
+
+    import_khambenh(os.path.join(current_directory, 'data','KhamBenh.csv'))
+    import_chandoan(os.path.join(current_directory, 'data','ChanDoan.csv'))
+    import_hosobenhan(os.path.join(current_directory, 'data','HoSoBenhAn.csv'))
+    import_chuabenh(os.path.join(current_directory, 'data','ChuaBenh.csv'))
+
+    import_dichvu(os.path.join(current_directory, 'data','DichVu.csv'))
+    import_dichvukb(os.path.join(current_directory, 'data','DichVuKB.csv'))
+    import_dichvucb(os.path.join(current_directory, 'data','DichVuCB.csv'))
+    
+    import_phancongkb(os.path.join(current_directory, 'data','PhanCongKB.csv'))
+    import_phancongcb(os.path.join(current_directory, 'data','PhanCongCB.csv'))
+
+    import_sudungthietbikb(os.path.join(current_directory, 'data','SuDungThietBiKB.csv'))
+    import_sudungthietbicb(os.path.join(current_directory, 'data','SuDungThietBiCB.csv'))
+
+    import_donthuoc(os.path.join(current_directory, 'data','DonThuoc.csv'))
+    import_lieudung(os.path.join(current_directory, 'data','LieuDung.csv'))
 
 # Import Khoa to DB
 def import_khoa(csv_file):
@@ -203,12 +219,12 @@ def import_yta(csv_file):
         for row in reader:
             # Chuẩn bị dữ liệu
             data = (
-                row['id'],
-                row['full_name'],
-                row['gender'],
-                row['title'],
-                row['years_of_experience'],
-                row['Salary coefficient']
+                row['MaYT'],
+                row['TenYT'],
+                row['GioiTinh'],
+                row['BoPhan'],
+                row['NamKinhNghiem'],
+                row['HeSoLuong']
             )
              # Insert, tránh trùng khóa chính
             sql = """
@@ -222,8 +238,7 @@ def import_yta(csv_file):
                     HeSoLuong = VALUES(HeSoLuong)
             """
             cur.execute(sql, data)
-            # print(f"Imported nurse {row['MaYT']} - {row['TenYT']}")
-            print(f"Imported YTa {row['id']} - {row['full_name']}")
+            print(f"Imported YTa {row['MaYT']} - {row['TenYT']}")
     conn.close()
 
 # Import Thuoc to DB
@@ -233,11 +248,11 @@ def import_thuoc(csv_file):
         reader = csv.DictReader(f)
         for row in reader:
             data = (
-                row["id"],
-                row["name"],
-                row["description"],
-                float(row["unit_price"]) if row["unit_price"] else 0,
-                row["unit"]
+                row["MaThuoc"],
+                row["TenThuoc"],
+                row["MoTa"],
+                float(row["DonGia"]) if row["DonGia"] else 0,
+                row["DonViTinh"]
             )
             # Insert, tránh trùng khóa chính
             sql = """
@@ -250,8 +265,7 @@ def import_thuoc(csv_file):
                     DonViTinh = VALUES(DonViTinh)
             """
             cur.execute(sql, data)
-            # print(f"Imported medicine {row['MaThuoc']} - {row['TenThuoc']}")
-            print(f"Imported Thuoc {row['id']} - {row['name']}")
+            print(f"Imported Thuoc {row['MaThuoc']} - {row['TenThuoc']}")
     conn.close()
 
 # Import ThietBiYTe to DB
@@ -261,22 +275,23 @@ def import_thietbiyte(csv_file):
         reader = csv.DictReader(f)
         for row in reader:
             data = (
-                row['id_thiet_bi'],
-                row['ten_thiet_bi'],
-                row['trang_thai']
+                row['MaThietBi'],
+                row['TenThietBi'],
+                row['DonViTinh'],
+                row['DonGia']
             )
             # Insert, tránh trùng khóa chính
             sql = """
-                INSERT INTO CoSoVatChat (MaThietBi, TenThietBi, TrangThai)
-                VALUES (%s, %s, %s)
+                INSERT INTO ThietBiYTe (MaThietBi, TenThietBi, DonViTinh, DonGia)
+                VALUES (%s, %s, %s, %s)
                 ON DUPLICATE KEY UPDATE
                     MaThietBi = VALUES(MaThietBi),
                     TenThietBi = VALUES(TenThietBi),
-                    TrangThai = VALUES(TrangThai)
+                    DonViTinh = VALUES(DonViTinh),
+                    DonGia = VALUES(DonGia)
             """
             cur.execute(sql, data)
-            # print(f"Imported CoSoVatChat {row['MaCSVC']} - {row['TenCSVC']}")
-            print(f"Imported ThietBi {row['id_thiet_bi']} - {row['ten_thiet_bi']}")
+            print(f"Imported ThietBi {row['MaThietBi']} - {row['TenThietBi']}")
     conn.close()
 
 # Import Benh to DB
@@ -309,24 +324,22 @@ def import_dichvu(csv_file):
         reader = csv.DictReader(f)
         for row in reader:
             data = (
-                row['id_dich_vu'],
-                row['ten_dich_vu'],
-                row['mo_ta'],
-                row['don_gia'],
-                row['don_gia'],
+                row['MaDichVu'],
+                row['TenDichVu'],
+                row['MoTa'],
+                row['DonGia']
             )
             sql = """
-                INSERT INTO DichVu (MaDichVu, TenDichVu, MoTa, MaThietBi, DonGia)
+                INSERT INTO DichVu (MaDichVu, TenDichVu, MoTa, DonGia)
                 VALUES (%s, %s, %s, %s)
                 ON DUPLICATE KEY UPDATE
                     MaDichVu = VALUES(MaDichVu),
                     TenDichVu = VALUES(TenDichVu),
                     MoTa = VALUES(MoTa),
-                    MaThietBi = VALUES(MaThietBi),
                     DonGia = VALUES(DonGia)
             """
             cur.execute(sql, data)
-            print(f"Imported DichVu {row['id_dich_vu']} - {row['ten_dich_vu']}")
+            print(f"Imported DichVu {row['MaDichVu']} - {row['TenDichVu']}")
     conn.close()
 
 # Import BenhNhan to DB
@@ -394,11 +407,11 @@ def import_chandoan(csv_file):
                 row['MaKB'],
                 row['MaBenh'],
                 row['MucDo'],
-                row['SoLanChuaBenhDuDoan']
+                row['SoLanChua']
             )
             sql = """
                 INSERT INTO ChanDoan (MaCD, MaKB, MaBenh, MucDo, SoLanChuaBenhDuDoan)
-                VALUES (%s, %s, %s, %s, %s, %s)
+                VALUES (%s, %s, %s, %s, %s)
                 ON DUPLICATE KEY UPDATE
                     MaKB = VALUES(MaKB),
                     MaBenh = VALUES(MaBenh),
@@ -408,3 +421,265 @@ def import_chandoan(csv_file):
             cur.execute(sql, data)
             print(f"Imported ChanDoan {row['MaCD']} - {row['MaBenh']}")
     conn.close()
+
+# Import HoSoBenhAn to DB
+def import_hosobenhan(csv_file):
+    conn = get_conn()
+    with conn.cursor() as cur, open(csv_file, encoding="utf-8-sig") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            start_date = datetime.strptime(row['ThoiGianMo'], "%d/%m/%Y").date()
+            end_date = datetime.strptime(row['ThoiGianDong'], "%Y-%m-%d").date() if row['ThoiGianDong'] else None
+            data = (
+                row['MaBA'],
+                row['MaCD'],
+                row['MaBN'],
+                row['MaBS'],
+                row['TrangThai'],
+                start_date,
+                end_date
+            )
+            sql = """
+                INSERT INTO HoSoBenhAn (MaBA, MaCD, MaBN, MaBS, TrangThai, ThoiGianMo, ThoiGianKetThuc)
+                VALUES (%s, %s, %s, %s, %s, %s, %s)
+                ON DUPLICATE KEY UPDATE
+                    MaCD = VALUES(MaCD),
+                    MaBN = VALUES(MaBN),
+                    MaBS = VALUES(MaBS),
+                    TrangThai = VALUES(TrangThai),
+                    ThoiGianMo = VALUES(ThoiGianMo),
+                    ThoiGianKetThuc = VALUES(ThoiGianKetThuc)
+            """
+            cur.execute(sql, data)
+            print(f"Imported ChanDoan {row['MaBA']} - {row['TrangThai']}")
+    conn.close()
+
+# Import ChuaBenh to DB
+def import_chuabenh(csv_file):
+    conn = get_conn()
+    with conn.cursor() as cur, open(csv_file, encoding="utf-8-sig") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            date = datetime.strptime(row['ThoiGian'], "%Y-%m-%d").date() if row['ThoiGian'] else None
+            data = (
+                row['MaCB'],
+                row['MaBA'],
+                row['MaBenh'],
+                row['HinhThucChua'],
+                date
+            )
+            sql = """
+                INSERT INTO ChuaBenh (MaCB, MaBA, MaBenh, HinhThucChuaBenh, ThoiGian)
+                VALUES (%s, %s, %s, %s, %s)
+                ON DUPLICATE KEY UPDATE
+                    MaBA = VALUES(MaBA),
+                    MaBenh = VALUES(MaBenh),
+                    HinhThucChuaBenh = VALUES(HinhThucChuaBenh),
+                    ThoiGian = VALUES(ThoiGian)
+            """
+            cur.execute(sql, data)
+            print(f"Imported ChuaBenh {row['MaCB']} - {row['HinhThucChua']}")
+    conn.close()
+
+# Import SuDungThietBiCB to DB
+def import_sudungthietbicb(csv_file):
+    conn = get_conn()
+    with conn.cursor() as cur, open(csv_file, encoding="utf-8-sig") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            data = (
+                row['MaThietBi'],
+                row['MaCB'],
+                row['SoLuong'],
+                row['DonGiaApDung']
+            )
+            sql = """
+                INSERT INTO SuDungThietBiCB (MaThietBi, MaCB, SoLuong, DonGiaApDung)
+                VALUES (%s, %s, %s, %s)
+                ON DUPLICATE KEY UPDATE
+                    MaThietBi = VALUES(MaThietBi),
+                    MaCB = VALUES(MaCB),
+                    SoLuong = VALUES(SoLuong),
+                    DonGiaApDung = VALUES(DonGiaApDung)
+            """
+            cur.execute(sql, data)
+            print(f"Imported SuDungThietBiCB {row['MaThietBi']} - {row['MaCB']}")
+    conn.close()
+
+# Import SuDungThietBiKB to DB
+def import_sudungthietbikb(csv_file):
+    conn = get_conn()
+    with conn.cursor() as cur, open(csv_file, encoding="utf-8-sig") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            data = (
+                row['MaThietBi'],
+                row['MaKB'],
+                row['SoLuong'],
+                row['DonGiaApDung']
+            )
+            sql = """
+                INSERT INTO SuDungThietBiKB (MaThietBi, MaKB, SoLuong, DonGiaApDung)
+                VALUES (%s, %s, %s, %s)
+                ON DUPLICATE KEY UPDATE
+                    MaThietBi = VALUES(MaThietBi),
+                    MaKB = VALUES(MaKB),
+                    SoLuong = VALUES(SoLuong),
+                    DonGiaApDung = VALUES(DonGiaApDung)
+            """
+            cur.execute(sql, data)
+            print(f"Imported SuDungThietBiKB {row['MaThietBi']} - {row['MaKB']}")
+    conn.close()
+
+# Import PhanCongKB to DB
+def import_phancongkb(csv_file):
+    conn = get_conn()
+    with conn.cursor() as cur, open(csv_file, encoding="utf-8-sig") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            data = (
+                row['MaKB'],
+                row['MaYT']
+            )
+            sql = """
+                INSERT INTO PhanCongKB (MaKB, MaYT)
+                VALUES (%s, %s)
+                ON DUPLICATE KEY UPDATE
+                    MaYT = VALUES(MaYT)
+            """
+            cur.execute(sql, data)
+            print(f"Imported PhanCongKB {row['MaKB']} - {row['MaYT']}")
+    conn.close()
+
+# Import PhanCongCB to DB
+def import_phancongcb(csv_file):
+    conn = get_conn()
+    with conn.cursor() as cur, open(csv_file, encoding="utf-8-sig") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            data = (
+                row['MaCB'],
+                row['MaYT']
+            )
+            sql = """
+                INSERT INTO PhanCongCB (MaCB, MaYT)
+                VALUES (%s, %s)
+                ON DUPLICATE KEY UPDATE
+                    MaYT = VALUES(MaYT)
+            """
+            cur.execute(sql, data)
+            print(f"Imported PhanCongCB {row['MaCB']} - {row['MaYT']}")
+    conn.close()
+
+# Import DichVuKB to DB
+def import_dichvukb(csv_file):
+    conn = get_conn()
+    with conn.cursor() as cur, open(csv_file, encoding="utf-8-sig") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            data = (
+                row['MaDichVu'],
+                row['MaKB'],
+                row['SoLuong'],
+                row['DonGiaApDung']
+            )
+            sql = """
+                INSERT INTO DichVuKB (MaDichVu, MaKB, SoLuong, DonGiaApDung)
+                VALUES (%s, %s, %s, %s)
+                ON DUPLICATE KEY UPDATE
+                    SoLuong = VALUES(SoLuong),
+                    SoLuong = VALUES(SoLuong),
+                    DonGiaApDung = VALUES(DonGiaApDung)
+            """
+            cur.execute(sql, data)
+            print(f"Imported DichVuKB {row['MaDichVu']} - {row['MaKB']}")
+    conn.close()
+
+# Import DichVuCB to DB
+def import_dichvucb(csv_file):
+    conn = get_conn()
+    with conn.cursor() as cur, open(csv_file, encoding="utf-8-sig") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            data = (
+                row['MaDichVu'],
+                row['MaCB'],
+                row['SoLuong'],
+                row['DonGiaApDung']
+            )
+            sql = """
+                INSERT INTO DichVuCB (MaDichVu, MaCB, SoLuong, DonGiaApDung)
+                VALUES (%s, %s, %s, %s)
+                ON DUPLICATE KEY UPDATE
+                    SoLuong = VALUES(SoLuong),
+                    DonGiaApDung = VALUES(DonGiaApDung)
+            """
+            cur.execute(sql, data)
+            print(f"Imported DichVuCB {row['MaDichVu']} - {row['MaCB']}")
+    conn.close()
+
+# Import DonThuoc to DB
+def import_donthuoc(csv_file):
+    conn = get_conn()
+    with conn.cursor() as cur, open(csv_file, encoding="utf-8-sig") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            ngay_lap = None
+            # Chuyển đổi ngày giờ
+            if row['NgayLapDon']:
+                try:
+                    # Chỉ lấy ngày
+                    ngay_date = datetime.strptime(row['NgayLapDon'], "%Y-%m-%d").date()
+                    
+                    # Sinh ngẫu nhiên giờ hành chính (08:00 -> 17:30)
+                    start_time = 8 * 60      # 08:00 tính bằng phút
+                    end_time = 17 * 60 + 30  # 17:30 tính bằng phút
+                    random_minutes = random.randint(start_time, end_time)
+                    
+                    # Ghép ngày + giờ ngẫu nhiên
+                    hours, minutes = divmod(random_minutes, 60)
+                    ngay_lap = datetime.combine(ngay_date, time(hours, minutes, 0))
+                except ValueError:
+                    # Nếu dữ liệu đã có datetime thì parse trực tiếp
+                    ngay_lap = datetime.strptime(row['NgayLapDon'], "%Y-%m-%d %H:%M:%S")
+
+            data = (
+                row['MaDonThuoc'],
+                row['MaCB'],
+                ngay_lap
+            )
+            sql = """
+                INSERT INTO DonThuoc (MaDonThuoc, MaCB, NgayLapDon)
+                VALUES (%s, %s, %s)
+                ON DUPLICATE KEY UPDATE
+                    MaCB = VALUES(MaCB),
+                    NgayLapDon = VALUES(NgayLapDon)
+            """
+            cur.execute(sql, data)
+            print(f"Imported DonThuoc {row['MaDonThuoc']} - {row['NgayLapDon']}")
+    conn.close()
+
+# Import LieuDung to DB
+def import_lieudung(csv_file):
+    conn = get_conn()
+    with conn.cursor() as cur, open(csv_file, encoding="utf-8-sig") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            data = (
+                row['MaDonThuoc'],
+                row['MaThuoc'],
+                int(row['SoLuong']) if row['SoLuong'] else None,
+                row['LieuDung']
+            )
+            sql = """
+                INSERT INTO LieuDung (MaDonThuoc, MaThuoc, SoLuong, LieuDung)
+                VALUES (%s, %s, %s, %s)
+                ON DUPLICATE KEY UPDATE
+                    SoLuong = VALUES(SoLuong),
+                    LieuDung = VALUES(LieuDung)
+            """
+            cur.execute(sql, data)
+            print(f"Imported LieuDung {row['MaDonThuoc']} - {row['MaThuoc']}")
+    conn.commit()
+    conn.close()
+
