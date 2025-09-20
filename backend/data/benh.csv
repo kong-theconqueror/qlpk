@@ -1,41 +1,17 @@
-﻿id_benh,ten_benh,mo_ta,ma_khoa
-1,Tăng huyết áp,Bệnh mạn tính gây tăng áp lực máu,KH-NI
-2,Đái tháo đường type 2,Rối loạn chuyển hóa glucose,KH-NI
-3,Viêm phổi cộng đồng,Nhiễm trùng phổi ngoài bệnh viện,KH-NI
-4,Hen phế quản,Tắc nghẽn đường thở mạn tính do dị ứng,KH-NI
-5,Lao phổi,Nhiễm trùng phổi do vi khuẩn lao,KH-NI
-6,Viêm gan B mạn tính,Tổn thương gan do virus HBV,KH-NI
-7,Loét dạ dày – tá tràng,Tổn thương loét niêm mạc dạ dày hoặc tá tràng,KH-NI
-8,Suy tim sung huyết,Giảm khả năng bơm máu của tim,KH-NI
-9,Viêm ruột thừa,Viêm cấp tính ở ruột thừa,KH-NG
-10,Sỏi mật,Hình thành sỏi trong túi mật,KH-NG
-11,Thoát vị bẹn,Tạng chui ra ngoài ổ bụng qua ống bẹn,KH-NG
-12,Chấn thương sọ não,Tổn thương não do va đập,KH-NG
-13,Gãy xương đùi,Chấn thương gây gãy xương đùi,KH-NG
-14,Trĩ nội – ngoại,Giãn tĩnh mạch vùng hậu môn,KH-NG
-15,U tuyến giáp,Khối u ở tuyến giáp,KH-NG
-16,Viêm tụy cấp,Tình trạng viêm tụy đột ngột,KH-NG
-17,Viêm tiểu phế quản,Nhiễm trùng đường hô hấp dưới ở trẻ nhỏ,KH-NHI
-18,Viêm amidan cấp,Viêm cấp tính amidan khẩu cái,KH-NHI
-19,Tay chân miệng,Bệnh truyền nhiễm do Enterovirus,KH-NHI
-20,Tiêu chảy cấp do Rotavirus,Nhiễm siêu vi gây tiêu chảy,KH-NHI
-21,Viêm não Nhật Bản,Nhiễm virus viêm não Nhật Bản,KH-NHI
-22,Sởi,Bệnh truyền nhiễm cấp tính do virus sởi,KH-NHI
-23,Viêm tai giữa cấp,Nhiễm trùng tai giữa,KH-NHI
-24,Còi xương do thiếu vitamin D,Loạn dưỡng xương do thiếu vitamin D,KH-NHI
-25,Tiền sản giật,Biến chứng thai kỳ với tăng huyết áp và protein niệu,KH-SN
-26,Sẩy thai tự nhiên,Thai bị mất tự nhiên trước 20 tuần,KH-SN
-27,Đa thai,Mang nhiều thai cùng lúc,KH-SN
-28,Rau tiền đạo,Bánh rau bám thấp che phủ cổ tử cung,KH-SN
-29,U xơ tử cung,Khối u lành tính ở cơ tử cung,KH-SN
-30,Nhiễm trùng hậu sản,Nhiễm khuẩn sau sinh,KH-SN
-31,Thai ngoài tử cung,Thai làm tổ ngoài tử cung,KH-SN
-32,Tiểu đường thai kỳ,Tăng đường huyết phát hiện lần đầu trong thai kỳ,KH-SN
-33,Viêm xoang mạn,Viêm kéo dài niêm mạc xoang,KH-MAT
-34,Viêm họng cấp,Viêm niêm mạc họng cấp tính,KH-MAT
-35,Viêm thanh quản,Viêm thanh quản gây khàn tiếng,KH-MAT
-36,Viêm tai giữa mạn,Tổn thương tai giữa kéo dài,KH-MAT
-37,Polyp mũi,Khối u lành tính trong mũi,KH-MAT
-38,Viêm amidan mạn,Viêm amidan kéo dài tái phát,KH-MAT
-39,Ngưng thở khi ngủ do tắc nghẽn,Tắc nghẽn đường thở khi ngủ,KH-MAT
-40,Dị vật đường thở,Vật lạ mắc kẹt trong khí quản hoặc phế quản,KH-MAT
+﻿MaBenh,TenBenh,MoTa
+1,Viêm ruột thừa,Viêm cấp tính ở ruột thừa
+2,Sỏi mật,Hình thành sỏi trong túi mật
+3,Gãy xương đùi,Chấn thương gây gãy xương đùi
+4,Trĩ nội – ngoại,Giãn tĩnh mạch vùng hậu môn
+5,U tuyến giáp,Khối u ở tuyến giáp
+6,Viêm tụy cấp,Tình trạng viêm tụy đột ngột
+7,Chấn thương sọ não,Tổn thương não do va đập
+8,Thoát vị bẹn,Tạng chui ra ngoài ổ bụng qua ống bẹn
+9,Ngưng thở khi ngủ do tắc nghẽn,Tắc nghẽn đường thở khi ngủ
+10,Dị vật đường thở,Vật lạ mắc kẹt trong khí quản hoặc phế quản
+11,Viêm tai giữa mạn,Tổn thương tai giữa kéo dài
+12,Polyp mũi,Khối u lành tính trong mũi
+13,Viêm xoang mạn,Viêm kéo dài niêm mạc xoang
+14,Viêm họng cấp,Viêm niêm mạc họng cấp tính
+15,Viêm thanh quản,Viêm thanh quản gây khàn tiếng
+16,Viêm amidan mạn,Viêm amidan kéo dài tái phát
