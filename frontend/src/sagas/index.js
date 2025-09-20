@@ -12,6 +12,8 @@ import departmentSaga from './department.saga';
 import medicineSaga from './medicine.saga';
 import equipmentSaga from './equipment.saga';
 import serviceSaga from './service.saga';
+import doctorSalarySaga from './doctorSalary.saga';
+import nurseSalarySaga from './nurseSalary.saga';
 
 export default function* rootSaga(getState) {
   yield all([
@@ -27,5 +29,8 @@ export default function* rootSaga(getState) {
     medicineSaga(),
     equipmentSaga(),
     serviceSaga(),
+
+    doctorSalarySaga(),
+    nurseSalarySaga(),
   ]);
 }

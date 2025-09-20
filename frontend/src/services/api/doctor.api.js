@@ -4,7 +4,7 @@ import axiosSerivce from './axios.services';
 class DoctorApi {
     getDoctors(data) {
         return axiosSerivce.get(
-            'doctor',
+            'bac_sy',
             data,
             true,
             {
@@ -14,10 +14,10 @@ class DoctorApi {
         );
     }
 
-    createDoctor(doctor) {
+    createDoctor(bac_sy) {
         return axiosSerivce.post(
-            'doctor',
-            doctor,
+            'bac_sy',
+            bac_sy,
             true,
             {
                 'Content-Type': 'application/json',
@@ -29,7 +29,7 @@ class DoctorApi {
 
      updateDoctor(data) {
         return axiosSerivce.put(
-            'doctor',
+            'bac_sy',
             data,
             true,
             {
@@ -42,7 +42,7 @@ class DoctorApi {
 
     deleteDoctor(id) {
         return axiosSerivce.delete(
-            'doctor/'+ id,
+            'bac_sy/'+ id,
             null,
             true,
             {
@@ -53,6 +53,6 @@ class DoctorApi {
     }
 }
 
-const doctorApi = new DoctorApi()
+const bac_syApi = new DoctorApi()
 
-export default doctorApi;
+export default bac_syApi;

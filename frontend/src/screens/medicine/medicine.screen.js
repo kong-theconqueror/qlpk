@@ -63,12 +63,12 @@ const MedicinesScreen = () => {
                                         </thead>
                                         <tbody>
                                             {medicines.map((medicine) => {
-                                                return <tr key={medicine.id}>
-                                                    <td className="center middle">{medicine.id}</td>
-                                                    <td className="center middle">{medicine.name}</td>
-                                                    <td className="center middle">{medicine.description}</td>
-                                                    <td className="center middle">{medicine.unit}</td>
-                                                    <td className="center middle">{medicine.unit_price}</td>
+                                                return <tr key={medicine.MaThuoc}>
+                                                    <td className="center middle">{medicine.MaThuoc}</td>
+                                                    <td className="center middle">{medicine.TenThuoc}</td>
+                                                    <td className="center middle">{medicine.MoTa}</td>
+                                                    <td className="center middle">{medicine.DonViTinh}</td>
+                                                    <td className="center middle">{medicine.DonGia}</td>
                                                     <td className="center middle">
                                                         <Button variant="success" title={t('medicine.info')}>
                                                             <i className="fa fa-info" aria-hidden="true"></i>

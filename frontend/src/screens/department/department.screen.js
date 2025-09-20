@@ -61,14 +61,11 @@ const DepartmentsScreen = () => {
                                         </thead>
                                         <tbody>
                                             {departments.map((department) => {
-                                                return <tr key={department.id}>
-                                                    <td className="center middle">{department.ma_khoa}</td>
-                                                    <td className="center middle">{department.ten_khoa}</td>
-                                                    <td className="center middle">{department.mo_ta}</td>
+                                                return <tr key={department.MaKhoa}>
+                                                    <td className="center middle">{department.MaKhoa}</td>
+                                                    <td className="center middle">{department.TenKhoa}</td>
+                                                    <td className="center middle">{department.MoTa}</td>
                                                     <td className="center middle">
-                                                        <Button variant="success" title={t('department.info')}>
-                                                            <i className="fa fa-info" aria-hidden="true"></i>
-                                                        </Button>
                                                         <Button variant="primary" title={t('department.update')}>
                                                             <i className="fa fa-pencil" aria-hidden="true"></i>
                                                         </Button>

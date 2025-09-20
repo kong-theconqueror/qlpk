@@ -16,6 +16,8 @@ const Urls = {
     EXAMINATION: '/kham-chua-benh/kham-benh',
     TREATMENT: '/kham-chua-benh/chua-benh',
     MEDICAL_RECORD: '/kham-chua-benh/ho-so-benh-an',
+    PATIENT: '/kham-chua-benh/benh-nhan',
+
     DOCTOR_SALARY: '/phong-kham/luong-bac-sy',
     NURSE_SALARY: '/phong-kham/luong-y-ta',
     REVENUE: '/phong-kham/doanh-thu',
@@ -24,7 +26,6 @@ const Urls = {
     DOCTOR: '/danh-muc/bac-sy',
     NURSE: '/danh-muc/y-ta',
     MEDICINE: '/danh-muc/thuoc',
-    PATIENT: '/danh-muc/benh-nhan',
     DISEASE: '/danh-muc/benh',
     SERVICE: '/danh-muc/dich-vu',
     EQUIQMENT: '/danh-muc/thiet-bi',

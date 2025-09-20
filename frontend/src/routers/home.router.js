@@ -12,14 +12,17 @@ import EquipmentScreen from "../screens/equipment/equipment.screen";
 import ServiceScreen from "../screens/service/service.screen";
 
 import DoctorSalarysScreen from "../screens/doctorSalary/doctorSalary.screen";
+import nurseSalaryScreen from "../screens/nurseSalary/nurseSalary.screen";
 
 const HomeRoutes = () => {
     return (
         <Switch>
             <Route exact path="/" component={DoctorScreen} />
+
+            <Route path={Urls.PATIENT} component={PatientScreen} />
+
             <Route path={Urls.DOCTOR} component={DoctorScreen} />
             <Route path={Urls.NURSE} component={NurseScreen} />
-            <Route path={Urls.PATIENT} component={PatientScreen} />
             <Route path={Urls.DISEASE} component={DiseaseScreen} />
             <Route path={Urls.DEPARTMENT} component={DepartmentScreen} />
             <Route path={Urls.MEDICINE} component={MedicineScreen} />
@@ -28,6 +31,7 @@ const HomeRoutes = () => {
 
             
             <Route path={Urls.DOCTOR_SALARY} component={DoctorSalarysScreen} />
+            <Route path={Urls.NURSE_SALARY} component={nurseSalaryScreen} />
             
         </Switch>
     );

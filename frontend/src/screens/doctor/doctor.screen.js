@@ -105,7 +105,6 @@ const DoctorsScreen = () => {
                                                 <th className="center middle">{t('doctor.gender')}</th>
                                                 <th className="center middle">{t('doctor.room')}</th>
                                                 <th className="center middle">{t('doctor.years_of_experience')}</th>
-                                                <th className="center middle">{t('doctor.title')}</th>
                                                 <th className="center middle">{t('doctor.salary_coefficient')}</th>
                                                 <th className="center middle">{t('doctor.specialty')}</th>
                                                 <th className="center middle">{t('doctor.action')}</th>
@@ -113,15 +112,14 @@ const DoctorsScreen = () => {
                                         </thead>
                                         <tbody>
                                             {doctors.map((item) => {
-                                                return <tr key={item.id}>
-                                                    <td className="center middle">{item.id}</td>
-                                                    <td className="center middle">{item.full_name}</td>
-                                                    <td className="center middle">{item.gender}</td>
-                                                    <td className="center middle">{item.room}</td>
-                                                    <td className="center middle">{item.years_of_experience}</td>
-                                                    <td className="center middle">{item.title}</td>
-                                                    <td className="center middle">{item.salary_coefficient}</td>
-                                                    <td className="center middle">{item.ten_khoa}</td>
+                                                return <tr key={item.MaBS}>
+                                                    <td className="center middle">{item.MaBS}</td>
+                                                    <td className="center middle">{item.TenBS}</td>
+                                                    <td className="center middle">{item.GioiTinh}</td>
+                                                    <td className="center middle">{item.PhongKham}</td>
+                                                    <td className="center middle">{item.NamKinhNghiem}</td>
+                                                    <td className="center middle">{item.HeSoLuong}</td>
+                                                    <td className="center middle">{item.TenKhoa}</td>
                                                     <td className="center middle">
                                                         <Button variant="primary" 
                                                             onClick={() => onUpdateDoctorBtnClicked(item)}

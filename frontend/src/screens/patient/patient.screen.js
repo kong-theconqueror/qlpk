@@ -64,13 +64,13 @@ const PatientsScreen = () => {
                                         </thead>
                                         <tbody>
                                             {patients.map((patient) => {
-                                                return <tr key={patient.id}>
-                                                    <td className="center middle">{patient.id}</td>
-                                                    <td className="center middle">{patient.full_name}</td>
-                                                    <td className="center middle">{patient.gender}</td>
-                                                    <td className="center middle">{patient.birth}</td>
-                                                    <td className="center middle">{patient.phone_num}</td>
-                                                    <td className="center middle">{patient.address}</td>
+                                                return <tr key={patient.MaBN}>
+                                                    <td className="center middle">{patient.MaBN}</td>
+                                                    <td className="center middle">{patient.TenBN}</td>
+                                                    <td className="center middle">{patient.GioiTinh}</td>
+                                                    <td className="center middle">{patient.NgaySinh}</td>
+                                                    <td className="center middle">{patient.SDT}</td>
+                                                    <td className="center middle">{patient.DiaChi}</td>
                                                     <td className="center middle">
                                                         <Button variant="success" title={t('patient.info')}>
                                                             <i className="fa fa-info" aria-hidden="true"></i>

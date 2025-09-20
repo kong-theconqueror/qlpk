@@ -4,7 +4,7 @@ import axiosSerivce from './axios.services';
 class DiseaseApi {
     getDiseases(data) {
         return axiosSerivce.get(
-            'disease',
+            'benh',
             data,
             true,
             {

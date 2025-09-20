@@ -4,10 +4,10 @@ import { useTranslation } from 'react-i18next';
 import { Container, Row, Col, Breadcrumb } from "react-bootstrap";
 import { Card, Table, Button, Form } from "react-bootstrap";
 // import Pagging from "../../components/table/pagging.component";
-import { doctorSalaryAction } from '../../actions';
+import { nurseSalaryAction } from '../../actions';
 
 import Urls from '../../constants/urls.constant';
-import { SalaryWrapper } from './doctorSalary.style';
+import { SalaryWrapper } from './nurseSalary.style';
 
 const SalarysScreen = () => {
     const { t } = useTranslation();
@@ -22,14 +22,14 @@ const SalarysScreen = () => {
     const [month, setMonth] = useState(currentMonth);
     const [year, setYear] = useState(currentYear);
 
-    let { salaries } = useSelector(state => state.doctorSalary);
+    let { salaries } = useSelector(state => state.nurseSalary);
 
     useEffect(() => {
         const date = new Date();
         const currentMonth = date.getMonth() + 1;
         const currentYear = date.getFullYear();
         dispatch({
-            type: doctorSalaryAction.GET_SALARIES,
+            type: nurseSalaryAction.GET_SALARIES,
             value: {
                 month: currentMonth, 
                 year: currentYear
@@ -39,7 +39,7 @@ const SalarysScreen = () => {
 
     const onBtnSearchClick = () => {
         dispatch({
-            type: doctorSalaryAction.GET_SALARIES,
+            type: nurseSalaryAction.GET_SALARIES,
             value: {
                 month: month, 
                 year: year
@@ -64,7 +64,7 @@ const SalarysScreen = () => {
                             {t('menu.category')}
                         </Breadcrumb.Item>
                         <Breadcrumb.Item active>
-                            {t('menu.doctor_salary')}
+                            {t('menu.nurse_salary')}
                         </Breadcrumb.Item>
                     </Breadcrumb>
                 </Col>
@@ -79,7 +79,9 @@ const SalarysScreen = () => {
                         </Card.Header>
                         <Card.Body>
                             <Row>
-                                <Col xs={1}>{t('salary.month')}</Col>
+                                <Col xs={1}>
+                                    {t('salary.month')}
+                                </Col>
                                 <Col xs={1}>
                                     <Form.Control as="select"
                                         value={month}
@@ -123,18 +125,18 @@ const SalarysScreen = () => {
                                                 <th className="center middle">{t('salary.full_name')}</th>
                                                 <th className="center middle">{t('salary.salary_coefficient')}</th>
                                                 <th className="center middle">{t('salary.salary_base')}</th>
-                                                <th className="center middle">{t('salary.cured_patient')}</th>
+                                                <th className="center middle">{t('salary.support')}</th>
                                                 <th className="center middle">{t('salary.total')}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {salaries.map((salary) => {
-                                                return <tr key={salary.MaBS}>
-                                                    <td className="center middle">{salary.MaBS}</td>
-                                                    <td className="center middle">{salary.TenBS}</td>
+                                                return <tr key={salary.MaYT}>
+                                                    <td className="center middle">{salary.MaYT}</td>
+                                                    <td className="center middle">{salary.TenYT}</td>
                                                     <td className="center middle">{salary.HeSoLuong}</td>
                                                     <td className="center middle">{formatMoney(salary.LuongCoBan)}</td>
-                                                    <td className="center middle">{salary.ChuaKhoi}</td>
+                                                    <td className="center middle">{salary.HoTro}</td>
                                                     <td className="center middle">{formatMoney(salary.TongLuong)}</td>
                                                 </tr>
                                             })}

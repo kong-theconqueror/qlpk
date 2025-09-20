@@ -4,7 +4,7 @@ import axiosSerivce from './axios.services';
 class ServiceApi {
     getServices(data) {
         return axiosSerivce.get(
-            'service',
+            'dich_vu',
             data,
             true,
             {

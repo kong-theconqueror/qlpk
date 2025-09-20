@@ -4,7 +4,7 @@ import axiosSerivce from './axios.services';
 class NurseApi {
     getNurses(data) {
         return axiosSerivce.get(
-            'nurse',
+            'y_ta',
             data,
             true,
             {

@@ -59,24 +59,19 @@ const NursesScreen = () => {
                                                 <th className="center middle">{t('nurse.years_of_experience')}</th>
                                                 <th className="center middle">{t('nurse.title')}</th>
                                                 <th className="center middle">{t('nurse.salary_coefficient')}</th>
-                                                <th className="center middle">{t('nurse.specialty')}</th>
                                                 <th className="center middle">{t('nurse.action')}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {nurses.map((nurse) => {
-                                                return <tr key={nurse.id}>
-                                                    <td className="center middle">{nurse.id}</td>
-                                                    <td className="center middle">{nurse.full_name}</td>
-                                                    <td className="center middle">{nurse.gender}</td>
-                                                    <td className="center middle">{nurse.years_of_experience}</td>
-                                                    <td className="center middle">{nurse.title}</td>
-                                                    <td className="center middle">{nurse.salary_coefficient}</td>
-                                                    <td className="center middle">{nurse.specialty}</td>
+                                                return <tr key={nurse.MaYT}>
+                                                    <td className="center middle">{nurse.MaYT}</td>
+                                                    <td className="center middle">{nurse.TenYT}</td>
+                                                    <td className="center middle">{nurse.GioiTinh}</td>
+                                                    <td className="center middle">{nurse.NamKinhNghiem}</td>
+                                                    <td className="center middle">{nurse.BoPhan}</td>
+                                                    <td className="center middle">{nurse.HeSoLuong}</td>
                                                     <td className="center middle">
-                                                        <Button variant="success" title={t('nurse.info')}>
-                                                            <i className="fa fa-info" aria-hidden="true"></i>
-                                                        </Button>
                                                         <Button variant="primary" title={t('nurse.update')}>
                                                             <i className="fa fa-pencil" aria-hidden="true"></i>
                                                         </Button>

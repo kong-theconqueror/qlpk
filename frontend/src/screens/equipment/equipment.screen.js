@@ -55,22 +55,17 @@ const EquipmentsScreen = () => {
                                             <tr>
                                                 <th className="center middle">#</th>
                                                 <th className="center middle">{t('equipment.name')}</th>
-                                                <th className="center middle">{t('equipment.price')}</th>
                                                 <th className="center middle">{t('equipment.status')}</th>
                                                 <th className="center middle">{t('equipment.action')}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {equipments.map((equipment) => {
-                                                return <tr key={equipment.id}>
-                                                    <td className="center middle">{equipment.id_thiet_bi}</td>
-                                                    <td className="center middle">{equipment.ten_thiet_bi}</td>
-                                                    <td className="center middle">{equipment.chi_phi_su_dung}</td>
-                                                    <td className="center middle">{equipment.trang_thai}</td>
+                                                return <tr key={equipment.MaThietBi}>
+                                                    <td className="center middle">{equipment.MaThietBi}</td>
+                                                    <td className="center middle">{equipment.TenThietBi}</td>
+                                                    <td className="center middle">{equipment.TrangThai}</td>
                                                     <td className="center middle">
-                                                        <Button variant="success" title={t('equipment.info')}>
-                                                            <i className="fa fa-info" aria-hidden="true"></i>
-                                                        </Button>
                                                         <Button variant="primary" title={t('equipment.update')}>
                                                             <i className="fa fa-pencil" aria-hidden="true"></i>
                                                         </Button>

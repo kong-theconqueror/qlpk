@@ -56,21 +56,16 @@ const DiseasesScreen = () => {
                                                 <th className="center middle">#</th>
                                                 <th className="center middle">{t('disease.name')}</th>
                                                 <th className="center middle">{t('disease.description')}</th>
-                                                <th className="center middle">{t('disease.specialty')}</th>
                                                 <th className="center middle">{t('disease.action')}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {diseases.map((disease) => {
-                                                return <tr key={disease.id}>
-                                                    <td className="center middle">{disease.id_benh}</td>
-                                                    <td className="center middle">{disease.ten_benh}</td>
-                                                    <td className="center middle">{disease.mo_ta}</td>
-                                                    <td className="center middle">{disease.ten_khoa}</td>
+                                                return <tr key={disease.MaBenh}>
+                                                    <td className="center middle">{disease.MaBenh}</td>
+                                                    <td className="center middle">{disease.TenBenh}</td>
+                                                    <td className="center middle">{disease.MoTa}</td>
                                                     <td className="center middle">
-                                                        <Button variant="success" title={t('disease.info')}>
-                                                            <i className="fa fa-info" aria-hidden="true"></i>
-                                                        </Button>
                                                         <Button variant="primary" title={t('disease.update')}>
                                                             <i className="fa fa-pencil" aria-hidden="true"></i>
                                                         </Button>

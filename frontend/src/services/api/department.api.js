@@ -4,7 +4,7 @@ import axiosSerivce from './axios.services';
 class DepartmentApi {
     getDepartments(data) {
         return axiosSerivce.get(
-            'department',
+            'khoa',
             data,
             true,
             {
