@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Container, Row, Col, Breadcrumb } from "react-bootstrap";
-import { Card, Table, Button, Form } from "react-bootstrap";
+import { Card, Table, Button } from "react-bootstrap";
+
+import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from "react-datepicker";
 // import Pagging from "../../components/table/pagging.component";
 import { examinationAction } from '../../actions';
 
@@ -13,26 +16,23 @@ const ExaminationsScreen = () => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
 
-    const months = [1,2,3,4,5,6,7,8,9,10,11,12];
-    const years = [2020, 2021, 2022, 2023, 2024, 2025];
-    const currentDate = new Date();
-    const currentMonth = currentDate.getMonth() + 1;
-    const currentYear = currentDate.getFullYear();
+    const [selectedDate, setSelectedDate] = useState(new Date());
 
-    const [month, setMonth] = useState(currentMonth);
-    const [year, setYear] = useState(currentYear);
+    let { examinations } = useSelector(state => state.examination);
+    const formatDateLocal = (date) => {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+        const day = String(date.getDate()).padStart(2, '0');
 
-    let { salaries } = useSelector(state => state.examination);
+        return `${year}-${month}-${day}`;
+    }
 
     useEffect(() => {
         const date = new Date();
-        const currentMonth = date.getMonth() + 1;
-        const currentYear = date.getFullYear();
         dispatch({
             type: examinationAction.GET_EXAMINATIONS,
             value: {
-                month: currentMonth, 
-                year: currentYear
+                date: formatDateLocal(date) 
             }
         });
     }, [dispatch]);
@@ -41,14 +41,9 @@ const ExaminationsScreen = () => {
         dispatch({
             type: examinationAction.GET_EXAMINATIONS,
             value: {
-                month: month, 
-                year: year
+                date: formatDateLocal(selectedDate)
             }
         });
-    }
-
-    const formatMoney = (value) => {
-       return value.toLocaleString("vi-VN"); // "11.360.000"
     }
      
     return <ExaminationWrapper >
@@ -64,7 +59,7 @@ const ExaminationsScreen = () => {
                             {t('menu.category')}
                         </Breadcrumb.Item>
                         <Breadcrumb.Item active>
-                            {t('menu.doctor_examination')}
+                            {t('menu.examination')}
                         </Breadcrumb.Item>
                     </Breadcrumb>
                 </Col>
@@ -75,37 +70,29 @@ const ExaminationsScreen = () => {
                 <Col lg={12}>
                     <Card >
                         <Card.Header>
-                            <Card.Title>{t('examination.examination_list')}</Card.Title>
+                            <Row>
+                                <Col>
+                                    <Card.Title>{t('examination.examination_list')}</Card.Title>
+                                </Col>
+                                <Col>
+                                    <Button variant="primary" type="submit" style={{ float: "right", minWidth: 50 }}
+                                        // onClick={onCreateDoctorBtnClicked}
+                                    >
+                                        {t('doctor.add')}
+                                    </Button>
+                                </Col>
+                            </Row>
                         </Card.Header>
                         <Card.Body>
                             <Row>
-                                <Col xs={1}>{t('examination.month')}</Col>
-                                <Col xs={1}>
-                                    <Form.Control as="select"
-                                        value={month}
-                                        onChange={(event) => { setMonth(event.target.value) }}>
-                                        {months.map((_month) => {
-                                            return <option
-                                                key={_month}
-                                                value={_month}>
-                                                {_month}
-                                            </option>
-                                        })}
-                                    </Form.Control>
-                                </Col>
-                                <Col xs={1}>{t('examination.year')}</Col>
-                                <Col xs={1}>
-                                    <Form.Control as="select"
-                                        value={year}
-                                        onChange={(event) => { setYear(event.target.value) }}>
-                                        {years.map((_year) => {
-                                            return <option
-                                                key={_year}
-                                                value={_year}>
-                                                {_year}
-                                            </option>
-                                        })}
-                                    </Form.Control>
+                                <Col xs={1}>{t('examination.exam_date')}</Col>
+                                <Col xs={2}>
+                                    <DatePicker
+                                        selected={selectedDate}
+                                        onChange={(date) => setSelectedDate(date)}
+                                        dateFormat="yyyy-MM-dd"
+                                        className="form-control"
+                                    />
                                 </Col>
                                 <Col xs={2}>
                                     <Button variant="primary" 
@@ -120,22 +107,35 @@ const ExaminationsScreen = () => {
                                         <thead>
                                             <tr>
                                                 <th className="center middle">#</th>
-                                                <th className="center middle">{t('examination.full_name')}</th>
-                                                <th className="center middle">{t('examination.examination_coefficient')}</th>
-                                                <th className="center middle">{t('examination.examination_base')}</th>
-                                                <th className="center middle">{t('examination.cured_patient')}</th>
-                                                <th className="center middle">{t('examination.total')}</th>
+                                                <th className="center middle">{t('examination.patient_id')}</th>
+                                                <th className="center middle">{t('examination.patient')}</th>
+                                                <th className="center middle">{t('examination.doctor')}</th>
+                                                <th className="center middle">{t('examination.department')}</th>
+                                                <th className="center middle">{t('examination.exam_time')}</th>
+                                                <th className="center middle">{t('examination.action')}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {salaries.map((examination) => {
-                                                return <tr key={examination.MaBS}>
-                                                    <td className="center middle">{examination.MaBS}</td>
+                                            {examinations.map((examination) => {
+                                                return <tr key={examination.MaKB}>
+                                                    <td className="center middle">{examination.MaKB}</td>
+                                                    <td className="center middle">{examination.MaBN}</td>
+                                                    <td className="center middle">{examination.TenBN}</td>
                                                     <td className="center middle">{examination.TenBS}</td>
-                                                    <td className="center middle">{examination.HeSoLuong}</td>
-                                                    <td className="center middle">{formatMoney(examination.LuongCoBan)}</td>
-                                                    <td className="center middle">{examination.ChuaKhoi}</td>
-                                                    <td className="center middle">{formatMoney(examination.TongLuong)}</td>
+                                                    <td className="center middle">{examination.TenKhoa}</td>
+                                                    <td className="center middle">{examination.ThoiGian}</td>
+                                                    <td className="center middle">
+                                                        <Button variant="primary" 
+                                                            // onClick={() => onUpdateDoctorBtnClicked(item)}
+                                                            title={t('examination.update')}>
+                                                            <i className="fa fa-pencil" aria-hidden="true"></i>
+                                                        </Button>
+                                                        <Button variant="danger" 
+                                                            // onClick={() => onDeleteDoctorBtnClicked(item)}
+                                                            title={t('examination.delete')}>
+                                                            <i className="fa fa-trash" aria-hidden="true"></i>
+                                                        </Button>
+                                                    </td>
                                                 </tr>
                                             })}
 
@@ -149,7 +149,7 @@ const ExaminationsScreen = () => {
                                 <Col md={6}>
                                     <div className="paging-text">
                                         {/* {t('app.showing')} 1 {t('app.to')} 10 {t('app.of')} 57 {t('examination.examination')} */}
-                                        {t('app.showing')} {salaries.length} {t('examination.examination')}
+                                        {t('app.showing')} {examinations.length} {t('examination.examination')}
                                     </div>
                                 </Col>
                                 <Col md={6}>

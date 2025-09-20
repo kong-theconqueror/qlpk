@@ -4,6 +4,8 @@ import userSaga from './user.saga';
 // import sidebarSaga from './sidebar.saga';
 import notificationSaga from './notification.saga';
 
+import examinationSaga from './examination.saga';
+
 import doctorSaga from './doctor.saga';
 import nurseSaga from './nurse.saga';
 import patientSaga from './patient.saga';
@@ -14,6 +16,8 @@ import equipmentSaga from './equipment.saga';
 import serviceSaga from './service.saga';
 import doctorSalarySaga from './doctorSalary.saga';
 import nurseSalarySaga from './nurseSalary.saga';
+import revenueSaga from './revenue.saga';
+import diseaseStatisticSaga from './diseaseStatistic.saga';
 
 export default function* rootSaga(getState) {
   yield all([
@@ -21,6 +25,8 @@ export default function* rootSaga(getState) {
     // sidebarSaga(),
     notificationSaga(),
 
+    examinationSaga(),
+    
     doctorSaga(),
     nurseSaga(),
     patientSaga(),
@@ -32,5 +38,7 @@ export default function* rootSaga(getState) {
 
     doctorSalarySaga(),
     nurseSalarySaga(),
+    revenueSaga(),
+    diseaseStatisticSaga(),
   ]);
 }

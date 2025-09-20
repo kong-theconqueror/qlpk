@@ -8,9 +8,9 @@ ns = Namespace("dich_vu", description="Quản lý thông tin dịch vụ")
 
 # Model API cho DichVu
 DichVuModel = api.model("DichVu", {
-    "MaDV": fields.String(required=True, description="Mã dịch vụ"),
-    "TenDV": fields.String(required=True, description="Tên dịch vụ"),
-    "ChiPhi": fields.Float(required=True, description="Chi phí dịch vụ"),
+    "MaDichVu": fields.String(required=True, description="Mã dịch vụ"),
+    "TenDichVu": fields.String(required=True, description="Tên dịch vụ"),
+    "DonGia": fields.Float(required=True, description="Chi phí dịch vụ"),
     "MoTa": fields.String(required=False, description="Mô tả dịch vụ"),
 })
 
@@ -30,9 +30,9 @@ def run_query(sql, params=None, fetch="all"):
 class DichVuList(Resource):
     def get(self):
         rows = run_query("""
-            SELECT MaDV, TenDV, ChiPhi, MoTa
+            SELECT MaDichVu, TenDichVu, DonGia, MoTa
             FROM DichVu
-            ORDER BY MaDV DESC
+            ORDER BY MaDichVu DESC
         """)
         return dichvus_schema.dump(rows)
 
@@ -40,12 +40,12 @@ class DichVuList(Resource):
     def post(self):
         data = request.json
         sql = """
-            INSERT INTO DichVu(MaDV, TenDV, ChiPhi, MoTa)
+            INSERT INTO DichVu(MaDichVu, TenDichVu, DonGia, MoTa)
             VALUES(%s, %s, %s, %s)
         """
-        params = (data["MaDV"], data["TenDV"], data["ChiPhi"], data.get("MoTa"))
+        params = (data["MaDichVu"], data["TenDichVu"], data["DonGia"], data.get("MoTa"))
         run_query(sql, params)
-        row = run_query("SELECT * FROM DichVu WHERE MaDV=%s", (data["MaDV"],), fetch="one")
+        row = run_query("SELECT * FROM DichVu WHERE MaDichVu=%s", (data["MaDichVu"],), fetch="one")
         return dichvu_schema.dump(row), 201
 
     @ns.expect(DichVuModel)
@@ -53,22 +53,22 @@ class DichVuList(Resource):
         data = request.json
         sql = """
             UPDATE DichVu
-            SET TenDV=%s, ChiPhi=%s, MoTa=%s
-            WHERE MaDV=%s
+            SET TenDichVu=%s, DonGia=%s, MoTa=%s
+            WHERE MaDichVu=%s
         """
-        params = (data["TenDV"], data["ChiPhi"], data.get("MoTa"), data["MaDV"])
+        params = (data["TenDichVu"], data["DonGia"], data.get("MoTa"), data["MaDichVu"])
         run_query(sql, params)
-        row = run_query("SELECT * FROM DichVu WHERE MaDV=%s", (data["MaDV"],), fetch="one")
+        row = run_query("SELECT * FROM DichVu WHERE MaDichVu=%s", (data["MaDichVu"],), fetch="one")
         return dichvu_schema.dump(row), 200
 
 @ns.route("/<string:ma_dv>")
 class DichVuDetail(Resource):
     def get(self, ma_dv):
-        row = run_query("SELECT * FROM DichVu WHERE MaDV=%s", (ma_dv,), fetch="one")
+        row = run_query("SELECT * FROM DichVu WHERE MaDichVu=%s", (ma_dv,), fetch="one")
         if not row:
             return {"error": "not found"}, 404
         return dichvu_schema.dump(row), 200
     
     def delete(self, ma_dv):
-        run_query("DELETE FROM DichVu WHERE MaDV=%s", (ma_dv,))
+        run_query("DELETE FROM DichVu WHERE MaDichVu=%s", (ma_dv,))
         return {"message": f"DichVu {ma_dv} deleted successfully"}, 200

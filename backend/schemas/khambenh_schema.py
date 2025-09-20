@@ -6,9 +6,7 @@ class KhamBenhSchema(Schema):
     TenBN = fields.String()
     MaBS = fields.String()
     TenBS = fields.String()
-    TenBenh = fields.String()
-    MucDo = fields.String()
-    SoLanChuaBenhDuDoan = fields.Integer()
+    TenKhoa = fields.String()
     ThoiGian = fields.DateTime()
 
 khambenh_schema = KhamBenhSchema()

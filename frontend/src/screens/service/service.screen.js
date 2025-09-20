@@ -21,12 +21,12 @@ const ServicesScreen = () => {
         });
     }, [dispatch]);
 
-    const onBtnPageClick = (page) => {
-        dispatch({
-            type: serviceAction.PAGE_CHANGE,
-            value: page
-        });
-    }
+    // const onBtnPageClick = (page) => {
+    //     dispatch({
+    //         type: serviceAction.PAGE_CHANGE,
+    //         value: page
+    //     });
+    // }
      
     return <ServiceWrapper >
         <Container fluid>
@@ -69,15 +69,12 @@ const ServicesScreen = () => {
                                         </thead>
                                         <tbody>
                                             {services.map((service) => {
-                                                return <tr key={service.id}>
-                                                    <td className="center middle">{service.id_dich_vu}</td>
-                                                    <td className="center middle">{service.ten_dich_vu}</td>
-                                                    <td className="center middle">{service.mo_ta}</td>
-                                                    <td className="center middle">{service.don_gia}</td>
+                                                return <tr key={service.MaDichVu}>
+                                                    <td className="center middle">{service.MaDichVu}</td>
+                                                    <td className="center middle">{service.TenDichVu}</td>
+                                                    <td className="center middle">{service.MoTa}</td>
+                                                    <td className="center middle">{service.DonGia}</td>
                                                     <td className="center middle">
-                                                        <Button variant="success" title={t('service.info')}>
-                                                            <i className="fa fa-info" aria-hidden="true"></i>
-                                                        </Button>
                                                         <Button variant="primary" title={t('service.update')}>
                                                             <i className="fa fa-pencil" aria-hidden="true"></i>
                                                         </Button>

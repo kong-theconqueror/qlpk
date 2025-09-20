@@ -70,9 +70,6 @@ const MedicinesScreen = () => {
                                                     <td className="center middle">{medicine.DonViTinh}</td>
                                                     <td className="center middle">{medicine.DonGia}</td>
                                                     <td className="center middle">
-                                                        <Button variant="success" title={t('medicine.info')}>
-                                                            <i className="fa fa-info" aria-hidden="true"></i>
-                                                        </Button>
                                                         <Button variant="primary" title={t('medicine.update')}>
                                                             <i className="fa fa-pencil" aria-hidden="true"></i>
                                                         </Button>

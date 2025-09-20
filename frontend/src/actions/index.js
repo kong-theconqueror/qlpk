@@ -16,6 +16,8 @@ import diseaseAction from "./disease.action";
 
 import doctorSalaryAction from "./doctorSalary.action";
 import nurseSalaryAction from "./nurseSalary.action";
+import revenueAction from "./revenue.action";
+import diseaseStatisticAction from "./diseaseStatistic.action";
 
 export{
     notificationAction,
@@ -36,4 +38,6 @@ export{
 
     doctorSalaryAction,
     nurseSalaryAction,
+    revenueAction,
+    diseaseStatisticAction,
 }

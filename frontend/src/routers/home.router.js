@@ -15,6 +15,8 @@ import ServiceScreen from "../screens/service/service.screen";
 
 import DoctorSalarysScreen from "../screens/doctorSalary/doctorSalary.screen";
 import nurseSalaryScreen from "../screens/nurseSalary/nurseSalary.screen";
+import revenueScreen from "../screens/revenue/revenue.screen";
+import diseaseStatisticScreen from "../screens/diseaseStatistic/diseaseStatistic.screen";
 
 const HomeRoutes = () => {
     return (
@@ -35,6 +37,8 @@ const HomeRoutes = () => {
             
             <Route path={Urls.DOCTOR_SALARY} component={DoctorSalarysScreen} />
             <Route path={Urls.NURSE_SALARY} component={nurseSalaryScreen} />
+            <Route path={Urls.REVENUE} component={revenueScreen} />
+            <Route path={Urls.DISEASE_STATISTIC} component={diseaseStatisticScreen} />
             
         </Switch>
     );

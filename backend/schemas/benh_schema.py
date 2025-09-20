@@ -7,3 +7,11 @@ class BenhSchema(Schema):
 
 benh_schema = BenhSchema()
 benhs_schema = BenhSchema(many=True)
+
+class ThongKeBenhSchema(Schema):
+    MaBenh = fields.String()
+    TenBenh = fields.String()
+    SoBenhNhan = fields.Int()
+
+thongkebenh_schema = ThongKeBenhSchema()
+thongkebenhs_schema = ThongKeBenhSchema(many=True)

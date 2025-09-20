@@ -13,6 +13,18 @@ class DiseaseApi {
             }
         );
     }
+
+    getDiseaseStatistic(data) {
+        return axiosSerivce.get(
+            `benh/thong_ke/${data.month}/${data.year}`,
+            null,
+            true,
+            {
+                'Content-Type': 'application/json',
+                // 'Authorization': `Bearer ${getLocalData('token')}`,
+            }
+        );
+    }
 }
 
 const diseaseApi = new DiseaseApi()

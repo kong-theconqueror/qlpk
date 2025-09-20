@@ -1,7 +1,7 @@
 from flask import request
 from flask_restx import Resource, fields, Namespace
 from db import get_conn
-from schemas.benh_schema import benh_schema, benhs_schema
+from schemas.benh_schema import benh_schema, benhs_schema, thongkebenhs_schema
 from extensions import api
 
 ns = Namespace("benh", description="Quản lý thông tin bệnh")
@@ -18,7 +18,7 @@ def run_query(sql, params=None, fetch="all"):
     try:
         with conn.cursor() as cur:
             cur.execute(sql, params or ())
-            if sql.strip().lower().startswith("select"):
+            if sql.strip().lower().startswith("select") or sql.strip().lower().startswith("call"):
                 return cur.fetchone() if fetch == "one" else cur.fetchall()
             conn.commit()
             return {"rowcount": cur.rowcount, "last_id": cur.lastrowid}
@@ -71,3 +71,11 @@ class BenhDetail(Resource):
     def delete(self, ma_benh):
         run_query("DELETE FROM Benh WHERE MaBenh=%s", (ma_benh,))
         return {"message": f"Benh {ma_benh} deleted successfully"}, 200
+
+@ns.route("/thong_ke/<int:month>/<int:year>")
+class BenhStatistic(Resource):
+    def get(self, month, year):
+        sql = "CALL ThongKeBenh(%s, %s)"
+        params =  (month, year)
+        rows = run_query(sql, params)
+        return thongkebenhs_schema.dump(rows), 200
