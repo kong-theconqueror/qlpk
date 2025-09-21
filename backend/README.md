@@ -8,6 +8,7 @@ python -m virtualenv .env
 pip install -r requirements.txt
 
 # Import database
+python init_db.py
 python import_db.py
 
 # Run backend

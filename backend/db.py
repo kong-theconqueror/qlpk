@@ -124,6 +124,40 @@ def init_db_from_file(sql_file):
         print("Khởi tạo DB xong !!!")
     conn.close()
 
+def drop_db(sql_file):
+    conn = get_conn()
+    with conn.cursor() as cur:
+        # Đọc file .sql
+        with open(sql_file, "r", encoding="utf-8") as f:
+            sql_commands = f.read()
+            # Tách các câu lệnh bằng dấu chấm phẩy (;)
+            for command in sql_commands.split(";"):
+                command = command.strip()
+                if command:  # bỏ qua dòng trống
+                    try:
+                        cur.execute(command)
+                    except Exception as e:
+                        print(f"Lỗi khi chạy lệnh: {command}\n{e}")
+        print("Xóa DB xong !!!")
+    conn.close()
+
+def declare_procedure_db(sql_file):
+    conn = get_conn()
+    with conn.cursor() as cur, open(sql_file, encoding="utf-8") as f:
+        sql_content = f.read()
+
+        # Tách các câu lệnh bằng DELIMITER custom nếu có
+        statements = sql_content.replace("DELIMITER $$", "").replace("DELIMITER ;", "").split("$$")
+        for stmt in statements:
+            stmt = stmt.strip()
+            if stmt:
+                cur.execute(stmt)
+                print(f"Executed statement:\n{stmt[:100]}...")  # in 100 ký tự đầu
+    
+    print(f"Khởi tạo PROCEDURE {sql_file} xong !!!")    
+    conn.commit()
+    conn.close()
+
 def import_data():
     current_directory = os.getcwd()
     print(current_directory)
