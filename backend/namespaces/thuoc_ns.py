@@ -1,6 +1,6 @@
 from flask import request
 from flask_restx import Resource, fields, Namespace
-from db import get_conn
+from db import run_query
 from schemas.thuoc_schema import thuoc_schema, thuocs_schema
 from extensions import api
 
@@ -13,18 +13,6 @@ ThuocModel = api.model("Thuoc", {
     "DonViTinh": fields.String(required=True, description="Đơn vị tính"),
     "DonGia": fields.Integer(required=True, description="Đơn giá"),
 })
-
-def run_query(sql, params=None, fetch="all"):
-    conn = get_conn()
-    try:
-        with conn.cursor() as cur:
-            cur.execute(sql, params or ())
-            if sql.strip().lower().startswith("select"):
-                return cur.fetchone() if fetch == "one" else cur.fetchall()
-            conn.commit()
-            return {"rowcount": cur.rowcount}
-    finally:
-        conn.close()
 
 @ns.route("")
 class ThuocList(Resource):

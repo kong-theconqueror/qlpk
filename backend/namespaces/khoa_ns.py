@@ -1,6 +1,6 @@
 from flask import request
 from flask_restx import Resource, fields, Namespace
-from db import get_conn
+from db import run_query
 from schemas.khoa_schema import khoa_schema, khoas_schema
 from extensions import api
 
@@ -11,18 +11,6 @@ KhoaModel = api.model("Khoa", {
     "TenKhoa": fields.String(required=True, description="Tên khoa"),
     "MoTa": fields.String(required=False, description="Mô tả"),
 })
-
-def run_query(sql, params=None, fetch="all"):
-    conn = get_conn()
-    try:
-        with conn.cursor() as cur:
-            cur.execute(sql, params or ())
-            if sql.strip().lower().startswith("select"):
-                return cur.fetchone() if fetch == "one" else cur.fetchall()
-            conn.commit()
-            return {"rowcount": cur.rowcount}
-    finally:
-        conn.close()
 
 @ns.route("")
 class KhoaList(Resource):

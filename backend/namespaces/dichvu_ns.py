@@ -1,6 +1,6 @@
 from flask import request
 from flask_restx import Resource, fields, Namespace
-from db import get_conn
+from db import run_query
 from schemas.dichvu_schema import dichvu_schema, dichvus_schema
 from extensions import api
 
@@ -14,17 +14,6 @@ DichVuModel = api.model("DichVu", {
     "MoTa": fields.String(required=False, description="Mô tả dịch vụ"),
 })
 
-def run_query(sql, params=None, fetch="all"):
-    conn = get_conn()
-    try:
-        with conn.cursor() as cur:
-            cur.execute(sql, params or ())
-            if sql.strip().lower().startswith("select"):
-                return cur.fetchone() if fetch == "one" else cur.fetchall()
-            conn.commit()
-            return {"rowcount": cur.rowcount, "last_id": cur.lastrowid}
-    finally:
-        conn.close()
 
 @ns.route("")
 class DichVuList(Resource):

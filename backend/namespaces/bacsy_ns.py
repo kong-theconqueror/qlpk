@@ -1,6 +1,6 @@
 from flask import request
 from flask_restx import Resource, fields, Namespace
-from db import get_conn
+from db import run_query
 from schemas.bacsy_schema import bacsy_schema, bacsys_schema
 from extensions import api
 
@@ -16,18 +16,6 @@ BacSyModel = api.model("BacSy", {
     "HeSoLuong": fields.Float(required=True, description="Hệ số lương"),
     "MaKhoa": fields.String(required=True, description="Mã khoa"),
 })
-
-def run_query(sql, params=None, fetch="all"):
-    conn = get_conn()
-    try:
-        with conn.cursor() as cur:
-            cur.execute(sql, params or ())
-            if sql.strip().lower().startswith("select"):
-                return cur.fetchone() if fetch == "one" else cur.fetchall()
-            conn.commit()
-            return {"rowcount": cur.rowcount, "last_id": cur.lastrowid}
-    finally:
-        conn.close()
 
 @ns.route("")
 class BacSyList(Resource):

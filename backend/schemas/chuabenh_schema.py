@@ -2,6 +2,10 @@ from marshmallow import Schema, fields
 
 class ChuaBenhSchema(Schema):
     MaCB = fields.String()
+    MaBN = fields.String()
+    TenBN = fields.String()
+    MaBS = fields.String()
+    TenBS = fields.String()
     MaBenh = fields.String()
     TenBenh = fields.String()
     HinhThucChuaBenh = fields.String()

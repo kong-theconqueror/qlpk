@@ -1,6 +1,6 @@
 from flask import request
 from flask_restx import Resource, fields, Namespace
-from db import get_conn
+from db import run_query
 from schemas.benhnhan_schema import benhnhan_schema, benhnhans_schema
 from extensions import api
 
@@ -15,18 +15,6 @@ BenhNhanModel = api.model("BenhNhan", {
     "DiaChi": fields.String(required=False, description="Địa chỉ"),
     "SDT": fields.String(required=False, description="Số điện thoại"),
 })
-
-def run_query(sql, params=None, fetch="all"):
-    conn = get_conn()
-    try:
-        with conn.cursor() as cur:
-            cur.execute(sql, params or ())
-            if sql.strip().lower().startswith("select"):
-                return cur.fetchone() if fetch == "one" else cur.fetchall()
-            conn.commit()
-            return {"rowcount": cur.rowcount, "last_id": cur.lastrowid}
-    finally:
-        conn.close()
 
 @ns.route("")
 class BenhNhanList(Resource):
