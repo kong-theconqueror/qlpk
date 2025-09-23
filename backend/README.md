@@ -4,7 +4,7 @@
 cd backend
 python -m pip install virtualenv
 python -m virtualenv .env
-.env/Scripts/active
+.env/Scripts/activate
 pip install -r requirements.txt
 
 # Import database
