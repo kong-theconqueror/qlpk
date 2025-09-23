@@ -37,14 +37,16 @@ class HoSoBenhAnList(Resource):
                 cd.SoLanChuaBenhDuDoan,
                 h.MaBS,
                 bs.TenBS,
+                k.TenKhoa,
                 h.TrangThai,
                 h.ThoiGianMo,
                 h.ThoiGianKetThuc
-            FROM HoSoBenhAn h, BenhNhan bn, ChanDoan cd, Benh b, BacSy bs
+            FROM HoSoBenhAn h, BenhNhan bn, ChanDoan cd, Benh b, BacSy bs, Khoa k
             WHERE h.MaBN = bn.MaBN
             AND h.MaCD = cd.MaCD
             AND cd.MaBenh = b.MaBenh
             AND h.MaBS = bs.MaBS
+            AND k.MaKhoa = bs.MaKhoa
             AND h.MaBN = %s
             ORDER BY h.ThoiGianMo DESC;
         """

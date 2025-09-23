@@ -30,12 +30,14 @@ const MedicalRecordScreen = () => {
     }
 
     useEffect(() => {
-        dispatch({
-            type: medicalRecordAction.GET_MEDICAL_RECORDS,
-            value: {
-                MaBN: patientID
-            }
-        });
+        if(patientID){
+            dispatch({
+                type: medicalRecordAction.GET_MEDICAL_RECORDS,
+                value: {
+                    MaBN: patientID
+                }
+            });
+        }
     }, [dispatch]);
 
     const onBtnSearchClick = () => {
