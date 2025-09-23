@@ -3,10 +3,11 @@ import { Switch, Route } from "react-router-dom";
 import Urls from '../constants/urls.constant';
 
 import ExaminationScreen from "../screens/examination/examination.screen";
+import TreatmentScreen from "../screens/treatment/treatment.screen";
+import PatientScreen from "../screens/patient/patient.screen";
 
 import DoctorScreen from "../screens/doctor/doctor.screen";
 import NurseScreen from "../screens/nurse/nurse.screen";
-import PatientScreen from "../screens/patient/patient.screen";
 import DiseaseScreen from "../screens/disease/disease.screen";
 import DepartmentScreen from "../screens/department/department.screen";
 import MedicineScreen from "../screens/medicine/medicine.screen";
@@ -24,6 +25,7 @@ const HomeRoutes = () => {
             <Route exact path="/" component={DoctorScreen} />
 
             <Route path={Urls.EXAMINATION} component={ExaminationScreen} />
+            <Route path={Urls.TREATMENT} component={TreatmentScreen} />
             <Route path={Urls.PATIENT} component={PatientScreen} />
 
             <Route path={Urls.DOCTOR} component={DoctorScreen} />

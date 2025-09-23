@@ -3,6 +3,9 @@ import userReducer from "./user.reducer";
 import sidebarReducer from "./sidebar.reducer";
 
 import examinationReducer from "./examination.reducer";
+import treatmentReducer from "./treatment.reducer";
+import medicalRecordReducer from "./medicalRecord.reducer";
+import patientReducer from "./patient.reducer";
 
 import doctorReducer from "./doctor.reducer";
 import nurseReducer from "./nurse.reducer";
@@ -10,7 +13,6 @@ import medicineReducer from "./medicine.reducer";
 import departmentReducer from "./department.reducer";
 import equipmentReducer from "./equipment.reducer";
 import serviceReducer from "./service.reducer";
-import patientReducer from "./patient.reducer";
 import diseaseReducer from "./disease.reducer";
 
 import nurseSalaryReducer from "./nurseSalary.reducer";
@@ -23,7 +25,9 @@ const reducers = {
     user: userReducer,
     sidebar: sidebarReducer,
     
-    examination:examinationReducer,
+    examination: examinationReducer,
+    treatment: treatmentReducer,
+    medicalRecord: medicalRecordReducer,
     patient: patientReducer,
 
     doctor: doctorReducer,

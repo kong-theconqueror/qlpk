@@ -57,7 +57,7 @@ const NursesScreen = () => {
                                                 <th className="center middle">{t('nurse.full_name')}</th>
                                                 <th className="center middle">{t('nurse.gender')}</th>
                                                 <th className="center middle">{t('nurse.years_of_experience')}</th>
-                                                <th className="center middle">{t('nurse.title')}</th>
+                                                <th className="center middle">{t('nurse.part')}</th>
                                                 <th className="center middle">{t('nurse.salary_coefficient')}</th>
                                                 <th className="center middle">{t('nurse.action')}</th>
                                             </tr>

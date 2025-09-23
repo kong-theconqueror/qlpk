@@ -4,10 +4,12 @@ import appAction from "./app.action";
 import sidebarAction from "./sidebar.action";
 
 import examinationAction from "./examination.action";
+import treatmentAction from "./treatment.action";
+import medicalRecordAction from "./medicalRecord.action";
+import patientAction from "./patient.action";
 
 import doctorAction from "./doctor.action";
 import nurseAction from "./nurse.action";
-import patientAction from "./patient.action";
 import medicineAction from "./medicine.action";
 import serviceAction from "./service.action";
 import equipmentAction from "./equipment.action";
@@ -26,10 +28,12 @@ export{
     sidebarAction,
 
     examinationAction,
+    treatmentAction,
+    medicalRecordAction,
+    patientAction,
 
     doctorAction,
     nurseAction,
-    patientAction,
     medicineAction,
     serviceAction,
     equipmentAction,

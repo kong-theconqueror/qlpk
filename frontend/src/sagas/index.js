@@ -5,15 +5,18 @@ import userSaga from './user.saga';
 import notificationSaga from './notification.saga';
 
 import examinationSaga from './examination.saga';
+import treatmentSaga from './treatment.saga';
+import medicalRecordSaga from './medicalRecord.saga';
+import patientSaga from './patient.saga';
 
 import doctorSaga from './doctor.saga';
 import nurseSaga from './nurse.saga';
-import patientSaga from './patient.saga';
 import diseaseSaga from './disease.saga';
 import departmentSaga from './department.saga';
 import medicineSaga from './medicine.saga';
 import equipmentSaga from './equipment.saga';
 import serviceSaga from './service.saga';
+
 import doctorSalarySaga from './doctorSalary.saga';
 import nurseSalarySaga from './nurseSalary.saga';
 import revenueSaga from './revenue.saga';
@@ -26,10 +29,12 @@ export default function* rootSaga(getState) {
     notificationSaga(),
 
     examinationSaga(),
+    treatmentSaga(),
+    medicalRecordSaga(),
+    patientSaga(),
     
     doctorSaga(),
     nurseSaga(),
-    patientSaga(),
     diseaseSaga(),
     departmentSaga(),
     medicineSaga(),
