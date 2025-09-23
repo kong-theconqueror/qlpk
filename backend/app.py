@@ -3,6 +3,8 @@ from flask_cors import CORS
 from extensions import api, ma
 
 from namespaces.khambenh_ns import ns as khambenh_ns
+from namespaces.chuabenh_ns import ns as chuabenh_ns
+from namespaces.hosobenhan_ns import ns as hosobenhan_ns
 
 from namespaces.luong_ns import ns as luong_ns
 from namespaces.doanhthu_ns import ns as doanhthu_ns
@@ -24,12 +26,14 @@ def create_app():
 
     # Register namespaces
     api.add_namespace(khambenh_ns)
+    api.add_namespace(chuabenh_ns)
+    api.add_namespace(benhnhan_ns)
+    api.add_namespace(hosobenhan_ns)
 
     api.add_namespace(luong_ns)
     api.add_namespace(doanhthu_ns)
 
     api.add_namespace(bacsy_ns)
-    api.add_namespace(benhnhan_ns)
     api.add_namespace(thuoc_ns)
     api.add_namespace(yta_ns)
     api.add_namespace(khoa_ns)

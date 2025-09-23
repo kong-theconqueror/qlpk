@@ -88,31 +88,3 @@ class KhamBenhDetail(Resource):
         """Xoá bác sỹ"""
         run_query("DELETE FROM KhamBenh WHERE MaBS=%s", (ma_kb,))
         return {"message": f"KhamBenh {ma_kb} deleted successfully"}, 200
-
-@ns.route("/<string:date>")
-class KhamBenhSearch(Resource):
-    def get(self, date):
-        data = request.json
-        sql = """
-            SELECT 
-                kb.MaKB,
-                kb.MaBN,
-                bn.TenBN,
-                kb.MaBS,
-                bs.TenBS,
-                b.TenBenh,
-                cd.MucDo,
-                cd.SoLanChuaBenhDuDoan,
-                kb.ThoiGian
-            FROM KhamBenh kb
-            JOIN BenhNhan bn ON kb.MaBN = bn.MaBN
-            JOIN BacSy bs ON kb.MaBS = bs.MaBS
-            LEFT JOIN ChanDoan cd ON kb.MaKB = cd.MaKB
-            LEFT JOIN Benh b ON cd.MaBenh = b.MaBenh
-            WHERE DATE(kb.ThoiGian) = %s
-            ORDER BY kb.ThoiGian ASC;
-        """
-        params = (date,)
-        rows = run_query(sql, params)
-        print(rows)
-        return khambenhs_schema.dump(rows)

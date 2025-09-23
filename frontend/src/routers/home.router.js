@@ -4,6 +4,7 @@ import Urls from '../constants/urls.constant';
 
 import ExaminationScreen from "../screens/examination/examination.screen";
 import TreatmentScreen from "../screens/treatment/treatment.screen";
+import MedicalRecordScreen from "../screens/medicalRecord/medicalRecord.screen";
 import PatientScreen from "../screens/patient/patient.screen";
 
 import DoctorScreen from "../screens/doctor/doctor.screen";
@@ -26,6 +27,7 @@ const HomeRoutes = () => {
 
             <Route path={Urls.EXAMINATION} component={ExaminationScreen} />
             <Route path={Urls.TREATMENT} component={TreatmentScreen} />
+            <Route path={Urls.MEDICAL_RECORD} component={MedicalRecordScreen} />
             <Route path={Urls.PATIENT} component={PatientScreen} />
 
             <Route path={Urls.DOCTOR} component={DoctorScreen} />

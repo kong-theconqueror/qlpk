@@ -4,7 +4,7 @@ import axiosSerivce from './axios.services';
 class MedicalRecordApi {
     getMedicalRecords(data) {
         return axiosSerivce.get(
-            `ho_so_benh_an?date=${data.date}`,
+            `ho_so_benh_an?MaBN=${data.MaBN}`,
             null,
             true,
             {

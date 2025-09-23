@@ -6,6 +6,8 @@ class ChuaBenhSchema(Schema):
     TenBN = fields.String()
     MaBS = fields.String()
     TenBS = fields.String()
+    MaKhoa = fields.String()
+    TenKhoa = fields.String()
     MaBenh = fields.String()
     TenBenh = fields.String()
     HinhThucChuaBenh = fields.String()

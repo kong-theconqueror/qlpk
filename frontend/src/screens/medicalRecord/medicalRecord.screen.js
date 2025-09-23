@@ -2,40 +2,20 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Container, Row, Col, Breadcrumb } from "react-bootstrap";
-import { Card, Table, Button } from "react-bootstrap";
-
-import "react-datepicker/dist/react-datepicker.css";
-import DatePicker from "react-datepicker";
+import { Card, Table, Button, Form } from "react-bootstrap";
 // import Pagging from "../../components/table/pagging.component";
-import { examinationAction } from '../../actions';
+import { medicalRecordAction } from '../../actions';
 
 import Urls from '../../constants/urls.constant';
-import { ExaminationWrapper } from './examination.style';
+import { MedicalRecordWrapper } from './medicalRecord.style';
 
-const ExaminationsScreen = () => {
+const MedicalRecordScreen = () => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
 
-    const [selectedDate, setSelectedDate] = useState(new Date());
+    const [patientID, setPatientID] = useState("");
 
-    let { examinations } = useSelector(state => state.examination);
-    const formatDateLocal = (date) => {
-        const year = date.getFullYear();
-        const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
-        const day = String(date.getDate()).padStart(2, '0');
-
-        return `${year}-${month}-${day}`;
-    }
-
-    useEffect(() => {
-        const date = new Date();
-        dispatch({
-            type: examinationAction.GET_EXAMINATIONS,
-            value: {
-                date: formatDateLocal(date) 
-            }
-        });
-    }, [dispatch]);
+    let { medicalRecords } = useSelector(state => state.medicalRecord);
 
     const str2date = (str) => {
         const date = new Date(str);
@@ -49,16 +29,25 @@ const ExaminationsScreen = () => {
         return formatted;
     }
 
+    useEffect(() => {
+        dispatch({
+            type: medicalRecordAction.GET_MEDICAL_RECORDS,
+            value: {
+                MaBN: patientID
+            }
+        });
+    }, [dispatch]);
+
     const onBtnSearchClick = () => {
         dispatch({
-            type: examinationAction.GET_EXAMINATIONS,
+            type: medicalRecordAction.GET_MEDICAL_RECORDS,
             value: {
-                date: formatDateLocal(selectedDate)
+                MaBN: patientID
             }
         });
     }
      
-    return <ExaminationWrapper >
+    return <MedicalRecordWrapper >
         <Container fluid>
             {/* nav */}
             <Row>
@@ -71,7 +60,7 @@ const ExaminationsScreen = () => {
                             {t('menu.category')}
                         </Breadcrumb.Item>
                         <Breadcrumb.Item active>
-                            {t('menu.examination')}
+                            {t('menu.medical_record')}
                         </Breadcrumb.Item>
                     </Breadcrumb>
                 </Col>
@@ -84,7 +73,7 @@ const ExaminationsScreen = () => {
                         <Card.Header>
                             <Row>
                                 <Col>
-                                    <Card.Title>{t('examination.examination_list')}</Card.Title>
+                                    <Card.Title>{t('medical_record.medical_record_list')}</Card.Title>
                                 </Col>
                                 <Col>
                                     <Button variant="primary" type="submit" style={{ float: "right", minWidth: 50 }}
@@ -97,20 +86,18 @@ const ExaminationsScreen = () => {
                         </Card.Header>
                         <Card.Body>
                             <Row>
-                                <Col xs={1}>{t('examination.exam_date')}</Col>
+                                <Col xs={1}>{t('medical_record.patient_id')}</Col>
                                 <Col xs={2}>
-                                    <DatePicker
-                                        selected={selectedDate}
-                                        onChange={(date) => setSelectedDate(date)}
-                                        dateFormat="yyyy-MM-dd"
-                                        className="form-control"
-                                    />
+                                    <Form.Control
+                                        type='text'
+                                        value={patientID}
+                                        onChange={(event) => { setPatientID(event.target.value) }} />
                                 </Col>
                                 <Col xs={2}>
                                     <Button variant="primary" 
                                         style= {{minWidth: 75}}
                                         onClick={() => onBtnSearchClick()}
-                                        title={t('examination.search')}> {t('examination.search')}
+                                        title={t('medical_record.search')}> {t('medical_record.search')}
                                     </Button>
                                 </Col>
 
@@ -119,34 +106,40 @@ const ExaminationsScreen = () => {
                                         <thead>
                                             <tr>
                                                 <th className="center middle">#</th>
-                                                <th className="center middle">{t('examination.exam_id')}</th>
-                                                <th className="center middle">{t('examination.patient_id')}</th>
-                                                <th className="center middle">{t('examination.patient')}</th>
-                                                <th className="center middle">{t('examination.doctor')}</th>
-                                                <th className="center middle">{t('examination.department')}</th>
-                                                <th className="center middle">{t('examination.exam_time')}</th>
-                                                <th className="center middle">{t('examination.action')}</th>
+                                                <th className="center middle">{t('medical_record.record_id')}</th>
+                                                <th className="center middle">{t('medical_record.patient_id')}</th>
+                                                <th className="center middle">{t('medical_record.patient')}</th>
+                                                <th className="center middle">{t('medical_record.doctor')}</th>
+                                                <th className="center middle">{t('medical_record.department')}</th>
+                                                <th className="center middle">{t('medical_record.disease')}</th>
+                                                <th className="center middle">{t('medical_record.status')}</th>
+                                                <th className="center middle">{t('medical_record.open_time')}</th>
+                                                <th className="center middle">{t('medical_record.close_time')}</th>
+                                                <th className="center middle">{t('medical_record.action')}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {examinations.map((examination, index) => {
-                                                return <tr key={examination.MaKB}>
+                                            {medicalRecords.map((medicalRecord, index) => {
+                                                return <tr key={medicalRecord.MaBA}>
                                                     <td className="center middle">{index+1}</td>
-                                                    <td className="center middle">{examination.MaKB}</td>
-                                                    <td className="center middle">{examination.MaBN}</td>
-                                                    <td className="center middle">{examination.TenBN}</td>
-                                                    <td className="center middle">{examination.TenBS}</td>
-                                                    <td className="center middle">{examination.TenKhoa}</td>
-                                                    <td className="center middle">{str2date(examination.ThoiGian)}</td>
+                                                    <td className="center middle">{medicalRecord.MaBA}</td>
+                                                    <td className="center middle">{medicalRecord.MaBN}</td>
+                                                    <td className="center middle">{medicalRecord.TenBN}</td>
+                                                    <td className="center middle">{medicalRecord.TenBS}</td>
+                                                    <td className="center middle">{medicalRecord.TenKhoa}</td>
+                                                    <td className="center middle">{medicalRecord.TenBenh}</td>
+                                                    <td className="center middle">{medicalRecord.TrangThai}</td>
+                                                    <td className="center middle">{str2date(medicalRecord.ThoiGianMo)}</td>
+                                                    <td className="center middle">{str2date(medicalRecord.ThoiGianKetThuc)}</td>
                                                     <td className="center middle">
                                                         <Button variant="primary" 
                                                             // onClick={() => onUpdateDoctorBtnClicked(item)}
-                                                            title={t('examination.update')}>
+                                                            title={t('medical_record.update')}>
                                                             <i className="fa fa-pencil" aria-hidden="true"></i>
                                                         </Button>
                                                         <Button variant="danger" 
                                                             // onClick={() => onDeleteDoctorBtnClicked(item)}
-                                                            title={t('examination.delete')}>
+                                                            title={t('medical_record.delete')}>
                                                             <i className="fa fa-trash" aria-hidden="true"></i>
                                                         </Button>
                                                     </td>
@@ -162,8 +155,8 @@ const ExaminationsScreen = () => {
                             <Row>
                                 <Col md={6}>
                                     <div className="paging-text">
-                                        {/* {t('app.showing')} 1 {t('app.to')} 10 {t('app.of')} 57 {t('examination.examination')} */}
-                                        {t('app.showing')} {examinations.length} {t('examination.examination')}
+                                        {/* {t('app.showing')} 1 {t('app.to')} 10 {t('app.of')} 57 {t('medical_record.medical_record')} */}
+                                        {t('app.showing')} {medicalRecords.length} {t('medical_record.medical_record')}
                                     </div>
                                 </Col>
                                 <Col md={6}>
@@ -180,7 +173,7 @@ const ExaminationsScreen = () => {
                 </Col>
             </Row>
         </Container>
-    </ExaminationWrapper>;
+    </MedicalRecordWrapper>;
 }
 
-export default ExaminationsScreen;
+export default MedicalRecordScreen;

@@ -37,6 +37,18 @@ const TreatmentsScreen = () => {
         });
     }, [dispatch]);
 
+    const str2date = (str) => {
+        const date = new Date(str);
+
+        const day = String(date.getDate()).padStart(2, "0");
+        const month = String(date.getMonth() + 1).padStart(2, "0"); // tháng bắt đầu từ 0
+        const year = date.getFullYear();
+
+        const formatted = `${day}-${month}-${year}`;
+        console.log(formatted); // đd-mm-yyyy
+        return formatted;
+    }
+
     const onBtnSearchClick = () => {
         dispatch({
             type: treatmentAction.GET_TREATMENTS,
@@ -112,20 +124,24 @@ const TreatmentsScreen = () => {
                                                 <th className="center middle">{t('treatment.patient')}</th>
                                                 <th className="center middle">{t('treatment.doctor')}</th>
                                                 <th className="center middle">{t('treatment.department')}</th>
+                                                <th className="center middle">{t('treatment.disease')}</th>
                                                 <th className="center middle">{t('treatment.treatment_time')}</th>
+                                                <th className="center middle">{t('treatment.treatment_method')}</th>
                                                 <th className="center middle">{t('treatment.action')}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {treatments.map((treatment, index) => {
-                                                return <tr key={treatment.MaKB}>
+                                                return <tr key={treatment.MaCB}>
                                                     <td className="center middle">{index+1}</td>
-                                                    <td className="center middle">{treatment.MaKB}</td>
+                                                    <td className="center middle">{treatment.MaCB}</td>
                                                     <td className="center middle">{treatment.MaBN}</td>
                                                     <td className="center middle">{treatment.TenBN}</td>
                                                     <td className="center middle">{treatment.TenBS}</td>
                                                     <td className="center middle">{treatment.TenKhoa}</td>
-                                                    <td className="center middle">{treatment.ThoiGian}</td>
+                                                    <td className="center middle">{treatment.TenBenh}</td>
+                                                    <td className="center middle">{str2date(treatment.ThoiGian)}</td>
+                                                    <td className="center middle">{treatment.HinhThucChuaBenh}</td>
                                                     <td className="center middle">
                                                         <Button variant="primary" 
                                                             // onClick={() => onUpdateDoctorBtnClicked(item)}
