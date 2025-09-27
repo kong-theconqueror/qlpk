@@ -8,6 +8,7 @@ import { medicalRecordAction } from '../../actions';
 
 import Urls from '../../constants/urls.constant';
 import { MedicalRecordWrapper } from './medicalRecord.style';
+import DetailMedicalRecordModal from "./detailMedicalRecord.modal";
 
 const MedicalRecordScreen = () => {
     const { t } = useTranslation();
@@ -15,7 +16,9 @@ const MedicalRecordScreen = () => {
 
     const [patientID, setPatientID] = useState("");
 
-    let { medicalRecords } = useSelector(state => state.medicalRecord);
+    let { medicalRecords,
+        isShowDetailMedicalRecordModal
+    } = useSelector(state => state.medicalRecord);
 
     const str2date = (str) => {
         const date = new Date(str);
@@ -46,6 +49,17 @@ const MedicalRecordScreen = () => {
             value: {
                 MaBN: patientID
             }
+        });
+    }
+
+    const onMedicalRecorDetailBtnClicked = (record) => {
+        dispatch({
+            type: medicalRecordAction.SELECT_MEDICAL_RECORD,
+            value: record
+        });
+
+        dispatch({
+            type: medicalRecordAction.SHOW_DETAIL_MEDICAL_RECORD_MODAL,
         });
     }
      
@@ -134,6 +148,11 @@ const MedicalRecordScreen = () => {
                                                     <td className="center middle">{str2date(medicalRecord.ThoiGianMo)}</td>
                                                     <td className="center middle">{str2date(medicalRecord.ThoiGianKetThuc)}</td>
                                                     <td className="center middle">
+                                                        <Button variant="success" 
+                                                            onClick={() => onMedicalRecorDetailBtnClicked(medicalRecord)}
+                                                            title={t('medical_record.detail')}>
+                                                            <i className="fa fa-search" aria-hidden="true"></i>
+                                                        </Button>
                                                         <Button variant="primary" 
                                                             // onClick={() => onUpdateDoctorBtnClicked(item)}
                                                             title={t('medical_record.update')}>
@@ -174,6 +193,9 @@ const MedicalRecordScreen = () => {
                     </Card>
                 </Col>
             </Row>
+             <DetailMedicalRecordModal
+                isShow={isShowDetailMedicalRecordModal}
+            />
         </Container>
     </MedicalRecordWrapper>;
 }

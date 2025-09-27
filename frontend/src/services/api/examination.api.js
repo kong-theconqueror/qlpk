@@ -51,6 +51,18 @@ class ExaminationApi {
             }
         );
     }
+
+    getRecordExam(recordID){
+        return axiosSerivce.get(
+            'kham_benh/benh_an/'+ recordID,
+            null,
+            true,
+            {
+                'Content-Type': 'application/json',
+                // 'Authorization': `Bearer ${getLocalData('token')}`,
+            }
+        );
+    }
 }
 
 const examinationApi = new ExaminationApi()

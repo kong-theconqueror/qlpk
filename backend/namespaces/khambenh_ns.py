@@ -1,7 +1,7 @@
 from flask import request
 from flask_restx import Resource, fields, Namespace
 from db import run_query
-from schemas.khambenh_schema import khambenh_schema, khambenhs_schema
+from schemas.khambenh_schema import khambenh_schema, khambenhs_schema, chitietkhambenh_schema, chitietkhambenhs_schema
 from extensions import api
 
 ns = Namespace("kham_benh", description="Quản lý thông tin khám bệnh")
@@ -88,3 +88,48 @@ class KhamBenhDetail(Resource):
         """Xoá bác sỹ"""
         run_query("DELETE FROM KhamBenh WHERE MaBS=%s", (ma_kb,))
         return {"message": f"KhamBenh {ma_kb} deleted successfully"}, 200
+
+
+@ns.route("/benh_an/<string:ma_benhan>")
+class KhamBenhBenhAn(Resource):
+    def get(self, ma_benhan):
+        if not ma_benhan:
+            return {"error": "Thiếu tham số /ma_benhan"}, 400
+        
+        sql = """
+            SELECT 
+            kb.MaKB,
+            kb.ThoiGian,
+            kb.MaBN,
+            bn.TenBN,
+            kb.MaBS,
+            bs.TenBS,
+            cd.MaBenh,
+            b.TenBenh,
+            cd.SoLanChuaBenhDuDoan,
+            GROUP_CONCAT(DISTINCT CONCAT('{MaYTa:', yt.MaYT, ', TenYT:', yt.TenYT, '}') SEPARATOR '|') AS YTaThamGia,
+            GROUP_CONCAT(DISTINCT CONCAT('{MaDV:', dv.MaDichVu, ', TenDV:', dv.TenDichVu, ', SL:', dvkb.SoLuong, ', Gia:', dvkb.DonGiaApDung, '}') SEPARATOR '| ') AS DichVuSuDung,
+            GROUP_CONCAT(DISTINCT CONCAT('{MaThietBi:', tb.MaThietBi, ', TenThietBi:', tb.TenThietBi, ', SL:', tbkb.SoLuong, ', Gia:', tbkb.DonGiaApDung, '}') SEPARATOR '| ') AS ThietBiSuDung
+        FROM HoSoBenhAn h
+        JOIN ChanDoan cd ON h.MaCD = cd.MaCD
+        JOIN Benh b ON cd.MaBenh = b.MaBenh
+        JOIN KhamBenh kb ON cd.MaKB = kb.MaKB
+        JOIN BenhNhan bn ON kb.MaBN = bn.MaBN
+        JOIN BacSy bs ON kb.MaBS = bs.MaBS
+
+        LEFT JOIN PhanCongKB pc ON kb.MaKB = pc.MaKB
+        LEFT JOIN YTa yt ON pc.MaYT = yt.MaYT
+
+        LEFT JOIN DichVuKB dvkb ON kb.MaKB = dvkb.MaKB
+        LEFT JOIN DichVu dv ON dvkb.MaDichVu = dv.MaDichVu
+
+        LEFT JOIN SuDungThietBiKB tbkb ON kb.MaKB = tbkb.MaKB
+        LEFT JOIN ThietBiYTe tb ON tbkb.MaThietBi = tb.MaThietBi
+
+        WHERE h.MaBA = %s
+        GROUP BY kb.MaKB
+        ORDER BY kb.ThoiGian DESC;
+        """
+        params = (ma_benhan)
+        row = run_query(sql, params, fetch="one")
+        return chitietkhambenh_schema.dump(row), 201

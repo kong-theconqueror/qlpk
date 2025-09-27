@@ -50,3 +50,24 @@ export const MedicalRecordWrapper = styled.div`
         float: right !important;
     }
 `
+
+export const DetailMedicalRecordModalWrapper = styled.div`
+    .center{
+        text-align: center;
+    }
+
+    .middle{
+        vertical-align: middle;
+    }
+
+    input[type="file"] {
+        border: none;
+        padding: 10px;
+        background-color: transparent;
+        color: #333;
+    }
+
+    .bold{
+        font-weight: bold;
+    }
+`

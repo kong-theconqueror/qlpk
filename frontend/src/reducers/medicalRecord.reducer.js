@@ -10,9 +10,37 @@ const initState = {
 
     selectedMedicalRecord: {
     },
+
+    examination: {
+        MaKB: '',
+        MaBN: '',
+        TenBN: '',
+        MaBS: '',
+        TenBS: '',
+        ThoiGian: '',
+        YTaThamGia:'',
+        DichVuSuDung: '',
+        ThietBiSuDung: '',
+    },
+
+    treatments:[
+        {
+            MaCB: '',
+            MaBN: '',
+            TenBN: '',
+            MaBS: '',
+            TenBS: '',
+            ThoiGian: '',
+            KetLuan: '',
+            YTaThamGia:'',
+            DichVuSuDung: '',
+            ThietBiSuDung: '',
+        }
+    ],
     
     departments: [],
 
+    isShowDetailMedicalRecordModal: false,
     isShowCreateMedicalRecordModal: false,
     isShowUpdateMedicalRecordModal: false,
     isShowDeteleMedicalRecordModal: false,
@@ -20,6 +48,7 @@ const initState = {
 
 const medicalRecordReducer = (state = initState, action) => {
     switch (action.type) {
+        // GET_MEDICAL_RECORDS_SUCCESS
         case medicalRecordAction.GET_MEDICAL_RECORDS_SUCCESS:
             return {
                 ...state,
@@ -50,6 +79,41 @@ const medicalRecordReducer = (state = initState, action) => {
             return {
                 ...state,
                 selectedMedicalRecord: action.value
+            }
+
+        case medicalRecordAction.SHOW_DETAIL_MEDICAL_RECORD_MODAL:
+            return {
+                ...state,
+                isShowDetailMedicalRecordModal: true
+            }
+
+        case medicalRecordAction.HIDE_DETAIL_MEDICAL_RECORD_MODAL:
+            return {
+                ...state,
+                isShowDetailMedicalRecordModal: false
+            }
+
+        // GET_EXAM_DETAIL_SUCCESS
+        case medicalRecordAction.GET_EXAM_DETAIL_SUCCESS:
+            return {
+                ...state,
+                examination: action.value,
+            }
+        case medicalRecordAction.GET_EXAM_DETAIL_FAIL:
+            return {
+                ...state,
+                examination: {
+                    MaCB: '',
+                    MaBN: '',
+                    TenBN: '',
+                    MaBS: '',
+                    TenBS: '',
+                    ThoiGian: '',
+                    KetLuan: '',
+                    YTaThamGia:'',
+                    DichVuSuDung: '',
+                    ThietBiSuDung: '',
+                },
             }
 
         case medicalRecordAction.SHOW_CREATE_MEDICAL_RECORD_MODAL:
