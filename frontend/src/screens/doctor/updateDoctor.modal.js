@@ -15,22 +15,20 @@ const UpdateDoctorModal = ({ isShow }) => {
 
     const [id, setId] = useState("");
     const [fullName, setFullName] = useState("");
-    const [gender, setGender] = useState(1);
+    const [gender, setGender] = useState("Nam");
     const [room, setRoom] = useState("");
-    const [title, setTitle] = useState("");
     const [salaryCoefficient, setSalaryCoefficient] = useState(0);
     const [yoe, setYoE] = useState(0);
     const [department, setDepartment] = useState("");
 
     useEffect(() => {
-        setId(selectedDoctor.id ? selectedDoctor.id : "");
-        setFullName(selectedDoctor.full_name ? selectedDoctor.full_name : "");
-        setGender(selectedDoctor.gender ? selectedDoctor.gender : -1);
-        setRoom(selectedDoctor.room ? selectedDoctor.room : "");
-        setTitle(selectedDoctor.title ? selectedDoctor.title : "");
-        setSalaryCoefficient(selectedDoctor.salary_coefficient ? selectedDoctor.salary_coefficient : 0);
-        setYoE(selectedDoctor.years_of_experience ? selectedDoctor.years_of_experience : 0);
-        setDepartment(selectedDoctor.specialty ? selectedDoctor.specialty : "KH-MAT");
+        setId(selectedDoctor.MaBS ? selectedDoctor.MaBS : "");
+        setFullName(selectedDoctor.TenBS ? selectedDoctor.TenBS : "");
+        setGender(selectedDoctor.GioiTinh ? selectedDoctor.GioiTinh : 'Nam');
+        setRoom(selectedDoctor.PhongKham ? selectedDoctor.PhongKham : "");
+        setSalaryCoefficient(selectedDoctor.HeSoLuong ? selectedDoctor.HeSoLuong : 0);
+        setYoE(selectedDoctor.NamKinhNghiem ? selectedDoctor.NamKinhNghiem : 0);
+        setDepartment(selectedDoctor.MaKhoa ? selectedDoctor.MaKhoa : "KH-MAT");
     }, [selectedDoctor]);
 
     const handleClose = () => {
@@ -43,14 +41,13 @@ const UpdateDoctorModal = ({ isShow }) => {
         dispatch({
             type: doctorAction.UPDATE_DOCTOR,
             value: {
-                id: id,
-                full_name: fullName,
-                gender: gender,
-                room: room,
-                title: title,
-                salary_coefficient: salaryCoefficient,
-                years_of_experience: yoe,
-                specialty: department,
+                MaBS: id,
+                TenBS: fullName,
+                GioiTinh: gender,
+                PhongKham: room,
+                HeSoLuong: salaryCoefficient,
+                NamKinhNghiem: yoe,
+                MaKhoa: department,
             }
         })
         handleClose();
@@ -73,6 +70,7 @@ const UpdateDoctorModal = ({ isShow }) => {
                         <Form.Control
                             type='text'
                             value={id}
+                            readOnly={true}
                             onChange={(event) => { setId(event.target.value) }} />
                     </Form.Group>
                     <Form.Group as={Col}>
@@ -106,9 +104,9 @@ const UpdateDoctorModal = ({ isShow }) => {
                             onChange={(event) => { setDepartment(event.target.value) }}>
                             {departments.map((_department) => {
                                 return <option
-                                    key={_department.ma_khoa}
-                                    value={_department.ma_khoa}>
-                                    {_department.ten_khoa}
+                                    key={_department.MaKhoa}
+                                    value={_department.TenKhoa}>
+                                    {_department.TenKhoa}
                                 </option>
                             })}
                         </Form.Control>
@@ -130,16 +128,7 @@ const UpdateDoctorModal = ({ isShow }) => {
                             value={yoe}
                             onChange={(event) => { setYoE(event.target.value) }} />
                     </Form.Group>
-                </Row>
-
-                <Row className="mb-3">
-                    <Form.Group as={Col} >
-                        <Form.Label>{t('doctor.title')}</Form.Label>
-                        <Form.Control
-                            type='text'
-                            value={title}
-                            onChange={(event) => { setTitle(event.target.value) }} />
-                    </Form.Group>
+                    
                     <Form.Group as={Col} >
                         <Form.Label>{t('doctor.salary_coefficient')}</Form.Label>
                         <Form.Control
@@ -148,6 +137,7 @@ const UpdateDoctorModal = ({ isShow }) => {
                             onChange={(event) => { setSalaryCoefficient(event.target.value) }} />
                     </Form.Group>
                 </Row>
+
             </Form >
 
             </Modal.Body>

@@ -22,7 +22,7 @@ class BacSyList(Resource):
     def get(self):
         rows = run_query("""
             SELECT b.MaBS, b.TenBS, b.GioiTinh, b.PhongKham, 
-                   b.NamKinhNghiem, b.HeSoLuong, k.TenKhoa
+                   b.NamKinhNghiem, b.HeSoLuong, k.TenKhoa, k.MaKhoa
             FROM BacSy b
             JOIN Khoa k ON b.MaKhoa = k.MaKhoa
             ORDER BY b.MaBS DESC

@@ -19,7 +19,7 @@ const DeleteDoctorModal = ({ isShow }) => {
     const onDeleteBtnClick = () => {
         dispatch({
             type: doctorAction.DELETE_DOCTOR,
-            value: selectedDoctor.id,
+            value: selectedDoctor.MaBS,
         })
         handleClose();
     }

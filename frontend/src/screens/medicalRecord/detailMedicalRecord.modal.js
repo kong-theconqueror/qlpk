@@ -50,30 +50,10 @@ const DetailMedicalRecordModal = ({ isShow }) => {
         if(str){
             console.log(str)
             return str.split("|").map(item => {
-                // Bỏ khoảng trắng thừa và dấu {}
-                const clean = item.replace(/[{}]/g, "").trim();
-
-                // Tách thành cặp key:value
-                const parts = clean.split(",").map(p => p.trim());
-
-                // Convert sang object
-                const obj = {};
-                parts.forEach(p => {
-                    let [key, value] = p.split(":");
-
-                    key = key.trim();
-                    value = value.trim();
-
-                    // Nếu value là số thì ép sang Number
-                    if (!isNaN(value)) {
-                    value = Number(value);
-                    }
-
-                    obj[key] = value;
-                });
-
+                console.log(item)
+                let obj = JSON.parse(item)
                 return obj;
-                });
+            });
         }
         else return [];
     };
@@ -81,13 +61,13 @@ const DetailMedicalRecordModal = ({ isShow }) => {
     const countTotal = (array) => {
         let total = 0;
         array.forEach(element => {
-            total += element.SL * element.Gia;
+            total += element.SL * element.DonGia;
         });
         return total
     }
 
     const formatMoney = (value) => {
-       return value.toLocaleString("vi-VN"); // "11.360.000"
+        return value.toLocaleString("vi-VN"); // "11.360.000"
     }
 
     return <DetailMedicalRecordModalWrapper>
@@ -215,8 +195,8 @@ const DetailMedicalRecordModal = ({ isShow }) => {
                                         <td className="center middle">{item.MaDV}</td>
                                         <td className="center middle">{item.TenDV}</td>
                                         <td className="center middle">{item.SL}</td>
-                                        <td className="center middle">{formatMoney(item.Gia)}</td>
-                                        <td className="center middle">{formatMoney(item.Gia * item.SL)}</td>
+                                        <td className="center middle">{formatMoney(item.DonGia)}</td>
+                                        <td className="center middle">{formatMoney(item.DonGia * item.SL)}</td>
                                     </tr>
                                 })}
                                 <tr>
@@ -250,8 +230,8 @@ const DetailMedicalRecordModal = ({ isShow }) => {
                                         <td className="center middle">{item.MaThietBi}</td>
                                         <td className="center middle">{item.TenThietBi}</td>
                                         <td className="center middle">{item.SL}</td>
-                                        <td className="center middle">{formatMoney(item.Gia)}</td>
-                                        <td className="center middle">{formatMoney(item.Gia * item.SL)}</td>
+                                        <td className="center middle">{formatMoney(item.DonGia)}</td>
+                                        <td className="center middle">{formatMoney(item.DonGia * item.SL)}</td>
                                     </tr>
                                 })}
                                 <tr>
@@ -331,8 +311,8 @@ const DetailMedicalRecordModal = ({ isShow }) => {
                                                 <td className="center middle">{item.MaDV}</td>
                                                 <td className="center middle">{item.TenDV}</td>
                                                 <td className="center middle">{item.SL}</td>
-                                                <td className="center middle">{formatMoney(item.Gia)}</td>
-                                                <td className="center middle">{formatMoney(item.Gia * item.SL)}</td>
+                                                <td className="center middle">{formatMoney(item.DonGia)}</td>
+                                                <td className="center middle">{formatMoney(item.DonGia * item.SL)}</td>
                                             </tr>
                                         })}
                                         <tr>
@@ -366,13 +346,50 @@ const DetailMedicalRecordModal = ({ isShow }) => {
                                                 <td className="center middle">{item.MaThietBi}</td>
                                                 <td className="center middle">{item.TenThietBi}</td>
                                                 <td className="center middle">{item.SL}</td>
-                                                <td className="center middle">{formatMoney(item.Gia)}</td>
-                                                <td className="center middle">{formatMoney(item.Gia * item.SL)}</td>
+                                                <td className="center middle">{formatMoney(item.DonGia)}</td>
+                                                <td className="center middle">{formatMoney(item.DonGia * item.SL)}</td>
                                             </tr>
                                         })}
                                         <tr>
                                             <td colSpan={5} className="center middle">{t('medical_record.total')}</td>
                                             <td className="center middle">{formatMoney(countTotal(str2array(_treatment.ThietBiSuDung)))}</td>
+                                        </tr>
+                                    </tbody>
+                                </Table>
+                            </Col>
+                        </Row>
+
+                        {/* ThuocSuDung */}
+                        <Row>
+                            <Col> 
+                                <Card.Title>{t('medical_record.medicines')}</Card.Title>
+                                <Table striped bordered hover>
+                                    <thead>
+                                        <tr>
+                                            <th className="center middle">#</th>
+                                            <th className="center middle">{t('medical_record.medicine_id')}</th>
+                                            <th className="center middle">{t('medical_record.medicine_name')}</th>
+                                            <th className="center middle">{t('medical_record.usage')}</th>
+                                            <th className="center middle">{t('medical_record.quantity')}</th>
+                                            <th className="center middle">{t('medical_record.price')}</th>
+                                            <th className="center middle">{t('medical_record.total')}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {str2array(_treatment.ThuocSuDung).map((item, index) => {
+                                            return <tr key={index}>
+                                                <td className="center middle">{index+1}</td>
+                                                <td className="center middle">{item.MaThuoc}</td>
+                                                <td className="center middle">{item.TenThuoc}</td>
+                                                <td className="center middle">{item.LieuDung}</td>
+                                                <td className="center middle">{item.SL}</td>
+                                                <td className="center middle">{formatMoney(item.DonGia)}</td>
+                                                <td className="center middle">{formatMoney(item.DonGia * item.SL)}</td>
+                                            </tr>
+                                        })}
+                                        <tr>
+                                            <td colSpan={6} className="center middle">{t('medical_record.total')}</td>
+                                            <td className="center middle">{formatMoney(countTotal(str2array(_treatment.ThuocSuDung)))}</td>
                                         </tr>
                                     </tbody>
                                 </Table>

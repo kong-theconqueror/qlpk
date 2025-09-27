@@ -51,6 +51,7 @@ const doctorReducer = (state = initState, action) => {
             }
         
         case doctorAction.SELECT_DOCTOR:
+            console.log(action.value)
             return {
                 ...state,
                 selectedDoctor: action.value

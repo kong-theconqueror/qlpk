@@ -23,9 +23,9 @@ SELECT
     cd.MaBenh,
     b.TenBenh,
     cd.SoLanChuaBenhDuDoan,
-    GROUP_CONCAT(DISTINCT CONCAT('{MaYTa:', yt.MaYT, ', TenYT:', yt.TenYT, '}') SEPARATOR '|') AS YTaThamGia,
-    GROUP_CONCAT(DISTINCT CONCAT('{MaDV:', dv.MaDichVu, ', TenDV:', dv.TenDichVu, ', SL:', dvkb.SoLuong, ', Giá:', dvkb.DonGiaApDung, '}') SEPARATOR '| ') AS DichVuSuDung,
-    GROUP_CONCAT(DISTINCT CONCAT('{MaThietBi:', tb.MaThietBi, ', TenThietBi:', tb.TenThietBi, ', SL:', tbkb.SoLuong, ', Giá:', tbkb.DonGiaApDung, '}') SEPARATOR '| ') AS ThietBiSuDung
+    GROUP_CONCAT(DISTINCT CONCAT('{"MaYTa":"', yt.MaYT, '", "TenYT":"', yt.TenYT, '"}') SEPARATOR '|') AS YTaThamGia,
+    GROUP_CONCAT(DISTINCT CONCAT('{"MaDV":"', dv.MaDichVu, '", "TenDV":"', dv.TenDichVu, '", "SL":', dvkb.SoLuong, ', "DonGia":', dvkb.DonGiaApDung, '}') SEPARATOR '| ') AS DichVuSuDung,
+    GROUP_CONCAT(DISTINCT CONCAT('{"MaThietBi":"', tb.MaThietBi, '", "TenThietBi":"', tb.TenThietBi, '", "SL":', tbkb.SoLuong, ', "DonGia":', tbkb.DonGiaApDung, '}') SEPARATOR '| ') AS ThietBiSuDung
 FROM HoSoBenhAn h
 JOIN ChanDoan cd ON h.MaCD = cd.MaCD
 JOIN Benh b ON cd.MaBenh = b.MaBenh

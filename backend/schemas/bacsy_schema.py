@@ -9,6 +9,7 @@ class BacSySchema(Schema):
     NamKinhNghiem = fields.Int()
     HeSoLuong = fields.Float()   # ép sang float
     TenKhoa = fields.Str()
+    MaKhoa = fields.Str()
         
 bacsy_schema = BacSySchema()
 bacsys_schema = BacSySchema(many=True)

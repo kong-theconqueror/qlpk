@@ -102,6 +102,8 @@ const vn = {
             doctor: "Bác sĩ",
             disease: "Bệnh",
             nurses: "Danh sách y tá",
+            medicines: "Danh sách thuốc",
+            usage: "Liều dùng",
             nurse_id: "Mã Y tá",
             full_name: "Họ tên",
             services: "Danh sách dịch vụ",

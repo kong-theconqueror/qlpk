@@ -2,16 +2,16 @@ SELECT
     cb.MaCB,
     cb.ThoiGian,
     -- Y tá
-    GROUP_CONCAT(DISTINCT CONCAT('{MaYTa:', yt.MaYT, ', TenYT:', yt.TenYT, '}') SEPARATOR '|') AS YTaThamGia,
+    GROUP_CONCAT(DISTINCT CONCAT('{"MaYTa":"', yt.MaYT, '", "TenYT":"', yt.TenYT, '"}') SEPARATOR '|') AS YTaThamGia,
     
     -- Thiết bị
-    GROUP_CONCAT(DISTINCT CONCAT('{MaThietBi:', tb.MaThietBi, ', TenThietBi:', tb.TenThietBi, ', SL:', tbcb.SoLuong, ', Gia:', tbcb.DonGiaApDung, '}') SEPARATOR '| ') AS ThietBiSuDung,
+    GROUP_CONCAT(DISTINCT CONCAT('{"MaThietBi":"', tb.MaThietBi, '", "TenThietBi":"', tb.TenThietBi, '", "SL":', tbcb.SoLuong, ', "DonGia":', tbcb.DonGiaApDung, '}') SEPARATOR '| ') AS ThietBiSuDung,
     
     -- Dịch vụ
-    GROUP_CONCAT(DISTINCT CONCAT('{MaDV:', dv.MaDichVu, ', TenDV:', dv.TenDichVu, ', SL:', dvcb.SoLuong, ', Gia:', dvcb.DonGiaApDung, '}') SEPARATOR '| ') AS DichVuSuDung,
+    GROUP_CONCAT(DISTINCT CONCAT('{"MaDV":"', dv.MaDichVu, '", "TenDV":"', dv.TenDichVu, '", "SL":', dvcb.SoLuong, ', "DonGia":', dvcb.DonGiaApDung, '}') SEPARATOR '| ') AS DichVuSuDung,
     
     -- Thuốc
-    GROUP_CONCAT(DISTINCT CONCAT('{MaThuoc:', th.MaThuoc, ', TenThuoc:', th.TenThuoc, ', LieuDung:', ld.LieuDung, ', SoLuong:', ld.SoLuong, ', DonGia:', th.DonGia, ')') SEPARATOR ' | ') AS ThuocSuDung
+    GROUP_CONCAT(DISTINCT CONCAT('{"MaThuoc":"', th.MaThuoc, '", "TenThuoc":"', th.TenThuoc, '", "LieuDung":"', ld.LieuDung, '", "SL":', ld.SoLuong, ', "DonGia":', th.DonGia, '}') SEPARATOR ' | ') AS ThuocSuDung
 
 FROM HoSoBenhAn ba
 JOIN ChuaBenh cb ON ba.MaBA = cb.MaBA

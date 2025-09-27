@@ -22,7 +22,6 @@ const CreateDoctorModal = ({ isShow }) => {
     const [fullName, setFullName] = useState("");
     const [gender, setGender] = useState("Nam");
     const [room, setRoom] = useState("");
-    const [title, setTitle] = useState("");
     const [salaryCoefficient, setSalaryCoefficient] = useState(0);
     const [yoe, setYoE] = useState(0);
     const [department, setDepartment] = useState("KH-MAT");
@@ -37,14 +36,13 @@ const CreateDoctorModal = ({ isShow }) => {
         dispatch({
             type: doctorAction.CREATE_DOCTOR,
             value: {
-                id: id,
-                full_name: fullName,
-                gender: gender,
-                room: room,
-                title: title,
-                salary_coefficient: salaryCoefficient,
-                years_of_experience: yoe,
-                specialty: department,
+                MaBS: id,
+                TenBS: fullName,
+                GioiTinh: gender,
+                PhongKham: room,
+                HeSoLuong: salaryCoefficient,
+                NamKinhNghiem: yoe,
+                MaKhoa: department,
             }
         })
         handleClose();
@@ -100,9 +98,9 @@ const CreateDoctorModal = ({ isShow }) => {
                                 onChange={(event) => { setDepartment(event.target.value) }}>
                                 {departments.map((_department) => {
                                     return <option
-                                        key={_department.ma_khoa}
-                                        value={_department.ma_khoa}>
-                                        {_department.ten_khoa}
+                                        key={_department.MaKhoa}
+                                        value={_department.MaKhoa}>
+                                        {_department.TenKhoa}
                                     </option>
                                 })}
                             </Form.Control>
@@ -124,16 +122,7 @@ const CreateDoctorModal = ({ isShow }) => {
                                 value={yoe}
                                 onChange={(event) => { setYoE(event.target.value) }} />
                         </Form.Group>
-                    </Row>
-
-                    <Row className="mb-3">
-                        <Form.Group as={Col} >
-                            <Form.Label>{t('doctor.title')}</Form.Label>
-                            <Form.Control
-                                type='text'
-                                value={title}
-                                onChange={(event) => { setTitle(event.target.value) }} />
-                        </Form.Group>
+                        
                         <Form.Group as={Col} >
                             <Form.Label>{t('doctor.salary_coefficient')}</Form.Label>
                             <Form.Control
