@@ -51,6 +51,18 @@ class TreatmentApi {
             }
         );
     }
+
+    getRecordTreatment(recordID){
+        return axiosSerivce.get(
+            'chua_benh/benh_an/'+ recordID,
+            null,
+            true,
+            {
+                'Content-Type': 'application/json',
+                // 'Authorization': `Bearer ${getLocalData('token')}`,
+            }
+        );
+    }
 }
 
 const treatmentApi = new TreatmentApi()

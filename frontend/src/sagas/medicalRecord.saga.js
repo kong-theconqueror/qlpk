@@ -5,6 +5,7 @@ import notificationActions from '../actions/notification.action';
 import medicalRecordApi from '../services/api/medicalRecord.api';
 import departmentApi from '../services/api/department.api';
 import examinationApi from '../services/api/examination.api';
+import treatmentApi from '../services/api/treatment.api';
 
 function* getMedicalRecordsSaga({ value }) {
   try {
@@ -209,6 +210,32 @@ function* getExamDetailSaga({ value }) {
   }
 }
 
+function* getTreatmentDetailSaga({ value }) {
+  try {
+    const response = yield call(treatmentApi.getRecordTreatment, value);
+    if (response.status === 200 || response.status === 201) {
+      let _data = response.data;
+      console.log(_data)
+      yield put({
+          type: medicalRecordAction.GET_TREATMENT_DETAIL_SUCCESS,
+          value: _data
+        });
+     
+    } else {
+      yield put({
+        type: notificationActions.ERROR,
+        value: 'examination.cant_get_examinations'
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    yield put({
+      type: notificationActions.ERROR,
+      value: 'login.api_error'
+    });
+  }
+}
+
 export default function* rootSaga() {
   yield all([
     takeEvery(medicalRecordAction.GET_MEDICAL_RECORDS, getMedicalRecordsSaga),
@@ -217,5 +244,6 @@ export default function* rootSaga() {
     takeEvery(medicalRecordAction.UPDATE_MEDICAL_RECORD, updateMedicalRecordSaga),
     takeEvery(medicalRecordAction.DELETE_MEDICAL_RECORD, deleteMedicalRecordSaga),
     takeEvery(medicalRecordAction.GET_EXAM_DETAIL, getExamDetailSaga),
+    takeEvery(medicalRecordAction.GET_TREATMENT_DETAIL, getTreatmentDetailSaga),
   ]);
 }

@@ -26,15 +26,11 @@ const initState = {
     treatments:[
         {
             MaCB: '',
-            MaBN: '',
-            TenBN: '',
-            MaBS: '',
-            TenBS: '',
             ThoiGian: '',
-            KetLuan: '',
             YTaThamGia:'',
             DichVuSuDung: '',
             ThietBiSuDung: '',
+            ThuocSuDung: '',
         }
     ],
     
@@ -113,6 +109,26 @@ const medicalRecordReducer = (state = initState, action) => {
                     YTaThamGia:'',
                     DichVuSuDung: '',
                     ThietBiSuDung: '',
+                },
+            }
+
+        // GET_TREATMENT_DETAIL_SUCCESS
+        case medicalRecordAction.GET_TREATMENT_DETAIL_SUCCESS:
+            return {
+                ...state,
+                treatments: action.value,
+            }
+
+        case medicalRecordAction.GET_TREATMENT_DETAIL_FAIL:
+            return {
+                ...state,
+                treatments: {
+                    MaCB: '',
+                    ThoiGian: '',
+                    YTaThamGia:'',
+                    DichVuSuDung: '',
+                    ThietBiSuDung: '',
+                    ThuocSuDung: '',
                 },
             }
 

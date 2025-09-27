@@ -1,7 +1,7 @@
 from flask import request
 from flask_restx import Resource, fields, Namespace
 from db import run_query
-from schemas.chuabenh_schema import chuabenh_schema, chuabenhs_schema
+from schemas.chuabenh_schema import chuabenh_schema, chuabenhs_schema, chitietchuabenhs_schema
 from extensions import api
 
 ns = Namespace("chua_benh", description="Quản lý thông tin chữa bệnh")
@@ -122,3 +122,54 @@ class ChuaBenhSearch(Resource):
         rows = run_query(sql, params)
         print(rows)
         return chuabenhs_schema.dump(rows)
+    
+
+@ns.route("/benh_an/<string:ma_benhan>")
+class ChuaBenhBenhAn(Resource):
+    def get(self, ma_benhan):
+        if not ma_benhan:
+            return {"error": "Thiếu tham số /ma_benhan"}, 400
+        
+        sql = """
+            SELECT 
+                cb.MaCB,
+                cb.ThoiGian,
+                -- Y tá
+                GROUP_CONCAT(DISTINCT CONCAT('{MaYTa:', yt.MaYT, ', TenYT:', yt.TenYT, '}') SEPARATOR '|') AS YTaThamGia,
+                
+                -- Thiết bị
+                GROUP_CONCAT(DISTINCT CONCAT('{MaThietBi:', tb.MaThietBi, ', TenThietBi:', tb.TenThietBi, ', SL:', tbcb.SoLuong, ', Gia:', tbcb.DonGiaApDung, '}') SEPARATOR '| ') AS ThietBiSuDung,
+                
+                -- Dịch vụ
+                GROUP_CONCAT(DISTINCT CONCAT('{MaDV:', dv.MaDichVu, ', TenDV:', dv.TenDichVu, ', SL:', dvcb.SoLuong, ', Gia:', dvcb.DonGiaApDung, '}') SEPARATOR '| ') AS DichVuSuDung,
+                
+                -- Thuốc
+                GROUP_CONCAT(DISTINCT CONCAT('{MaThuoc:', th.MaThuoc, ', TenThuoc:', th.TenThuoc, ', LieuDung:', ld.LieuDung, ', SoLuong:', ld.SoLuong, ', DonGia:', th.DonGia, ')') SEPARATOR ' | ') AS ThuocSuDung
+
+            FROM HoSoBenhAn ba
+            JOIN ChuaBenh cb ON ba.MaBA = cb.MaBA
+
+            -- Y tá
+            LEFT JOIN PhanCongCB pccb ON cb.MaCB = pccb.MaCB
+            LEFT JOIN YTa yt ON pccb.MaYT = yt.MaYT
+
+            -- Thiết bị
+            LEFT JOIN SuDungThietBiCB tbcb ON cb.MaCB = tbcb.MaCB
+            LEFT JOIN ThietBiYTe tb ON tbcb.MaThietBi = tb.MaThietBi
+
+            -- Dịch vụ
+            LEFT JOIN DichVuCB dvcb ON cb.MaCB = dvcb.MaCB
+            LEFT JOIN DichVu dv ON dvcb.MaDichVu = dv.MaDichVu
+
+            -- Thuốc
+            LEFT JOIN DonThuoc dt ON cb.MaCB = dt.MaCB
+            LEFT JOIN LieuDung ld ON dt.MaDonThuoc = ld.MaDonThuoc
+            LEFT JOIN Thuoc th ON ld.MaThuoc = th.MaThuoc
+
+            WHERE ba.MaBA = %s
+            GROUP BY cb.MaCB
+            ORDER BY cb.ThoiGian ASC;
+        """
+        params = (ma_benhan)
+        rows = run_query(sql, params)
+        return chitietchuabenhs_schema.dump(rows), 201

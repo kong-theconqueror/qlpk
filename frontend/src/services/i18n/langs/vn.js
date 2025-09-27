@@ -111,6 +111,8 @@ const vn = {
             total: "Tổng",
             treatent_predict: "Dự đoán số lần chữa bệnh",
             exam_time: "Thời gian khám",
+            treatment_time: "Thời gian chữa",
+            treatment_times: "Số lần chữa",
             service_id: "Mã dịch vụ",
             equipments: "Danh sách thiết bị",
             equipment_id: "Mã thiết bị",
