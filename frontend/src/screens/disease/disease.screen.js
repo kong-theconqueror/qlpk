@@ -45,7 +45,17 @@ const DiseasesScreen = () => {
                 <Col lg={12}>
                     <Card >
                         <Card.Header>
-                            <Card.Title>{t('disease.disease_list')}</Card.Title>
+                            <Row>
+                                <Col>
+                                    <Card.Title>{t('disease.disease_list')}</Card.Title>
+                                </Col>
+                                <Col>
+                                    <Button variant="primary" type="submit" style={{ float: "right", minWidth: 50 }}
+                                    >
+                                        {t('doctor.add')}
+                                    </Button>
+                                </Col>
+                            </Row>
                         </Card.Header>
                         <Card.Body>
                             <Row>

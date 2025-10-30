@@ -108,7 +108,7 @@ const RevenuesScreen = () => {
                                                 <th className="center middle">{t('revenue.treat_equipment')}</th>
                                                 <th className="center middle">{t('revenue.medicine')}</th>
                                                 <th className="center middle">{t('revenue.total')}</th>
-                                                <th className="center middle">{t('revenue.action')}</th>
+                                                {/* <th className="center middle">{t('revenue.action')}</th> */}
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -121,12 +121,12 @@ const RevenuesScreen = () => {
                                                     <td className="center middle">{formatMoney(revenue.DoanhThu_ThietBiCB)}</td>
                                                     <td className="center middle">{formatMoney(revenue.DoanhThu_Thuoc)}</td>
                                                     <td className="center middle">{formatMoney(revenue.TongDoanhThu)}</td>
-                                                    <td className="center middle">
+                                                    {/* <td className="center middle">
                                                         <Button variant="success" 
                                                             title={t('revenue.detail')}>
                                                             <i className="fa fa-search" aria-hidden="true"></i>
                                                         </Button>
-                                                    </td>
+                                                    </td> */}
                                                 </tr>
                                             })}
 

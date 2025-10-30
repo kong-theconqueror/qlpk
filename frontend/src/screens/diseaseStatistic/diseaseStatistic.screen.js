@@ -118,7 +118,7 @@ const DiseaseStatisticScreen = () => {
                                                 <th className="center middle">#</th>
                                                 <th className="center middle">{t('statistic.disease_name')}</th>
                                                 <th className="center middle">{t('statistic.total_patient')}</th>
-                                                <th className="center middle">{t('statistic.action')}</th>
+                                                {/* <th className="center middle">{t('statistic.action')}</th> */}
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -127,12 +127,12 @@ const DiseaseStatisticScreen = () => {
                                                     <td className="center middle">{disease.MaBenh}</td>
                                                     <td className="center middle">{disease.TenBenh}</td>
                                                     <td className="center middle">{disease.SoBenhNhan}</td>
-                                                    <td className="center middle">
+                                                    {/* <td className="center middle">
                                                         <Button variant="success" 
                                                             title={t('statistic.detail')}>
                                                             <i className="fa fa-search" aria-hidden="true"></i>
                                                         </Button>
-                                                    </td>
+                                                    </td> */}
                                                 </tr>
                                             })}
 
