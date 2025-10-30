@@ -91,6 +91,11 @@ const vn = {
             level: "Mức độ"
         },
         medical_record:{
+            medicine_id: "Mã thuốc",
+            medicine_name: "Tên thuốc",
+            equipment_id: "Mã thiết bị",
+            equipment_name: "Tên thiết bị",
+            usage: "Liều dùng",
             medical_record: "Hồ sơ bệnh ánh",
             medical_record_list: "Danh sách hồ sơ bệnh án",
             record_id: "Mã BA",
