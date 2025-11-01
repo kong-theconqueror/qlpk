@@ -475,7 +475,7 @@ def import_hosobenhan(csv_file):
         reader = csv.DictReader(f)
         for row in reader:
             start_date = datetime.strptime(row['ThoiGianMo'], "%d/%m/%Y").date()
-            end_date = datetime.strptime(row['ThoiGianDong'], "%Y-%m-%d").date() if row['ThoiGianDong'] else None
+            end_date = datetime.strptime(row['ThoiGianDong'], "%d/%m/%Y").date() if row['ThoiGianDong'] else None
             data = (
                 row['MaBA'],
                 row['MaCD'],
@@ -506,7 +506,7 @@ def import_chuabenh(csv_file):
     with conn.cursor() as cur, open(csv_file, encoding="utf-8-sig") as f:
         reader = csv.DictReader(f)
         for row in reader:
-            date = datetime.strptime(row['ThoiGian'], "%Y-%m-%d").date() if row['ThoiGian'] else None
+            date = datetime.strptime(row['ThoiGian'], "%d/%m/%Y").date() if row['ThoiGian'] else None
             data = (
                 row['MaCB'],
                 row['MaBA'],
