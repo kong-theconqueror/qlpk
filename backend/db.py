@@ -170,6 +170,23 @@ def declare_procedure_db(sql_file):
     conn.commit()
     conn.close()
 
+def declare_trigger_db(sql_file):
+    conn = get_conn()
+    with conn.cursor() as cur, open(sql_file, encoding="utf-8") as f:
+        sql_content = f.read()
+
+        # Tách các câu lệnh bằng DELIMITER custom nếu có
+        statements = sql_content.replace("DELIMITER $$", "").replace("DELIMITER ;", "").split("$$")
+        for stmt in statements:
+            stmt = stmt.strip()
+            if stmt:
+                cur.execute(stmt)
+                print(f"Executed statement:\n{stmt[:100]}...")  # in 100 ký tự đầu
+    
+    print(f"Khởi tạo TRIGGER {sql_file} xong !!!")    
+    conn.commit()
+    conn.close()
+    
 def import_data():
     current_directory = os.getcwd()
     print(current_directory)
